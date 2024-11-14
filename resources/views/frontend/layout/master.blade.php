@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="zxx">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <title>@yield('title')</title>
+    <link rel="stylesheet" type="text/css" href="{{ asset('/') }}frontend/css/animate.min.css">
+    <link rel="stylesheet" type="text/css" href="{{ asset('/') }}frontend/css/animation.css">
+    <link rel="stylesheet" type="text/css" href="{{ asset('/') }}frontend/css/nouislider.min.css">
+    <link rel="stylesheet" type="text/css" href="{{ asset('/') }}frontend/css/nice-select.css">
+    <link rel="stylesheet" type="text/css" href="{{ asset('/') }}frontend/css/bootstrap.css">
+    <link rel="stylesheet" type="text/css" href="{{ asset('/') }}frontend/css/bootstrap-select.min.css">
+    <link rel="stylesheet" type="text/css" href="{{ asset('/') }}frontend/css/swiper-bundle.min.css">
+    <link rel="stylesheet" type="text/css" href="{{ asset('/') }}frontend/css/magnific-popup.min.css">
+    <link rel="stylesheet" type="text/css" href="{{ asset('/') }}frontend/css/mmenu.css">
+    <link rel="stylesheet" type="text/css" href="{{ asset('/') }}frontend/css/style.css">
+    <link rel="stylesheet" type="text/css" href="{{ asset('/') }}frontend/css/jquery.fancybox.min.css">
+    <link rel="stylesheet" href="{{ asset('/') }}frontend/font/fonts.css">
+    <link href="https://fonts.googleapis.com/css2?family=Jost:ital,wght@0,100..900;1,100..900&amp;display=swap" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="{{ asset('/') }}frontend/icon/flaticon_just-home.css">
+    <link rel="stylesheet" type="text/css" href="{{ asset('/') }}frontend/icon/icomoon/style.css">
+    <link rel="shortcut icon" href="{{ asset('/') }}frontend/images/favicon.png">
+    <link rel="apple-touch-icon-precomposed" href="images/favicon.png">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    @yield('page_styles')
+</head>
+<body class="body {{ (Request::segment(1) == '') ? 'counter-scroll' : '' }}">
+    <!-- Preloader -->
+        <div class="preload preload-container">
+            <div class="middle"></div>
+        </div>
+        <div id="wrapper">
+            <div id="page" class="home-1">
+                @include('frontend.layout.header')
+                    @yield('content')
+                @include('frontend.layout.footer')
+        <script src="{{ asset('/') }}frontend/js/jquery.min.js"></script>
+        <script src="{{ asset('/') }}frontend/js/jquery.nice-select.min.js"></script>
+        <script src="{{ asset('/') }}frontend/js/bootstrap.min.js"></script>
+        <script src="{{ asset('/') }}frontend/js/bootstrap-select.min.js"></script>
+        <script src="{{ asset('/') }}frontend/js/swiper-bundle.min.js"></script>
+        <script src="{{ asset('/') }}frontend/js/swiper.js"></script>
+        <script src="{{ asset('/') }}frontend/js/countto.js"></script>
+        <script src="{{ asset('/') }}frontend/js/circletype.min.js"></script>
+        <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCFC3m2n0jBRFTMvUNZc0-6Y0Rzlcadzcw"></script>
+        <script src="{{ asset('/') }}frontend/js/maps.js"></script>
+        <script src="{{ asset('/') }}frontend/js/marker.js"></script>
+        <script src="{{ asset('/') }}frontend/js/infobox.min.js"></script>
+        <script src="{{ asset('/') }}frontend/js/magnific-popup.min.js"></script>
+        <script src="{{ asset('/') }}frontend/js/apexcharts.js"></script>
+        <script src="{{ asset('/') }}frontend/js/area-chart.js"></script>
+        <script src="{{ asset('/') }}frontend/js/morris.min.js"></script>
+        <script src="{{ asset('/') }}frontend/js/raphael.min.js"></script>
+        <script src="{{ asset('/') }}frontend/js/morris.js"></script>
+        <script src="{{ asset('/') }}frontend/js/nouislider.min.js"></script>
+        <script src="{{ asset('/') }}frontend/js/rangle-slider.js"></script>
+        <script src="{{ asset('/') }}frontend/js/mmenu.js"></script>
+        <script src="{{ asset('/') }}frontend/js/wow.min.js"></script>
+        <script src="{{ asset('/') }}frontend/js/scrollmagic.js"></script>
+        <script src="{{ asset('/') }}frontend/js/main.js"></script>
+        <script>
+        new Mmenu(document.querySelector("#menu"));
+        </script>
+      </body>
+   </html>
+    @yield('page_scripts')
+</body>
+</html>
