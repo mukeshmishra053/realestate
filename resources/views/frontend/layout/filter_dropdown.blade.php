@@ -14,7 +14,7 @@
                             </div>
                             <p>{{ $property->name }} </p>
                         </div>
-                        <div class="text">For {{ ucfirst($property->type) }}</div>
+                        <div class="text">For {{ ucfirst($type) }}</div>
                     </div>
                 </a>
             </li>

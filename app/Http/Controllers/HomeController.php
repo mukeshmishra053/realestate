@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Botble\RealEstate\Models\Category;
+use Botble\RealEstate\Models\City;
 use Botble\RealEstate\Models\Property;
 use Carbon\Carbon;
 use Botble\RealEstate\Repositories\Interfaces\PropertyInterface;
@@ -24,16 +25,16 @@ Class HomeController extends Controller {
     public function index(Request $request){
         $categoriesData = Category::all();
         $homeInteriorCategories = Category::with('properties')->where('is_interior',1)->get();
-
         $properties = $this->propertyRepository->getRelatedProperties(1,6);
         $featuredProjects = Category::with('properties')->whereHas('properties',function($query){
             $query->where('is_featured',1)->limit(6);
         })->where('is_interior',0)->take(4)->get();
+        $popularCities = City::with('properties','state')->withCount('properties')->orderBy('properties_count', 'desc')->limit(5)->get();
+        $topCategories = Category::with('properties')->withCount('properties')->orderBy('properties_count', 'desc')->limit(5)->get();
         // echo "<pre>";
-        // print_r(json_decode(json_encode($homeInteriorCategories),2)); die;
+        // print_r($topCategories); die;
         $highlyViewedProperties = Property::where('created_at', '>=', Carbon::now()->subYear())->orderBy('views','DESC')->take(6)->get();
-
-        return view('frontend.pages.home',compact('categoriesData','homeInteriorCategories','properties','featuredProjects','highlyViewedProperties','featuredProjects'));
+        return view('frontend.pages.home',compact('categoriesData','topCategories','homeInteriorCategories','popularCities','properties','featuredProjects','highlyViewedProperties','featuredProjects'));
     }
     // Contact Us
     public function contactUs(Request $request){
@@ -126,6 +127,7 @@ Class HomeController extends Controller {
     public function filterPropertyBySearch(Request $request){
         try{
             $search = $request->search;
+            $type = $request->type;
             $propertyList =  Property::with(['author','facilities','features'])
             ->where(function ($query) use ($search){
                 $query->whereHas('categories',function($query) use ($search){
@@ -134,8 +136,8 @@ Class HomeController extends Controller {
                 $query->orWhere('name','like','%'. $search . '%');
                 $query->orWhere('description','like','%'. $search . '%');
                 $query->orWhere('location','like','%'. $search . '%');
-            })->orderBy('id','DESC')->get();
-            $html = View::make('frontend.layout.filter_dropdown',['propertyList'=>$propertyList])->render();
+            })->where('type',$type)->orderBy('id','DESC')->limit(10)->select('id','name','images')->get();
+            $html = View::make('frontend.layout.filter_dropdown',['propertyList'=>$propertyList,'type'=>$type])->render();
             return response()->json(['status'=>($propertyList) ? 200 : 400,'msg'=>($propertyList) ? 'Action performed successfully' : 'Something went wrong','url'=>'','html'=>$html]);
         }catch(\Exception $e){
             return response()->json(['status'=>400,'msg'=>$e->getMessage(),'url'=>'']);

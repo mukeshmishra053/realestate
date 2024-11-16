@@ -104,91 +104,10 @@
                    @endif
                 </li>
                 <li class="has-children">
-                   <a href="javascript:void(0);">Sell   </a>
-                   <ul class="mega-menu">
-                      <li>
-                         <ul>
-                            <li class="title">For Owner</li>
-                            <li>
-                               <a href="#!">Post Property</a>
-                            </li>
-                            <li>
-                               <a href="#!">My Dashboard</a>
-                            </li>
-                            <li>
-                               <a href="#!">Sell / Rent Ad Packages</a>
-                            </li>
-
-                         </ul>
-                      </li>
-                      <li>
-                         <ul>
-                            <li class="title">For Agent & Builder</li>
-                            <li>
-                               <a href="#!">My Dashboard</a>
-                            </li>
-                            <li>
-                               <a href="#!">Ad Packages</a>
-                            </li>
-                            <li>
-                               <a href="#!">iAdvantage</a>
-                            </li>
-                            <li>
-                               <a href="#!">Developer Lounge</a>
-                            </li>
-                            <li>
-                               <a href="#!">Sales Enquiry</a>
-                            </li>
-
-                         </ul>
-                      </li>
-                      <li>
-                         <ul>
-                            <li class="title">Selling Tools</li>
-                            <li>
-                               <a href="#!">Property Valuation</a>
-                            </li>
-                            <li>
-                               <a href="#!">Find an Agent</a>
-                            </li>
-                            <li>
-                               <a href="#!">Rates and Trends</a>
-                            </li>
-                            <li>
-                               <a href="#!">PropWorth</a>
-                            </li>
-
-                         </ul>
-                      </li>
-
-                      <li>
-                         <ul class="insgCss">
-                            <li class="title">Insights</li>
-                            <li>
-                               <a href="#!"><i class="fa fa-check-circle-o" aria-hidden="true"></i> Understand localities</a>
-                            </li>
-                            <li>
-                               <a href="#!"><i class="fa fa-check-circle-o" aria-hidden="true"></i> Read Resident Reviews</a>
-                            </li>
-                            <li>
-                               <a href="#!"><i class="fa fa-check-circle-o" aria-hidden="true"></i> Check Price Trends</a>
-                            </li>
-                            <li>
-                               <a href="#!"><i class="fa fa-check-circle-o" aria-hidden="true"></i> Tools, Utilities & more</a>
-                            </li>
-                         </ul>
-                      </li>
-                      <!-- <li>
-                          <li class="title">Insights</li>
-                        <li> <a href="#!"> <img class="img-fluid sdcfig" src="images/2845989_83.svg"> </a></li>
-                      </li> -->
-                   </ul>
-                </li>
-                <li class="has-children">
                    <a href="javascript:void(0);">Rent   </a>
-                   @if(!empty($categoriesData))
                     <ul class="mega-menu">
                       <li>
+                        @if(!empty($categoriesData))
                          <ul>
                             <li class="title">Popular Choices</li>
                             @foreach ($categoriesData as $cat1)
@@ -197,6 +116,7 @@
                                 </li>
                             @endforeach
                          </ul>
+                        @endif
                       </li>
                       <li>
                          <ul>
@@ -283,10 +203,9 @@
                          </ul>
                       </li>
                     </ul>
-                   @endif
                 </li>
                 <li class="has-children">
-                   <a href="home-interior.php">Home Interior  </a>
+                   <a href="#">Home Interior  </a>
                 </li>
                 {{-- <li class="has-children">
                    <a href="{{ route('construction') }}">Construction </a>
@@ -296,15 +215,13 @@
                 </li> --}}
                 <li class="has-children">
                    <a href="javascript:void(0);">Propery Type  </a>
-                   <ul>
-                      <li><a href="#!">Plot</a></li>
-                      <li><a href="#!">Flat</a></li>
-                      <li><a href="#!">Independent House</a></li>
-                      <li><a href="#!">Commercial Property</a></li>
-                      <li><a href="#!">Apartment</a></li>
-                      <li><a href="#!">Farm Houses</a></li>
-                      <li><a href="#!">Other Property Types</a></li>
-                   </ul>
+                   @if(!empty($categoriesData))
+                    <ul>
+                        @foreach ($categoriesData as $cat2)
+                            <li><a href="{{ route('home.properties',['category_id'=>$cat2->id]) }}">{{ $cat2->name }}</a></li>
+                        @endforeach
+                    </ul>
+                   @endif
                 </li>
                  <li class="has-children">
                    <a href="javascript:void(0);">Help </a>

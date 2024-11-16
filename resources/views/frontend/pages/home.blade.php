@@ -18,9 +18,6 @@
                                             <span class="inner">Buy</span>
                                         </li>
                                         <li class="item-title">
-                                            <span class="inner">Sell</span>
-                                        </li>
-                                        <li class="item-title">
                                             <span class="inner">Rent</span>
                                         </li>
                                     </ul>
@@ -225,59 +222,12 @@
                                                             <div class="title">Keyword</div>
                                                             <div class="relative">
                                                                 <fieldset class="name">
-                                                                    <input type="text" placeholder="Enter Keyyword" class="show-search style-default" name="name" tabindex="2" value="" aria-required="true" required="">
+                                                                    <input type="text" placeholder="Enter Keyword" class="show-search style-default filter_property_by_search_for_rent" name="name" tabindex="2" value="" aria-required="true" required="">
                                                                 </fieldset>
                                                                 <div class="style-absolute-right">
                                                                     <div class="style-icon-default"><i class="flaticon-magnifiying-glass"></i></div>
                                                                 </div>
-                                                                <div class="box-content-search style-1">
-                                                                    <ul>
-                                                                        <li>
-                                                                            <div class="item1">
-                                                                                <div>
-                                                                                    <div class="image">
-                                                                                        <img src="frontend/images/author/avatar-8.png" alt="">
-                                                                                    </div>
-                                                                                    <p>Archer House</p>
-                                                                                </div>
-                                                                                <div class="text">For Sale</div>
-                                                                            </div>
-                                                                        </li>
-                                                                        <li>
-                                                                            <div class="item1">
-                                                                                <div>
-                                                                                    <div class="image">
-                                                                                        <img src="frontend/images/author/avatar-7.png" alt="">
-                                                                                    </div>
-                                                                                    <p>Home Pitt Street</p>
-                                                                                </div>
-                                                                                <div class="text">For Rent</div>
-                                                                            </div>
-                                                                        </li>
-                                                                        <li>
-                                                                            <div class="item1">
-                                                                                <div>
-                                                                                    <div class="image">
-                                                                                        <img src="frontend/images/author/avatar-9.png" alt="">
-                                                                                    </div>
-                                                                                    <p>Villa One Hyde Park</p>
-                                                                                </div>
-                                                                                <div class="text">For Rent</div>
-                                                                            </div>
-                                                                        </li>
-                                                                        <li>
-                                                                            <div class="item1">
-                                                                                <div>
-                                                                                    <div class="image">
-                                                                                        <img src="frontend/images/author/avatar-10.png" alt="">
-                                                                                    </div>
-                                                                                    <p>House on the beverly hills</p>
-                                                                                </div>
-                                                                                <div class="text">For Sale</div>
-                                                                            </div>
-                                                                        </li>
-                                                                    </ul>
-                                                                </div>
+                                                                <div class="box-content-search style-1 d-none show-filter-data-for-rent"></div>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -698,18 +648,22 @@
                                     </div>
                                 </div>
                                 <div class="smallTxt">
-                                    <span class="badge badgesCss text-bg-primary">130,000+ Properties</span>
-                                    <span class="badge badgesCss text-bg-secondary">40,000+ Listings</span>
-                                    <span class="badge badgesCss text-bg-success">7656+ Property Ready</span>
-                                    <span class="badge badgesCss text-bg-danger">4587+ Ranting</span>
-                                    <span class="badge badgesCss text-bg-warning">9832+ Ploat/Land</span>
+                                    @if(!empty($topCategories))
+                                        @foreach ($topCategories as $cat)
+                                            <span class="badge badgesCss text-bg-primary">{{ $cat->properties_count }}+ {{ $cat->name }}</span>
+                                        @endforeach
+                                    @endif
                                 </div>
                                 <div class="flex d-none d-sm-block d-sm-none d-md-block mainFlex gap30 mainutx items-center flex-wrap relative z-5 wow fadeInUp">
                                     <div class="text-1 poulatTxt">Popular Search</div>
                                     <div class="list-links ">
-                                        <a class="popularSerch" href="#">Modern Villa</a>
-                                        <a class="popularSerch" href="#">Studio Apartment</a>
-                                        <a class="popularSerch" href="#">Town House</a>
+                                        @if(!empty($topCategories))
+                                            @foreach ($topCategories as $cat)
+                                                @if($loop->iteration <= 3)
+                                                    <a class="popularSerch" href="{{ route('home.properties',['category_id'=>$cat->id]) }}">{{ $cat->name }}</a>
+                                                @endif
+                                            @endforeach
+                                        @endif
                                     </div>
                                 </div>
                             </div>
@@ -1652,41 +1606,21 @@
              <div class="row">
                  <div class="col-12">
                      <div class="inner style-1">
-                         <div class="cities-item style-4 item-1 wow fadeInUp">
-                             <img src="frontend/images/image-box/cities-1.jpg" alt="">
-                             <div class="content">
-                                 <p>13000 Properties</p>
-                                 <h4>Patna (Bihar) </h4>
-                             </div>
-                         </div>
-                         <div class="cities-item style-4 item-2 wow fadeInUp">
-                             <img src="frontend/images/image-box/cities-2.jpg" alt="">
-                             <div class="content">
-                                 <p>5598 Properties</p>
-                                 <h4>Bihta</h4>
-                             </div>
-                         </div>
-                         <div class="cities-item style-4 item-3 wow fadeInUp" data-wow-delay="0.1s">
-                             <img src="frontend/images/image-box/cities-3.jpg" alt="">
-                             <div class="content">
-                                 <p>37009 Properties</p>
-                                 <h4>AIIMS, Ptana</h4>
-                             </div>
-                         </div>
-                         <div class="cities-item style-4 item-4 wow fadeInUp">
-                             <img src="frontend/images/image-box/cities-4.jpg" alt="">
-                             <div class="content">
-                                 <p>26887 Properties</p>
-                                 <h4>Sampatchak, Patna</h4>
-                             </div>
-                         </div>
-                         <div class="cities-item style-4 item-5 wow fadeInUp" data-wow-delay="0.1s">
-                             <img src="frontend/images/image-box/cities-5.jpg" alt="">
-                             <div class="content">
-                                 <p>93995 Properties</p>
-                                 <h4>Hajipur, vaishali</h4>
-                             </div>
-                         </div>
+                        @if(!empty($popularCities))
+                            @foreach ($popularCities as $cities)
+                            <div class="cities-item style-4 item-{{ $loop->iteration }} wow fadeInUp">
+                                @if(isset($cities->properties[0]) && isset($cities->properties[0]->images[0]))
+                                    <img src="{{ asset('/storage').'/'.$cities->properties[0]->images[0] }}" alt="">
+                                @else
+                                    <img src="frontend/images/image-box/cities-1.jpg" alt="">
+                                @endif
+                                <div class="content">
+                                    <p>{{ $cities->properties_count }} Properties</p>
+                                    <h4>{{ $cities->name }} ({{ $cities->state->name }})</h4>
+                                </div>
+                            </div>
+                            @endforeach
+                        @endif
                      </div>
                  </div>
              </div>
@@ -2598,12 +2532,36 @@
                 if (search_term.trim() !== "") {
                     var formData = new FormData();
                     formData.append('search',search_term);
+                    formData.append('type','sale');
                     CommonLib.ajaxForm(formData,method,url).then(d=>{
                         if(d.status === 200){
                             $(".show-filter-data").removeClass('d-none');
                             $(".show-filter-data").html(d.html);
                         }else{
                             $(".show-filter-data").addClass('d-none');
+                        }
+                    }).catch(e=>{
+                        CommonLib.notification.error(e.responseJSON.errors);
+                    });
+                }
+            }, 300);
+        });
+        $("body").on('keyup','.filter_property_by_search_for_rent',function(e){
+            e.preventDefault();
+            const url = "{{ route('filter.property.by.search') }}";
+            const method = "POST";
+            const search_term = $(this).val();
+            debounceTimer = setTimeout(() => {
+                if (search_term.trim() !== "") {
+                    var formData = new FormData();
+                    formData.append('search',search_term);
+                    formData.append('type','rent');
+                    CommonLib.ajaxForm(formData,method,url).then(d=>{
+                        if(d.status === 200){
+                            $(".show-filter-data-for-rent").removeClass('d-none');
+                            $(".show-filter-data-for-rent").html(d.html);
+                        }else{
+                            $(".show-filter-data-for-rent").addClass('d-none');
                         }
                     }).catch(e=>{
                         CommonLib.notification.error(e.responseJSON.errors);
