@@ -33,59 +33,12 @@
                                                             <div class="title">Keyword</div>
                                                             <div class="relative">
                                                                 <fieldset class="name">
-                                                                    <input type="text" placeholder="Enter Keyyword" class="show-search style-default" name="name" tabindex="2" value="" aria-required="true" required="">
+                                                                    <input type="text" placeholder="Enter Keyword" class="show-search style-default filter_property_by_search" name="name" tabindex="2" value="" aria-required="true" required="">
                                                                 </fieldset>
                                                                 <div class="style-absolute-right">
                                                                     <div class="style-icon-default"><i class="flaticon-magnifiying-glass"></i></div>
                                                                 </div>
-                                                                <div class="box-content-search style-1">
-                                                                    <ul>
-                                                                        <li>
-                                                                            <div class="item1">
-                                                                                <div>
-                                                                                    <div class="image">
-                                                                                        <img src="frontend/images/author/avatar-8.png" alt="">
-                                                                                    </div>
-                                                                                    <p>25,000+ Home Properties </p>
-                                                                                </div>
-                                                                                <div class="text">For Sale</div>
-                                                                            </div>
-                                                                        </li>
-                                                                        <li>
-                                                                            <div class="item1">
-                                                                                <div>
-                                                                                    <div class="image">
-                                                                                        <img src="frontend/images/author/avatar-7.png" alt="">
-                                                                                    </div>
-                                                                                    <p>Home Pitt Street</p>
-                                                                                </div>
-                                                                                <div class="text">For Rent</div>
-                                                                            </div>
-                                                                        </li>
-                                                                        <li>
-                                                                            <div class="item1">
-                                                                                <div>
-                                                                                    <div class="image">
-                                                                                        <img src="frontend/images/author/avatar-9.png" alt="">
-                                                                                    </div>
-                                                                                    <p>Villa One Hyde Park</p>
-                                                                                </div>
-                                                                                <div class="text">For Rent</div>
-                                                                            </div>
-                                                                        </li>
-                                                                        <li>
-                                                                            <div class="item1">
-                                                                                <div>
-                                                                                    <div class="image">
-                                                                                        <img src="frontend/images/author/avatar-10.png" alt="">
-                                                                                    </div>
-                                                                                    <p>House on the beverly hills</p>
-                                                                                </div>
-                                                                                <div class="text">For Sale</div>
-                                                                            </div>
-                                                                        </li>
-                                                                    </ul>
-                                                                </div>
+                                                                <div class="box-content-search style-1 d-none show-filter-data"></div>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -2632,4 +2585,33 @@
          </div>
      </section>
 </div>
+@section('page_scripts')
+<script>
+    $(function(){
+        let debounceTimer;
+        $("body").on('keyup','.filter_property_by_search',function(e){
+            e.preventDefault();
+            const url = "{{ route('filter.property.by.search') }}";
+            const method = "POST";
+            const search_term = $(this).val();
+            debounceTimer = setTimeout(() => {
+                if (search_term.trim() !== "") {
+                    var formData = new FormData();
+                    formData.append('search',search_term);
+                    CommonLib.ajaxForm(formData,method,url).then(d=>{
+                        if(d.status === 200){
+                            $(".show-filter-data").removeClass('d-none');
+                            $(".show-filter-data").html(d.html);
+                        }else{
+                            $(".show-filter-data").addClass('d-none');
+                        }
+                    }).catch(e=>{
+                        CommonLib.notification.error(e.responseJSON.errors);
+                    });
+                }
+            }, 300);
+        });
+    });
+</script>
+@endsection
 @endsection

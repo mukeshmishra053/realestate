@@ -8,6 +8,7 @@ use Botble\RealEstate\Models\Property;
 use Carbon\Carbon;
 use Botble\RealEstate\Repositories\Interfaces\PropertyInterface;
 use Botble\RealEstate\Repositories\Interfaces\ProjectInterface;
+use Illuminate\Support\Facades\View;
 use Config;
 Class HomeController extends Controller {
 
@@ -121,5 +122,23 @@ Class HomeController extends Controller {
 
         return view('frontend.pages.properties',compact('properties','categoriesData','totalFoundProperties','exclusiveProperties'));
     }
-
+    //Search Property by Text
+    public function filterPropertyBySearch(Request $request){
+        try{
+            $search = $request->search;
+            $propertyList =  Property::with(['author','facilities','features'])
+            ->where(function ($query) use ($search){
+                $query->whereHas('categories',function($query) use ($search){
+                    $query->where('name','like','%'. $search . '%');
+                });
+                $query->orWhere('name','like','%'. $search . '%');
+                $query->orWhere('description','like','%'. $search . '%');
+                $query->orWhere('location','like','%'. $search . '%');
+            })->orderBy('id','DESC')->get();
+            $html = View::make('frontend.layout.filter_dropdown',['propertyList'=>$propertyList])->render();
+            return response()->json(['status'=>($propertyList) ? 200 : 400,'msg'=>($propertyList) ? 'Action performed successfully' : 'Something went wrong','url'=>'','html'=>$html]);
+        }catch(\Exception $e){
+            return response()->json(['status'=>400,'msg'=>$e->getMessage(),'url'=>'']);
+        }
+    }
 }

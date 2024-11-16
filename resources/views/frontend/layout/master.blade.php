@@ -3,6 +3,7 @@
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <title>@yield('title')</title>
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('/') }}frontend/css/animate.min.css">
     <link rel="stylesheet" type="text/css" href="{{ asset('/') }}frontend/css/animation.css">
     <link rel="stylesheet" type="text/css" href="{{ asset('/') }}frontend/css/nouislider.min.css">
@@ -57,11 +58,10 @@
         <script src="{{ asset('/') }}frontend/js/wow.min.js"></script>
         <script src="{{ asset('/') }}frontend/js/scrollmagic.js"></script>
         <script src="{{ asset('/') }}frontend/js/main.js"></script>
+        <script src="{{ asset('/') }}frontend/js/CommonLib.js"></script>
+        @yield('page_scripts')
         <script>
         new Mmenu(document.querySelector("#menu"));
         </script>
       </body>
    </html>
-    @yield('page_scripts')
-</body>
-</html>
