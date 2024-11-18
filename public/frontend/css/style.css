@@ -7572,8 +7572,8 @@ transform: translateX(-14%) translateY(0px);
   flex-grow: 1;
 }
 #header_main.style-container .header-inner .header-inner-wrap .main-menu .navigation {
-  margin-left: 90px;
-  justify-content: start;
+  margin-right: 90px;
+  justify-content: end;
 }
 #header_main.style-fixed {
   position: fixed;

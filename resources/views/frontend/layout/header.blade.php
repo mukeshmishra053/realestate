@@ -7,7 +7,7 @@
              </a>
           </div>
           <nav class="main-menu">
-             <ul class="navigation">
+             <ul class="navigation float-right">
                 <li class="has-children">
                    <a href="javascript:void(0);"> Buy   </a>
                    @if(!empty($categoriesData))
@@ -80,23 +80,6 @@
                                 </li>
                                 <li>
                                 <a href="#!">Home Interiors in New-Delhi</a>
-                                </li>
-                            </ul>
-                        </li>
-                        <li>
-                            <ul class="insgCss">
-                                <li class="title">Insights</li>
-                                <li>
-                                <a href="#!"><i class="fa fa-check-circle-o" aria-hidden="true"></i> Understand localities</a>
-                                </li>
-                                <li>
-                                <a href="#!"><i class="fa fa-check-circle-o" aria-hidden="true"></i> Read Resident Reviews</a>
-                                </li>
-                                <li>
-                                <a href="#!"><i class="fa fa-check-circle-o" aria-hidden="true"></i> Check Price Trends</a>
-                                </li>
-                                <li>
-                                <a href="#!"><i class="fa fa-check-circle-o" aria-hidden="true"></i> Tools, Utilities & more</a>
                                 </li>
                             </ul>
                         </li>
@@ -182,23 +165,6 @@
                             </li>
                             <li>
                                <a href="#!">Rent Agreement</a>
-                            </li>
-                         </ul>
-                      </li>
-                      <li>
-                         <ul class="insgCss">
-                            <li class="title">Insights</li>
-                            <li>
-                               <a href="#!"><i class="fa fa-check-circle-o" aria-hidden="true"></i> Understand localities</a>
-                            </li>
-                            <li>
-                               <a href="#!"><i class="fa fa-check-circle-o" aria-hidden="true"></i> Read Resident Reviews</a>
-                            </li>
-                            <li>
-                               <a href="#!"><i class="fa fa-check-circle-o" aria-hidden="true"></i> Check Price Trends</a>
-                            </li>
-                            <li>
-                               <a href="#!"><i class="fa fa-check-circle-o" aria-hidden="true"></i> Tools, Utilities & more</a>
                             </li>
                          </ul>
                       </li>
