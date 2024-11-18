@@ -27,13 +27,14 @@ class Category extends BaseModel implements HasTreeCategoryContract
         'order',
         'is_default',
         'is_interior',
+        'images',
         'parent_id',
     ];
 
     protected $casts = [
         'status' => BaseStatusEnum::class,
         'name' => SafeContent::class,
-        'description' => SafeContent::class,
+        'description' => SafeContent::class
     ];
 
     public function properties(): BelongsToMany

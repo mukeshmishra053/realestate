@@ -704,93 +704,34 @@
                      </div>
                  </div>
              </div>
+             @if(!empty($categoryListings))
              <div class="row">
                  <div class="col-12">
                      <div class="wrap">
                          <div class="swiper-container slider-cities-2">
                              <div class="swiper-wrapper">
+                                @foreach ($categoryListings as $category)
                                  <div class="swiper-slide">
                                      <div class="cities-item style-2 wow fadeInUp">
-                                         <img src="frontend/images/image-box/Buying_home.jpg" alt="Buying_home">
+                                        @if(isset($category->images))
+                                            <img src="{{ asset('/storage').'/'.$category->images }}" alt="Buying_home">
+                                        @else
+                                            <img src="frontend/images/image-box/Buying_home.jpg" alt="Buying_home">
+                                        @endif
                                          <div class="content">
-                                             <p>5353 home</p>
-                                             <h4>Buying a home</h4>
+                                             <p>{{ $category->properties_count }} properties</p>
+                                             <h4>{{ $category->name }}</h4>
                                          </div>
-                                         <a href="#!" class="button-arrow-right"><i class="icon-arrow-right-add"></i></a>
+                                         <a href="{{ route('home.properties',['category_id'=>$category->id]) }}" class="button-arrow-right"><i class="icon-arrow-right-add"></i></a>
                                      </div>
                                  </div>
-                                 <div class="swiper-slide">
-                                     <div class="cities-item style-2 wow fadeInUp" data-wow-delay="0.1s">
-                                         <img src="frontend/images/image-box/Renting_home.jpg" alt="Renting_home">
-                                         <div class="content">
-                                             <p>23 Properties</p>
-                                             <h4>Renting a home</h4>
-                                         </div>
-                                         <a href="#!" class="button-arrow-right"><i class="icon-arrow-right-add"></i></a>
-                                     </div>
-                                 </div>
-                                 <div class="swiper-slide">
-                                     <div class="cities-item style-2 wow fadeInUp" data-wow-delay="0.2s">
-                                         <img src="frontend/images/image-box/InvestinRealEstate.jpg" alt="InvestinRealEstate">
-                                         <div class="content">
-                                             <!-- <p>23 Properties</p> -->
-                                             <h4>Invest in <br> Real Estate</h4>
-                                         </div>
-                                         <a href="#!" class="button-arrow-right"><i class="icon-arrow-right-add"></i></a>
-                                     </div>
-                                 </div>
-                                 <div class="swiper-slide">
-                                     <div class="cities-item style-2 wow fadeInUp" data-wow-delay="0.3s">
-                                         <img src="frontend/images/image-box/SellRentyourproperty.jpg" alt="SellRentyourproperty">
-                                         <div class="content">
-                                             <h4>Sell/Rent <br> your property</h4>
-                                         </div>
-                                         <a href="#!" class="button-arrow-right"><i class="icon-arrow-right-add"></i></a>
-                                     </div>
-                                 </div>
-                                 <div class="swiper-slide">
-                                     <div class="cities-item style-2 wow fadeInUp" data-wow-delay="0.4s">
-                                         <img src="frontend/images/image-box/Plots_Land.jpg" alt="Plots_Land">
-                                         <div class="content">
-                                             <p>Plots/Land</p>
-                                             <h4>Plots/Land</h4>
-                                         </div>
-                                         <a href="#!" class="button-arrow-right"><i class="icon-arrow-right-add"></i></a>
-                                     </div>
-                                 </div>
-                                 <div class="swiper-slide">
-                                     <div class="cities-item style-2">
-                                         <img src="frontend/images/image-box/Explore_Insights.jpg" alt="Explore_Insights">
-                                         <div class="content">
-                                             <p>Our Insights</p>
-                                             <h4>Explore Insights</h4>
-                                         </div>
-                                         <a href="#!" class="button-arrow-right"><i class="icon-arrow-right-add"></i></a>
-                                     </div>
-                                 </div>
-                                 <div class="swiper-slide">
-                                     <div class="cities-item style-2">
-                                         <img src="frontend/images/image-box/Buyingcommercial-spaces.jpg" alt="Buyingcommercial-spaces">
-                                         <div class="content">
-                                             <h4>Buying <br> commercial spaces</h4>
-                                         </div>
-                                         <a href="#!" class="button-arrow-right"><i class="icon-arrow-right-add"></i></a>
-                                     </div>
-                                 </div>
-                                 <div class="swiper-slide">
-                                     <div class="cities-item style-2">
-                                         <img src="frontend/images/image-box/Lease_commercial_spaces.jpg" alt="Lease_commercial_spaces">
-                                         <div class="content">
-                                             <h4>Lease  <br> commercial spaces</h4>
-                                         </div>
-                                         <a href="#!" class="button-arrow-right"><i class="icon-arrow-right-add"></i></a>
-                                     </div>
-                                 </div>
+                                @endforeach
                              </div>
                          </div>
                      </div>
                  </div>
              </div>
+             @endif
          </div>
      </section>
      <section class="tf-section secoss featured-categories">
@@ -1207,7 +1148,7 @@
                              <h2 class="wow fadeInUp">Home Interior</h2>
                              <div class="text wow fadeInUp">Based on your view history</div>
                          </div>
-                         <a href="home-interior.php" class="tf-button-no-bg wow fadeInUp">
+                         <a href="#" class="tf-button-no-bg wow fadeInUp">
                              View All Categories
                              <i class="icon-arrow-right-add"></i>
                          </a>
@@ -1466,7 +1407,7 @@
                  <div class="col-xl-3 col-md-6">
                      <div class="number-counter style-1">
                          <div class="text-center">
-                         ₹<span class="number" data-speed="2500" data-to="16" data-inviewport="yes">16</span>.4M
+                         ₹<span class="number" data-speed="2500" data-to="{{ $totalPayment }}" data-inviewport="yes">{{ $totalPayment }}</span>
                          </div>
                          <h4>Owned from properties <br> transactions</h4>
                          <p class="text-content">we specialize in offering a wide range of owned properties for sale and lease, ensuring transparency </p>
@@ -1475,25 +1416,25 @@
                  <div class="col-xl-3 col-md-6">
                      <div class="number-counter style-1">
                          <div class="text-center">
-                         <span class="number" data-speed="2500" data-to="26" data-inviewport="yes">26</span>K+
+                         <span class="number" data-speed="2500" data-to="{{ $totalPropertiesSale}}" data-inviewport="yes">{{ $totalPropertiesSale}}</span>K+
                          </div>
-                         <h4>Properties For <br> Buy</h4>
+                         <h4>Properties For <br> Sale</h4>
                          <p class="text-content">Looking to purchase the perfect property? Whether it’s for residential, commercial, or investment purposes</p>
                      </div>
                  </div>
                  <div class="col-xl-3 col-md-6">
                      <div class="number-counter style-1">
                          <div class="text-center">
-                         <span class="number" data-speed="2500" data-to="14" data-inviewport="yes">14</span>K+
+                         <span class="number" data-speed="2500" data-to="{{ $totalPropertiesRent }}" data-inviewport="yes">{{ $totalPropertiesRent }}</span>K+
                          </div>
-                         <h4>Properties Buy <br> Sell</h4>
+                         <h4>Properties Buy <br> Rent</h4>
                          <p class="text-content">Whether you're looking to buy your dream property or sell your existing one, we offer a seamless and efficient process to help you </p>
                      </div>
                  </div>
                  <div class="col-xl-3 col-md-6">
                      <div class="number-counter style-1">
                          <div class="text-center">
-                         <span class="number" data-speed="2500" data-to="2" data-inviewport="yes"> </span> Lakh +
+                         <span class="number" data-speed="2500" data-to="{{ ceil($averagePropertyPerMonth) }}" data-inviewport="yes">{{ ceil($averagePropertyPerMonth) }}</span> +
                          </div>
                          <h4>New Listings Monthly</h4>
                          <p class="text-content">Stay updated with our monthly property listings and explore the latest opportunities for buying or selling. Whether you're in the market for a new home</p>
@@ -1844,178 +1785,41 @@
              </div>
          </div>
      </section>
-     <section class="tf-section flat-area tf-section uuy7yza   ">
+     @if(!empty($citiesList))
+     <section class="tf-section flat-area tf-section uuy7yza">
          <div class="cl-container">
              <div class="row">
                  <div class="col-12">
                      <div class="heading-section text-center">
-                         <h2 class="wow fadeInUp">Explore Real Estate in Bihar</h2>
+                         <h2 class="wow fadeInUp">Explore Real Estate in {{ $randomState->name }}</h2>
                          <div class="text wow fadeInUp">TOP CITIES</div>
                      </div>
                  </div>
              </div>
              <div class="row">
+                @foreach($citiesList as $city)
                  <div class="col-md-3 col-6">
                      <div class="area-item wow fadeInUp">
                          <div class="image">
-                             <img src="frontend/images/image-box/dd.jpg" alt="Bhagalpur">
+                            @if(isset($city->image))
+                                <img src="{{ asset('/storage').'/'.$city->image }}" alt="{{ $city->name }}">
+                            @else
+                                <img src="frontend/images/image-box/dd.jpg" alt="Bhagalpur">
+                            @endif
                          </div>
                          <div>
                              <div class="name">
-                                 <a href="#!">Bhagalpur</a>
+                                 <a href="{{ route('home.properties',['city_id'=>$city->id]) }}">{{ $city->name }}</a>
                              </div>
-                             <div class="text">130,000+ Properties</div>
+                             <div class="text">{{ $city->properties_count }}+ Properties</div>
                          </div>
                      </div>
                  </div>
-                 <div class="col-md-3 col-6">
-                     <div class="area-item wow fadeInUp">
-                         <div class="image">
-                             <img src="frontend/images/image-box/Muzaffarpur.jpg" alt="Muzaffarpur">
-                         </div>
-                         <div>
-                             <div class="name">
-                                 <a href="#!">Muzaffarpur</a>
-                             </div>
-                             <div class="text">29,000+ Properties</div>
-                         </div>
-                     </div>
-                 </div>
-                 <div class="col-md-3 col-6">
-                     <div class="area-item wow fadeInUp">
-                         <div class="image">
-                             <img src="frontend/images/image-box/Sasaram.jpg" alt="Sasaram">
-                         </div>
-                         <div>
-                             <div class="name">
-                                 <a href="#!">Sasaram </a>
-                             </div>
-                             <div class="text">27,000+ Properties</div>
-                         </div>
-                     </div>
-                 </div>
-                 <div class="col-md-3 col-6">
-                     <div class="area-item wow fadeInUp">
-                         <div class="image">
-                             <img src="frontend/images/image-box/Darbhanga.jpg" alt="Darbhanga">
-                         </div>
-                         <div>
-                             <div class="name">
-                                 <a href="#!">Darbhanga</a>
-                             </div>
-                             <div class="text">25,000+ Properties</div>
-                         </div>
-                     </div>
-                 </div>
-                 <div class="col-md-3 col-6">
-                     <div class="area-item wow fadeInUp">
-                         <div class="image">
-                             <img src="frontend/images/image-box/Siwan.jpg" alt="Siwan">
-                         </div>
-                         <div>
-                             <div class="name">
-                                 <a href="#!">Siwan</a>
-                             </div>
-                             <div class="text">27,000+ Properties</div>
-                         </div>
-                     </div>
-                 </div>
-                 <div class="col-md-3 col-6">
-                     <div class="area-item wow fadeInUp">
-                         <div class="image">
-                             <img src="frontend/images/image-box/Hajipur.jpg" alt="Hajipur">
-                         </div>
-                         <div>
-                             <div class="name">
-                                 <a href="#!">Hajipur</a>
-                             </div>
-                             <div class="text">16,000+ Properties</div>
-                         </div>
-                     </div>
-                 </div>
-                 <div class="col-md-3 col-6">
-                     <div class="area-item wow fadeInUp">
-                         <div class="image">
-                             <img src="frontend/images/image-box/Nalanda.jpg" alt="Nalanda">
-                         </div>
-                         <div>
-                             <div class="name">
-                                 <a href="#!">Nalanda</a>
-                             </div>
-                             <div class="text">19,000+ Properties</div>
-                         </div>
-                     </div>
-                 </div>
-             <div class="col-md-3 col-6">
-                     <div class="area-item wow fadeInUp">
-                         <div class="image">
-                             <img src="frontend/images/image-box/Bhojpur.jpg" alt="Bhojpur">
-                         </div>
-                         <div>
-                             <div class="name">
-                                 <a href="#!">Bhojpur</a>
-                             </div>
-                             <div class="text">15,000+ Properties</div>
-                         </div>
-                     </div>
-                 </div>
-             <div class="col-md-3 col-6">
-                     <div class="area-item wow fadeInUp">
-                         <div class="image">
-                             <img src="frontend/images/image-box/Saran.jpg" alt="Saran">
-                         </div>
-                         <div>
-                             <div class="name">
-                                 <a href="#!">Saran</a>
-                             </div>
-                             <div class="text">20 Properties</div>
-                         </div>
-                     </div>
-                 </div>
-                 <div class="col-md-3 col-6">
-                     <div class="area-item wow fadeInUp">
-                         <div class="image">
-                             <img src="frontend/images/image-box/Rohtas.jpg" alt="Rohtas">
-                         </div>
-                         <div>
-                             <div class="name">
-                                 <a href="#!">Rohtas</a>
-                             </div>
-                             <div class="text">29,000+ Properties</div>
-                         </div>
-                     </div>
-                 </div>
-                 <div class="col-md-3 col-6">
-                     <div class="area-item wow fadeInUp">
-                         <div class="image">
-                             <img src="frontend/images/image-box/Buxar.jpg" alt="Buxar">
-                         </div>
-                         <div>
-                             <div class="name">
-                                 <a href="#!">Buxar</a>
-                             </div>
-                             <div class="text">27,000+ Properties</div>
-                         </div>
-                     </div>
-                 </div>
-                 <div class="col-md-3 col-6">
-                     <div class="area-item wow fadeInUp">
-                         <div class="image">
-                             <img src="frontend/images/image-box/West_Champaran.jpg" alt="West_Champaran">
-                         </div>
-                         <div>
-                             <div class="name">
-                                 <a href="#!">West Champaran</a>
-                             </div>
-                             <div class="text">25,000+ Properties</div>
-                         </div>
-                     </div>
-                 </div>
-
-
+                 @endforeach
              </div>
          </div>
      </section>
+     @endif
      <!--  <section class="tf-section locatioVss popular-real">
          <div class="cl-container">
              <div class="row">
@@ -2093,6 +1897,7 @@
      <br>
      <br>
      <br>
+     @if(!empty($blogList))
      <section class="tf-section flat-news nness">
          <div class="cl-container">
              <div class="row">
@@ -2107,18 +1912,23 @@
                  <div class="col-12">
                      <div class="swiper-container slider-news slider-auto">
                          <div class="swiper-wrapper">
+                            @foreach($blogList as $blog)
                              <div class="swiper-slide">
                                  <div class="wg-blog wow fadeInUp">
                                      <div class="image">
-                                         <img src="frontend/images/blog/blog-grid-1.jpg" alt="">
+                                        @if(isset($blog->image))
+                                            <img src="{{ asset('/storage').'/'.$blog->image }}" alt="">
+                                        @else
+                                            <img src="frontend/images/blog/blog-grid-1.jpg" alt="">
+                                        @endif
                                      </div>
                                      <div class="content">
                                          <div class="sub-blog">
-                                             <div>Market Trends</div>
-                                             <div>April 26, 2024</div>
+                                             <div>{{ $blog->categories[0]->name}}</div>
+                                             <div>{{ $blog->created_at->format('F m ,Y')}}</div>
                                          </div>
                                          <div class="name">
-                                             <a href="#!">Explore the latest property market trends, including price fluctuations, demand</a>
+                                             <a href="#!">{{ $blog->name }}</a>
                                          </div>
                                          <a href="#" class="tf-button-no-bg">
                                              Read More
@@ -2127,92 +1937,14 @@
                                      </div>
                                  </div>
                              </div>
-                             <div class="swiper-slide">
-                                 <div class="wg-blog wow fadeInUp" data-wow-delay="0.1s">
-                                     <div class="image">
-                                         <img src="frontend/images/blog/blog-grid-2.jpg" alt="">
-                                     </div>
-                                     <div class="content">
-                                         <div class="sub-blog">
-                                             <div>Buying Tips</div>
-                                             <div>April 26, 2024</div>
-                                         </div>
-                                         <div class="name">
-                                             <a href="#!">Essential tips for first-time homebuyers, investment strategies, and location-specific advice  </a>
-                                         </div>
-                                         <a href="#" class="tf-button-no-bg">
-                                             Read More
-                                             <i class="icon-arrow-right-add"></i>
-                                         </a>
-                                     </div>
-                                 </div>
-                             </div>
-                             <div class="swiper-slide">
-                                 <div class="wg-blog wow fadeInUp" data-wow-delay="0.2s">
-                                     <div class="image">
-                                         <img src="frontend/images/blog/blog-grid-3.jpg" alt="">
-                                     </div>
-                                     <div class="content">
-                                         <div class="sub-blog">
-                                             <div>Selling Guides</div>
-                                             <div>April 26, 2024</div>
-                                         </div>
-                                         <div class="name">
-                                             <a href="#!">Learn how to sell your property faster with tips on home staging, pricing strategies</a>
-                                         </div>
-                                         <a href="#" class="tf-button-no-bg">
-                                             Read More
-                                             <i class="icon-arrow-right-add"></i>
-                                         </a>
-                                     </div>
-                                 </div>
-                             </div>
-                             <div class="swiper-slide">
-                                 <div class="wg-blog wow fadeInUp" data-wow-delay="0.3s">
-                                     <div class="image">
-                                         <img src="frontend/images/blog/blog-grid-4.jpg" alt="">
-                                     </div>
-                                     <div class="content">
-                                         <div class="sub-blog">
-                                             <div>Legal Insights</div>
-                                             <div>April 26, 2024</div>
-                                         </div>
-                                         <div class="name">
-                                             <a href="#!">Stay informed about the legal aspects of real estate transactions, including documentation</a>
-                                         </div>
-                                         <a href="#" class="tf-button-no-bg">
-                                             Read More
-                                             <i class="icon-arrow-right-add"></i>
-                                         </a>
-                                     </div>
-                                 </div>
-                             </div>
-                             <div class="swiper-slide">
-                                 <div class="wg-blog">
-                                     <div class="image">
-                                         <img src="frontend/images/blog/blog-grid-3.jpg" alt="">
-                                     </div>
-                                     <div class="content">
-                                         <div class="sub-blog">
-                                             <div>Tips &amp; Tricks</div>
-                                             <div>April 26, 2024</div>
-                                         </div>
-                                         <div class="name">
-                                             <a href="#!">That’s Life! Frank Sinatra’s Former Los Angeles-Area </a>
-                                         </div>
-                                         <a href="#" class="tf-button-no-bg">
-                                             Read More
-                                             <i class="icon-arrow-right-add"></i>
-                                         </a>
-                                     </div>
-                                 </div>
-                             </div>
+                            @endforeach
                          </div>
                      </div>
                  </div>
              </div>
          </div>
      </section>
+     @endif
      <br>
      <br>
      <br>

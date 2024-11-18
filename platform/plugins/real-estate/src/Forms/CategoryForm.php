@@ -5,6 +5,7 @@ namespace Botble\RealEstate\Forms;
 use Botble\Base\Forms\FieldOptions\DescriptionFieldOption;
 use Botble\Base\Forms\FieldOptions\NameFieldOption;
 use Botble\Base\Forms\FieldOptions\StatusFieldOption;
+use Botble\Base\Forms\Fields\MediaImageField;
 use Botble\Base\Forms\Fields\SelectField;
 use Botble\Base\Forms\Fields\TextareaField;
 use Botble\Base\Forms\Fields\TextField;
@@ -25,6 +26,7 @@ class CategoryForm extends FormAbstract
                 'label' => trans('core/base::forms.is_default'),
                 'default_value' => false,
             ])
+            ->add('images', MediaImageField::class)
             ->add('is_interior', 'onOff', [
                 'label' => trans('core/base::forms.is_interior'),
                 'default_value' => false,

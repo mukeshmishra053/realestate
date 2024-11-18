@@ -6,9 +6,12 @@ use Illuminate\Http\Request;
 use Botble\RealEstate\Models\Category;
 use Botble\RealEstate\Models\City;
 use Botble\RealEstate\Models\Property;
+use Botble\Blog\Models\Post;
+use Botble\Location\Models\State;
 use Carbon\Carbon;
 use Botble\RealEstate\Repositories\Interfaces\PropertyInterface;
 use Botble\RealEstate\Repositories\Interfaces\ProjectInterface;
+use Botble\Payment\Models\Payment;
 use Illuminate\Support\Facades\View;
 use Config;
 Class HomeController extends Controller {
@@ -23,18 +26,33 @@ Class HomeController extends Controller {
 
 
     public function index(Request $request){
+        $commonCategoryQuery = Category::with('properties')->withCount('properties')->orderBy('properties_count', 'desc')->having('properties_count','>',0);
+        $cityQuery = City::with('properties','state')->withCount('properties')->orderBy('properties_count', 'desc')->having('properties_count','>',0);
         $categoriesData = Category::all();
-        $homeInteriorCategories = Category::with('properties')->where('is_interior',1)->get();
+        $homeInteriorCategories = $commonCategoryQuery->where('is_interior',1)->get();
         $properties = $this->propertyRepository->getRelatedProperties(1,6);
         $featuredProjects = Category::with('properties')->whereHas('properties',function($query){
             $query->where('is_featured',1)->limit(6);
         })->where('is_interior',0)->take(4)->get();
-        $popularCities = City::with('properties','state')->withCount('properties')->orderBy('properties_count', 'desc')->limit(5)->get();
-        $topCategories = Category::with('properties')->withCount('properties')->orderBy('properties_count', 'desc')->limit(5)->get();
-        // echo "<pre>";
-        // print_r($topCategories); die;
+        $popularCities = $cityQuery->limit(5)->get();
+        $topCategories = $commonCategoryQuery->limit(5)->get();
+        $blogList = Post::with(['tags','categories'])->orderBY('id','ASC')->limit(4)->get();
+        $categoryListings = $commonCategoryQuery->limit(6)->get();
+        $totalPayment = Payment::get()->sum('amount');
         $highlyViewedProperties = Property::where('created_at', '>=', Carbon::now()->subYear())->orderBy('views','DESC')->take(6)->get();
-        return view('frontend.pages.home',compact('categoriesData','topCategories','homeInteriorCategories','popularCities','properties','featuredProjects','highlyViewedProperties','featuredProjects'));
+        $averagePropertyPerMonth = Property::selectRaw('AVG(record_count) as average_records_per_month')
+        ->fromSub(function ($query) {
+            $query->selectRaw('YEAR(created_at) as year, MONTH(created_at) as month, COUNT(*) as record_count')
+                ->from((new Property)->getTable())
+                ->groupByRaw('YEAR(created_at), MONTH(created_at)');
+        }, 'monthly_counts')->value('average_records_per_month');
+        $totalPropertiesSale = Property::where('type','sale')->count();
+        $totalPropertiesRent = Property::where('type','rent')->count();
+        $randomState = State::find(35);
+        $citiesList = $cityQuery->where('state_id',$randomState->id)->take(10)->get();
+        // echo "<pre>";
+        // print_r(json_decode(json_encode($citiesList),true)); die;
+        return view('frontend.pages.home',compact('categoriesData','citiesList','randomState','totalPropertiesSale','totalPropertiesRent','averagePropertyPerMonth','totalPayment','categoryListings','topCategories','blogList','homeInteriorCategories','popularCities','properties','featuredProjects','highlyViewedProperties','featuredProjects'));
     }
     // Contact Us
     public function contactUs(Request $request){
@@ -93,6 +111,9 @@ Class HomeController extends Controller {
         $properties = Property::with(['author','facilities','features']);
         if($request->property_type == 'featured'){
             $properties = $properties->where('is_featured',1);
+        }
+        if($request->city_id){
+            $properties = $properties->where('city_id',$request->city_id);
         }
         if($category_id){
             $properties = $properties->whereHas('categories',function($query) use($request){

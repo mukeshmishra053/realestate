@@ -8,6 +8,8 @@ use Botble\Base\Events\DeletedContentEvent;
 use Botble\Base\Events\UpdatedContentEvent;
 use Botble\Base\Facades\Assets;
 use Botble\Base\Forms\FormAbstract;
+use Botble\RealEstate\Facades\RealEstateHelper;
+use Botble\RealEstate\Models\Account;
 use Botble\Base\Forms\FormBuilder;
 use Botble\Base\Http\Requests\UpdateTreeCategoryRequest;
 use Botble\RealEstate\Forms\CategoryForm;
@@ -16,6 +18,7 @@ use Botble\RealEstate\Models\Category;
 use Botble\RealEstate\Repositories\Interfaces\CategoryInterface;
 use Exception;
 use Illuminate\Http\Request;
+use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
 
 class CategoryController extends BaseController
@@ -76,6 +79,11 @@ class CategoryController extends BaseController
         if ($request->input('is_default')) {
             Category::query()->where('id', '>', 0)->update(['is_default' => 0]);
         }
+        // $request->merge([
+        //     'expire_date' => Carbon::now()->addDays(RealEstateHelper::propertyExpiredDays()),
+        //     'images' => array_filter($request->input('images', [])),
+        //     'author_type' => Account::class,
+        // ]);
 
         $category = Category::query()->create($request->input());
 
