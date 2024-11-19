@@ -26,96 +26,24 @@
                                      </div>
                                  </div>
                               </form>
+                              @if(!empty($categoriesExceptHomeInteriors))
                                <div class="">
                                   <ul class="grid-checkbox nonsss">
-                               <li class="checkbox-item">
-                                  <label>
-                                     <p>Residential Land</p>
-                                     <input type="checkbox" checked="">
-                                     <span class="btn-checkbox bChe"></span>
-                                  </label>
-                               </li>
-                               <li class="checkbox-item">
-                                  <label>
-                                     <p>Flat/Apartment</p>
-                                     <input type="checkbox" >
-                                     <span class="btn-checkbox bChe"></span>
-                                  </label>
-                               </li>
-                               <li class="checkbox-item">
-                                  <label>
-                                     <p>Gated Society</p>
-                                     <input type="checkbox" >
-                                     <span class="btn-checkbox bChe"></span>
-                                  </label>
-                               </li>
-                               <li class="checkbox-item">
-                                  <label>
-                                     <p>Independent House/Villa</p>
-                                     <input type="checkbox" >
-                                     <span class="btn-checkbox bChe"></span>
-                                  </label>
-                               </li>
-                               <li class="checkbox-item">
-                                  <label>
-                                     <p>Independent/Builder Floor</p>
-                                     <input type="checkbox" >
-                                     <span class="btn-checkbox bChe"></span>
-                                  </label>
-                               </li>
-                               <li class="checkbox-item">
-                                  <label>
-                                     <p>Farm House</p>
-                                     <input type="checkbox" >
-                                     <span class="btn-checkbox bChe"></span>
-                                  </label>
-                               </li>
-                               <li class="checkbox-item">
-                                  <label>
-                                     <p>Residential Land</p>
-                                     <input type="checkbox" checked="">
-                                     <span class="btn-checkbox bChe"></span>
-                                  </label>
-                               </li>
-                               <li class="checkbox-item">
-                                  <label>
-                                     <p>Flat/Apartment</p>
-                                     <input type="checkbox" >
-                                     <span class="btn-checkbox bChe"></span>
-                                  </label>
-                               </li>
-                               <li class="checkbox-item">
-                                  <label>
-                                     <p>Gated Society</p>
-                                     <input type="checkbox" >
-                                     <span class="btn-checkbox bChe"></span>
-                                  </label>
-                               </li>
-                               <li class="checkbox-item">
-                                  <label>
-                                     <p>Independent House/Villa</p>
-                                     <input type="checkbox" >
-                                     <span class="btn-checkbox bChe"></span>
-                                  </label>
-                               </li>
-                               <li class="checkbox-item">
-                                  <label>
-                                     <p>Independent/Builder Floor</p>
-                                     <input type="checkbox" >
-                                     <span class="btn-checkbox bChe"></span>
-                                  </label>
-                               </li>
-                               <li class="checkbox-item">
-                                  <label>
-                                     <p>Farm House</p>
-                                     <input type="checkbox" >
-                                     <span class="btn-checkbox bChe"></span>
-                                  </label>
-                               </li>
-                            </ul>
+                                    @foreach($categoriesExceptHomeInteriors as $categor)
+                                    <li class="checkbox-item">
+                                        <label>
+                                            <p>{{ $categor->name}}</p>
+                                            <input type="checkbox" value="{{ $categor->id}}">
+                                            <span class="btn-checkbox bChe"></span>
+                                        </label>
+                                    </li>
+                                    @endforeach
+                                  </ul>
                                </div>
+                               @endif
                              </div>
                            </div>
+                           @if(!empty($citiesList))
                            <div class="accordion-item nomeSd">
                              <h2 class="accordion-header" id="panelsStayOpen-headingTwo">
                                <button class="accordion-button collapsed mgt65sss" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseTwo" aria-expanded="false" aria-controls="panelsStayOpen-collapseTwo">
@@ -124,89 +52,29 @@
                              </h2>
                              <div id="panelsStayOpen-collapseTwo" class="accordion-collapse collapse show" aria-labelledby="panelsStayOpen-headingTwo">
                                 <form class="form-search mrgButon">
-                                 <div class="input-search relative">
-                                     <fieldset class="name">
-                                         <input type="text" placeholder="Search" class="border-radius-corner formRaidu" name="name" tabindex="2" value="" aria-required="true" required="">
-                                     </fieldset>
-                                     <div class="button-submit style-absolute-right-center">
-                                         <button class="style-icon-default" type="submit"><i class="flaticon-magnifiying-glass"></i></button>
-                                     </div>
-                                 </div>
-                              </form>
-                              <ul class="grid-checkbox nonsss">
-                               <li class="checkbox-item">
-                                  <label>
-                                     <p>Narsingi</p>
-                                     <input type="checkbox" checked="">
-                                     <span class="btn-checkbox bChe"></span>
-                                  </label>
-                               </li>
-                               <li class="checkbox-item">
-                                  <label>
-                                     <p>Patancheru</p>
-                                     <input type="checkbox" >
-                                     <span class="btn-checkbox bChe"></span>
-                                  </label>
-                               </li>
-                               <li class="checkbox-item">
-                                  <label>
-                                     <p>Miyapur</p>
-                                     <input type="checkbox" >
-                                     <span class="btn-checkbox bChe"></span>
-                                  </label>
-                               </li>
-                               <li class="checkbox-item">
-                                  <label>
-                                     <p>Kondapur</p>
-                                     <input type="checkbox" >
-                                     <span class="btn-checkbox bChe"></span>
-                                  </label>
-                               </li>
-                               <li class="checkbox-item">
-                                  <label>
-                                     <p>Kokapet</p>
-                                     <input type="checkbox" >
-                                     <span class="btn-checkbox bChe"></span>
-                                  </label>
-                               </li>
-                               <li class="checkbox-item">
-                                  <label>
-                                     <p>Narsingi</p>
-                                     <input type="checkbox" checked="">
-                                     <span class="btn-checkbox bChe"></span>
-                                  </label>
-                               </li>
-                               <li class="checkbox-item">
-                                  <label>
-                                     <p>Patancheru</p>
-                                     <input type="checkbox" >
-                                     <span class="btn-checkbox bChe"></span>
-                                  </label>
-                               </li>
-                               <li class="checkbox-item">
-                                  <label>
-                                     <p>Miyapur</p>
-                                     <input type="checkbox" >
-                                     <span class="btn-checkbox bChe"></span>
-                                  </label>
-                               </li>
-                               <li class="checkbox-item">
-                                  <label>
-                                     <p>Kondapur</p>
-                                     <input type="checkbox" >
-                                     <span class="btn-checkbox bChe"></span>
-                                  </label>
-                               </li>
-                               <li class="checkbox-item">
-                                  <label>
-                                     <p>Kokapet</p>
-                                     <input type="checkbox" >
-                                     <span class="btn-checkbox bChe"></span>
-                                  </label>
-                               </li>
-                            </ul>
+                                    <div class="input-search relative">
+                                        <fieldset class="name">
+                                            <input type="text" placeholder="Search" class="border-radius-corner formRaidu" name="name" tabindex="2" value="" aria-required="true" required="">
+                                        </fieldset>
+                                        <div class="button-submit style-absolute-right-center">
+                                            <button class="style-icon-default" type="submit"><i class="flaticon-magnifiying-glass"></i></button>
+                                        </div>
+                                    </div>
+                                </form>
+                                <ul class="grid-checkbox nonsss">
+                                    @foreach($citiesList as $cities)
+                                    <li class="checkbox-item">
+                                        <label>
+                                            <p>{{ $cities->name }}</p>
+                                            <input type="checkbox" value="{{ $cities->id }}">
+                                            <span class="btn-checkbox bChe"></span>
+                                        </label>
+                                    </li>
+                                    @endforeach
+                                </ul>
                              </div>
                            </div>
+                           @endif
                             <div class="accordion-item nomeSd">
                              <h2 class="accordion-header" id="panelsStayOpen-headingTwo">
                                <button class="accordion-button collapsed mgt65sss" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseThree" aria-expanded="false" aria-controls="panelsStayOpen-collapseThree">

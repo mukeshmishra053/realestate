@@ -13,7 +13,9 @@
                             <a href="#" class="tags-item featured">Featured</a>
                         @endif
                     </div>
-                    <div class="button-heart" data-bs-toggle="modal" data-bs-target="#logoAfte"><i class="flaticon-heart-1"></i></div>
+                    <div class="button-heart" data-bs-toggle="modal" data-bs-target="#logoAfte">
+                        <i class="flaticon-heart-1"></i>
+                    </div>
                     <div class="swiper-container slider-box-dream arrow-style-1 pagination-style-1">
                         <div class="swiper-wrapper">
                             @if(!empty($property->images))

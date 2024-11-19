@@ -61,6 +61,33 @@
         <script src="{{ asset('/') }}frontend/js/CommonLib.js"></script>
         @yield('page_scripts')
         <script>
+            $(function(){
+                let debounceTimer;
+                $("body").on('keyup','.filter_property_by_search',function(e){
+                    e.preventDefault();
+                    const url = "{{ route('filter.property.by.search') }}";
+                    const method = "POST";
+                    const search_term = $(this).val();
+                    debounceTimer = setTimeout(() => {
+                        if (search_term.trim() !== "") {
+                            var formData = new FormData();
+                            formData.append('search',search_term);
+                            CommonLib.ajaxForm(formData,method,url).then(d=>{
+                                if(d.status === 200){
+                                    $(".show-filter-data").removeClass('d-none');
+                                    $(".show-filter-data").html(d.html);
+                                }else{
+                                    $(".show-filter-data").addClass('d-none');
+                                }
+                            }).catch(e=>{
+                                CommonLib.notification.error(e.responseJSON.errors);
+                            });
+                        }
+                    }, 300);
+                });
+            });
+        </script>
+        <script>
         new Mmenu(document.querySelector("#menu"));
         </script>
       </body>

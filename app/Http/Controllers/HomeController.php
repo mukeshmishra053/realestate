@@ -13,6 +13,7 @@ use Botble\RealEstate\Repositories\Interfaces\PropertyInterface;
 use Botble\RealEstate\Repositories\Interfaces\ProjectInterface;
 use Botble\Payment\Models\Payment;
 use Illuminate\Support\Facades\View;
+use App\Http\Services\CommonService;
 use Config;
 Class HomeController extends Controller {
 
@@ -102,47 +103,18 @@ Class HomeController extends Controller {
     }
     // Properties
     public function properties(Request $request){
-        $category_id = $request->get('category_id');
-        $type = $request->get('type');
-        $price_range = $request->get('price_range');
-        $availablePriceRange = config('app.price_range_for_sale');
-        $availablePriceRangeRent = config('app.price_range_for_rent');
-        $categoriesData = Category::all();
-        $properties = Property::with(['author','facilities','features']);
-        if($request->property_type == 'featured'){
-            $properties = $properties->where('is_featured',1);
-        }
-        if($request->city_id){
-            $properties = $properties->where('city_id',$request->city_id);
-        }
-        if($category_id){
-            $properties = $properties->whereHas('categories',function($query) use($request){
-                $query->where('category_id',$request->category_id);
-            });
-        }
-        if($type){
-            $properties = $properties->where('type',$type);
-        }
-        if($price_range && $type == 'sale'){
-            if(isset($availablePriceRange[$price_range])){
-                [$minPrice,$maxPrice] = $availablePriceRange[$price_range];
-                $properties = $properties->when($minPrice,fn($query) => $query->where('price', '>=', $minPrice))
-                            ->when($maxPrice,fn($query) => $query->where('price', '<=', $maxPrice));
-            }
-        }
-        if($price_range && $type == 'rent'){
-            if(isset($availablePriceRangeRent[$price_range])){
-                [$minRentPrice,$maxRentPrice] = $availablePriceRangeRent[$price_range];
-                $properties = $properties->when($minRentPrice,fn($query) => $query->where('price', '>=', $minRentPrice))
-                            ->when($maxRentPrice,fn($query) => $query->where('price', '<=', $maxRentPrice));
-            }
-        }
-        $properties = $properties->orderBy('views','DESC');
-        $totalFoundProperties = $properties->count();
-        $exclusiveProperties = $properties->take(3)->get();
-        $properties = $properties->paginate(2)->appends(['category_id' => $category_id,'type'=>$type,'price_range'=>$price_range]);
 
-        return view('frontend.pages.properties',compact('properties','categoriesData','totalFoundProperties','exclusiveProperties'));
+        $categoriesData = Category::all();
+        $cityQuery = City::with('properties','state')->withCount('properties')->orderBy('properties_count', 'desc')->having('properties_count','>',0);
+        $categoriesExceptHomeInteriors = Category::where('is_interior',0)->get();
+        $common = new CommonService(Property::class);
+        $properties = $common->filterProperties($request);
+        $totalFoundProperties = $properties['totalFoundProperties'];
+        $exclusiveProperties = $properties['exclusiveProperties'];
+        $properties = $properties['properties'];
+        $randomState = State::find(35);
+        $citiesList = $cityQuery->where('state_id',$randomState->id)->take(10)->get();
+        return view('frontend.pages.properties',compact('properties','randomState','citiesList','categoriesExceptHomeInteriors','categoriesData','totalFoundProperties','exclusiveProperties'));
     }
     //Search Property by Text
     public function filterPropertyBySearch(Request $request){
@@ -157,9 +129,26 @@ Class HomeController extends Controller {
                 $query->orWhere('name','like','%'. $search . '%');
                 $query->orWhere('description','like','%'. $search . '%');
                 $query->orWhere('location','like','%'. $search . '%');
-            })->where('type',$type)->orderBy('id','DESC')->limit(10)->select('id','name','images')->get();
+            });
+            if(isset($type)){
+                $propertyList = $propertyList->where('type',$type);
+            }
+            $propertyList = $propertyList->orderBy('id','DESC')->limit(10)->select('id','name','images')->get();
             $html = View::make('frontend.layout.filter_dropdown',['propertyList'=>$propertyList,'type'=>$type])->render();
             return response()->json(['status'=>($propertyList) ? 200 : 400,'msg'=>($propertyList) ? 'Action performed successfully' : 'Something went wrong','url'=>'','html'=>$html]);
+        }catch(\Exception $e){
+            return response()->json(['status'=>400,'msg'=>$e->getMessage(),'url'=>'']);
+        }
+    }
+
+    public function getFilterProperties(Request $request){
+        try{
+            $common = new CommonService(Property::class);
+            $properties = $common->filterProperties($request);
+            $totalFoundProperties = $properties['totalFoundProperties'];
+            $properties = $properties['properties'];
+            $html =  View::make('frontend.layout.property-list',compact('properties','totalFoundProperties'))->render();
+            return response()->json(['status'=>($properties) ? 200 : 400,'msg'=>($properties) ? 'Action performed successfully' : 'Something went wrong','url'=>'','html'=>$html,'pagination_html' => $properties->links()->render()]);
         }catch(\Exception $e){
             return response()->json(['status'=>400,'msg'=>$e->getMessage(),'url'=>'']);
         }

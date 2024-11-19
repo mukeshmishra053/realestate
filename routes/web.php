@@ -23,5 +23,6 @@ Route::get('/home-interior', [HomeController::class,'homeInterior'])->name('home
 Route::get('/home-interior-detail', [HomeController::class,'homeInteriorDetails'])->name('home.interior.detail');
 Route::get('/all-properties', [HomeController::class,'properties'])->name('home.properties');
 Route::post('/filter-properties-by-search', [HomeController::class,'filterPropertyBySearch'])->name('filter.property.by.search');
+Route::get('/filter-properties-by-options', [HomeController::class,'getFilterProperties'])->name('filter.property.by.options');
 
 Route::get('/get-detail-property/{id}', [HomeController::class,'propertyDetails'])->name('property.detail');

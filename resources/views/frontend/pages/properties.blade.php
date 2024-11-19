@@ -23,59 +23,12 @@
                                   <div class="title">Keyword</div>
                                   <div class="relative">
                                      <fieldset class="name">
-                                        <input type="text" placeholder="Enter Keyyword" class="show-search style-default" name="name" tabindex="2" value="" aria-required="true" required="">
+                                        <input type="text" placeholder="Enter Keyword" class="show-search style-default filter_property_by_search" name="name" tabindex="2" value="" aria-required="true" required="">
                                      </fieldset>
                                      <div class="style-absolute-right">
                                         <div class="style-icon-default"><i class="flaticon-magnifiying-glass"></i></div>
                                      </div>
-                                     <div class="box-content-search style-1">
-                                        <ul>
-                                           <li>
-                                              <div class="item1">
-                                                 <div>
-                                                    <div class="image">
-                                                       <img src="frontend/images/author/avatar-8.png" alt="">
-                                                    </div>
-                                                    <p>Archer House</p>
-                                                 </div>
-                                                 <div class="text">For Sale</div>
-                                              </div>
-                                           </li>
-                                           <li>
-                                              <div class="item1">
-                                                 <div>
-                                                    <div class="image">
-                                                       <img src="frontend/images/author/avatar-7.png" alt="">
-                                                    </div>
-                                                    <p>Home Pitt Street</p>
-                                                 </div>
-                                                 <div class="text">For Rent</div>
-                                              </div>
-                                           </li>
-                                           <li>
-                                              <div class="item1">
-                                                 <div>
-                                                    <div class="image">
-                                                       <img src="frontend/images/author/avatar-9.png" alt="">
-                                                    </div>
-                                                    <p>Villa One Hyde Park</p>
-                                                 </div>
-                                                 <div class="text">For Rent</div>
-                                              </div>
-                                           </li>
-                                           <li>
-                                              <div class="item1">
-                                                 <div>
-                                                    <div class="image">
-                                                       <img src="frontend/images/author/avatar-10.png" alt="">
-                                                    </div>
-                                                    <p>House on the beverly hills</p>
-                                                 </div>
-                                                 <div class="text">For Sale</div>
-                                              </div>
-                                           </li>
-                                        </ul>
-                                     </div>
+                                     <div class="box-content-search style-1 d-none show-filter-data"> </div>
                                   </div>
                                </div>
                             </div>
@@ -85,30 +38,30 @@
                                   <div class="title">Status</div>
                                   <div class="nice-select" tabindex="0">
                                      <span class="current">All Status</span>
-                                     <ul class="list style-radio">
-                                        <li data-value="For Sale" class="option selected">For Sale</li>
-                                        <li data-value="For Ren" class="option">For Ren</li>
-                                        <li data-value="Sold" class="option">Sold</li>
+                                     <ul class="list style-radio select_status_filter">
+                                        <li data-value="sale" class="option">For Sale</li>
+                                        <li data-value="rent" class="option">For Rent</li>
                                      </ul>
                                   </div>
                                </div>
                             </div>
+                            @if(!empty($categoriesExceptHomeInteriors))
                             <div class="divider-1"></div>
                             <div class="group-form">
                                <div class="form-style-has-title">
                                   <div class="title">Type</div>
                                   <div class="nice-select" tabindex="0">
                                      <span class="current">All Type</span>
-                                     <ul class="list">
+                                     <ul class="list select_type_filter">
                                         <li data-value class="option selected">All Type</li>
-                                        <li data-value="Office" class="option">Office</li>
-                                        <li data-value="Villa" class="option">Villa</li>
-                                        <li data-value="Shop" class="option">Shop</li>
-                                        <li data-value="Single Family" class="option">Single Family</li>
+                                        @foreach($categoriesExceptHomeInteriors as $category)
+                                            <li data-value="{{ $category->id }}" class="option">{{ $category->name }}</li>
+                                        @endforeach
                                      </ul>
                                   </div>
                                </div>
                             </div>
+                            @endif
                          </div>
                          <div class="flex gap10">
                             <div class="group-form">
@@ -298,14 +251,58 @@
                       </div>
                    </div>
                 </div>
-                @include('frontend.layout.property-list')
-
-
-                {{ $properties->links() }}
+                <div class="show-filter-data">
+                    @include('frontend.layout.property-list')
+                <div>
              </div>
           </div>
+
+          <div class="pagination-wrapper">{{ $properties->links() }}</div>
+
        </div>
     </div>
     <!-- /property-grid -->
  </div>
+@section('page_scripts')
+<script>
+    $(function(){
+        var formData = new FormData()
+        $("body").on('click','.select_status_filter li',function(e){
+            const status_value = $(this).data('value');
+            formData.append('type',status_value);
+            filterProperties(1);
+        });
+        $("body").on('click','.select_type_filter li',function(e){
+            const type_value = $(this).data('value');
+            formData.append('category_id',type_value);
+            filterProperties(1);
+        });
+        $(document).on('click', '.pagination a', function (e) {
+            e.preventDefault();
+            const page = $(this).html();
+            filterProperties(page);
+        });
+        function filterProperties(page = 1){
+            const url = "{{ route('filter.property.by.options') }}";
+            const method = "GET";
+            const plainObject = Object.fromEntries(formData.entries());
+            plainObject.page = page;
+            const queryString = new URLSearchParams(plainObject).toString();
+            const fullUrl = `${url}?${queryString}`;
+            CommonLib.ajaxForm(formData,method,fullUrl).then(d=>{
+                if(d.status === 200){
+                    $(".show-filter-data").empty();
+                    $(".show-filter-data").removeClass('d-none');
+                    $(".show-filter-data").html(d.html);
+                    if (d.pagination_html) {
+                        $(".pagination-wrapper").html(d.pagination_html);
+                    }
+                }
+            }).catch(e=>{
+                CommonLib.notification.error(e.responseJSON.errors);
+            });
+        }
+    });
+</script>
+@endsection
 @endsection
