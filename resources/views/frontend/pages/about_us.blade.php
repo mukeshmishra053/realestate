@@ -1,5 +1,5 @@
 @extends('frontend.layout.master')
-@section('title','Terms & Condition')
+@section('title','About Us')
 @section('content')
 <div class="main-content px-20">
     <div class="flat-title agency-single">
@@ -7,7 +7,7 @@
           <div class="row">
              <div class="col-12">
                 <div class="content">
-                   <h2>Terms & Condition</h2>
+                   <h2>About Us</h2>
                    <ul class="breadcrumbs">
                    </ul>
                 </div>
@@ -19,8 +19,8 @@
        <div class="container">
           <div class="row">
              <div class="col-md-12">
-                <h2 class="smaefonts">Terms and Conditions</h2>
-                {!! $terms_conditionData->content !!}
+                <h2 class="smaefonts">About Us</h2>
+                {!! $aboutUsData->content !!}
              </div>
           </div>
        </div>

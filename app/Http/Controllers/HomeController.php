@@ -6,8 +6,11 @@ use Illuminate\Http\Request;
 use Botble\RealEstate\Models\Category;
 use Botble\RealEstate\Models\City;
 use Botble\RealEstate\Models\Property;
+use Botble\RealEstate\Models\Project;
+use Botble\RealEstate\Models\Feature;
 use Botble\Blog\Models\Post;
 use Botble\Location\Models\State;
+use Botble\Page\Models\Page;
 use Carbon\Carbon;
 use Botble\RealEstate\Repositories\Interfaces\PropertyInterface;
 use Botble\RealEstate\Repositories\Interfaces\ProjectInterface;
@@ -60,6 +63,12 @@ Class HomeController extends Controller {
         $categoriesData = Category::all();
         return view('frontend.pages.contact_us',compact('categoriesData'));
     }
+    // About Us
+    public function aboutUs(Request $request){
+        $categoriesData = Category::all();
+        $aboutUsData = Page::where('name','about_us')->first();
+        return view('frontend.pages.about_us',compact('categoriesData','aboutUsData'));
+    }
     // Home Interior Page
     public function homeInterior(Request $request){
         $categoriesData = Category::all();
@@ -78,7 +87,8 @@ Class HomeController extends Controller {
     // Terms & Condition Page
     public function termsCondition(Request $request){
         $categoriesData = Category::all();
-        return view('frontend.pages.terms_condition',compact('categoriesData'));
+        $terms_conditionData = Page::where('name','terms_condition')->first();
+        return view('frontend.pages.terms_condition',compact('categoriesData','terms_conditionData'));
     }
     // Terms & Condition Page
     public function testimonials(Request $request){
@@ -103,18 +113,20 @@ Class HomeController extends Controller {
     }
     // Properties
     public function properties(Request $request){
-
         $categoriesData = Category::all();
         $cityQuery = City::with('properties','state')->withCount('properties')->orderBy('properties_count', 'desc')->having('properties_count','>',0);
-        $categoriesExceptHomeInteriors = Category::where('is_interior',0)->get();
+        $categoriesExceptInteriors = Category::where('is_interior',0);
+        $categoriesExceptHomeInteriors = $categoriesExceptInteriors->get();
         $common = new CommonService(Property::class);
         $properties = $common->filterProperties($request);
-        $totalFoundProperties = $properties['totalFoundProperties'];
         $exclusiveProperties = $properties['exclusiveProperties'];
-        $properties = $properties['properties'];
         $randomState = State::find(35);
-        $citiesList = $cityQuery->where('state_id',$randomState->id)->take(10)->get();
-        return view('frontend.pages.properties',compact('properties','randomState','citiesList','categoriesExceptHomeInteriors','categoriesData','totalFoundProperties','exclusiveProperties'));
+        $citiesList = $cityQuery->take(50)->get();
+        $filterCategories = $categoriesExceptInteriors->take(50)->get();
+        $filterCategories = $categoriesExceptInteriors->take(50)->get();
+        $amenities = Feature::take(50)->get();
+        $projectsList = Project::with('properties')->withCount('properties')->orderBy('properties_count', 'desc')->having('properties_count','>',0)->take(50)->get();
+        return view('frontend.pages.properties',compact('amenities','projectsList','filterCategories','randomState','citiesList','categoriesExceptHomeInteriors','categoriesData','exclusiveProperties'));
     }
     //Search Property by Text
     public function filterPropertyBySearch(Request $request){
@@ -148,7 +160,39 @@ Class HomeController extends Controller {
             $totalFoundProperties = $properties['totalFoundProperties'];
             $properties = $properties['properties'];
             $html =  View::make('frontend.layout.property-list',compact('properties','totalFoundProperties'))->render();
-            return response()->json(['status'=>($properties) ? 200 : 400,'msg'=>($properties) ? 'Action performed successfully' : 'Something went wrong','url'=>'','html'=>$html,'pagination_html' => $properties->links()->render()]);
+            return response()->json(['status'=>($properties) ? 200 : 400,'msg'=>($properties) ? 'Action performed successfully' : 'Something went wrong','url'=>'','html'=>$html,'pagination_html' => $properties->links()->render(),'total_result_found'=>$totalFoundProperties]);
+        }catch(\Exception $e){
+            return response()->json(['status'=>400,'msg'=>$e->getMessage(),'url'=>'']);
+        }
+    }
+
+
+    //Search Cities
+    public function searchCities(Request $request){
+        try{
+            $search = $request->get('search');
+            $cityList =  City::where('name','like','%'. $search . '%')->orderBy('name','ASC')->get();
+            return response()->json(['status'=>($cityList) ? 200 : 400,'msg'=>($cityList) ? 'Action performed successfully' : 'Something went wrong','url'=>'','data'=>$cityList]);
+        }catch(\Exception $e){
+            return response()->json(['status'=>400,'msg'=>$e->getMessage(),'url'=>'']);
+        }
+    }
+    //Search Categories
+    public function searchCategories(Request $request){
+        try{
+            $search = $request->get('search');
+            $categoryList =  Category::where('name','like','%'. $search . '%')->orderBy('name','ASC')->get();
+            return response()->json(['status'=>($categoryList) ? 200 : 400,'msg'=>($categoryList) ? 'Action performed successfully' : 'Something went wrong','url'=>'','data'=>$categoryList]);
+        }catch(\Exception $e){
+            return response()->json(['status'=>400,'msg'=>$e->getMessage(),'url'=>'']);
+        }
+    }
+    //Search Projects
+    public function searchProjects(Request $request){
+        try{
+            $search = $request->get('search');
+            $projectList =  Project::where('name','like','%'. $search . '%')->orderBy('name','ASC')->get();
+            return response()->json(['status'=>($projectList) ? 200 : 400,'msg'=>($projectList) ? 'Action performed successfully' : 'Something went wrong','url'=>'','data'=>$projectList]);
         }catch(\Exception $e){
             return response()->json(['status'=>400,'msg'=>$e->getMessage(),'url'=>'']);
         }

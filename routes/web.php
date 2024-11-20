@@ -16,6 +16,7 @@ Route::get('/', [HomeController::class,'index'])->name('home');
 Route::get('/contact-us', [HomeController::class,'contactUs'])->name('contact.us');
 Route::get('/privacy-policy', [HomeController::class,'privacyPolicy'])->name('privacy.policy');
 Route::get('/terms-condition', [HomeController::class,'termsCondition'])->name('terms.condition');
+Route::get('/about-us', [HomeController::class,'aboutUs'])->name('about.us');
 Route::get('/testimonial', [HomeController::class,'testimonials'])->name('testimonial');
 Route::get('/construction', [HomeController::class,'construction'])->name('construction');
 Route::get('/blogs', [HomeController::class,'blogs'])->name('blogs');
@@ -23,6 +24,9 @@ Route::get('/home-interior', [HomeController::class,'homeInterior'])->name('home
 Route::get('/home-interior-detail', [HomeController::class,'homeInteriorDetails'])->name('home.interior.detail');
 Route::get('/all-properties', [HomeController::class,'properties'])->name('home.properties');
 Route::post('/filter-properties-by-search', [HomeController::class,'filterPropertyBySearch'])->name('filter.property.by.search');
-Route::get('/filter-properties-by-options', [HomeController::class,'getFilterProperties'])->name('filter.property.by.options');
+Route::any('/filter-properties-by-options', [HomeController::class,'getFilterProperties'])->name('filter.property.by.options');
+Route::get('/search-cities', [HomeController::class,'searchCities'])->name('search.cities');
+Route::get('/search-categories', [HomeController::class,'searchCategories'])->name('search.categories');
+Route::get('/search-project', [HomeController::class,'searchProjects'])->name('search.projects');
 
 Route::get('/get-detail-property/{id}', [HomeController::class,'propertyDetails'])->name('property.detail');

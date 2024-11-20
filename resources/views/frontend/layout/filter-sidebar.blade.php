@@ -19,7 +19,7 @@
                                <form class="form-search mrgButon">
                                  <div class="input-search relative">
                                      <fieldset class="name">
-                                         <input type="text" placeholder="Search" class="border-radius-corner formRaidu" name="name" tabindex="2" value="" aria-required="true" required="">
+                                         <input type="text" placeholder="Search" class="border-radius-corner formRaidu search_categories" name="name" tabindex="2" value="" aria-required="true" required="">
                                      </fieldset>
                                      <div class="button-submit style-absolute-right-center">
                                          <button class="style-icon-default" type="submit"><i class="flaticon-magnifiying-glass"></i></button>
@@ -28,12 +28,12 @@
                               </form>
                               @if(!empty($categoriesExceptHomeInteriors))
                                <div class="">
-                                  <ul class="grid-checkbox nonsss">
+                                  <ul class="grid-checkbox nonsss categories-wrapper">
                                     @foreach($categoriesExceptHomeInteriors as $categor)
                                     <li class="checkbox-item">
                                         <label>
                                             <p>{{ $categor->name}}</p>
-                                            <input type="checkbox" value="{{ $categor->id}}">
+                                            <input type="checkbox" name="categories_filter[]" value="{{ $categor->id}}">
                                             <span class="btn-checkbox bChe"></span>
                                         </label>
                                     </li>
@@ -54,19 +54,19 @@
                                 <form class="form-search mrgButon">
                                     <div class="input-search relative">
                                         <fieldset class="name">
-                                            <input type="text" placeholder="Search" class="border-radius-corner formRaidu" name="name" tabindex="2" value="" aria-required="true" required="">
+                                            <input type="text" placeholder="Search" class="border-radius-corner formRaidu search_cities" name="name" tabindex="2" value="" aria-required="true" required="">
                                         </fieldset>
                                         <div class="button-submit style-absolute-right-center">
                                             <button class="style-icon-default" type="submit"><i class="flaticon-magnifiying-glass"></i></button>
                                         </div>
                                     </div>
                                 </form>
-                                <ul class="grid-checkbox nonsss">
+                                <ul class="grid-checkbox nonsss cities-wrapper">
                                     @foreach($citiesList as $cities)
                                     <li class="checkbox-item">
                                         <label>
                                             <p>{{ $cities->name }}</p>
-                                            <input type="checkbox" value="{{ $cities->id }}">
+                                            <input type="checkbox" name="cities_filter[]" value="{{ $cities->id }}">
                                             <span class="btn-checkbox bChe"></span>
                                         </label>
                                     </li>
@@ -75,97 +75,38 @@
                              </div>
                            </div>
                            @endif
+                           @if(!empty($projectsList))
                             <div class="accordion-item nomeSd">
                              <h2 class="accordion-header" id="panelsStayOpen-headingTwo">
                                <button class="accordion-button collapsed mgt65sss" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseThree" aria-expanded="false" aria-controls="panelsStayOpen-collapseThree">
-                                 New Projects / Societies
+                                 New Projects / Socities
                                </button>
                              </h2>
                              <div id="panelsStayOpen-collapseThree" class="accordion-collapse collapse" aria-labelledby="panelsStayOpen-headingThree">
                                 <form class="form-search mrgButon">
                                  <div class="input-search relative">
                                      <fieldset class="name">
-                                         <input type="text" placeholder="Search" class="border-radius-corner formRaidu" name="name" tabindex="2" value="" aria-required="true" required="">
+                                         <input type="text" placeholder="Search" class="border-radius-corner formRaidu search_projects" name="name" tabindex="2" value="" aria-required="true" required="">
                                      </fieldset>
                                      <div class="button-submit style-absolute-right-center">
                                          <button class="style-icon-default" type="submit"><i class="flaticon-magnifiying-glass"></i></button>
                                      </div>
                                  </div>
                               </form>
-                              <ul class="grid-checkbox nonsss">
-                               <li class="checkbox-item">
-                                  <label>
-                                     <p>Narsingi</p>
-                                     <input type="checkbox" checked="">
-                                     <span class="btn-checkbox bChe"></span>
-                                  </label>
-                               </li>
-                               <li class="checkbox-item">
-                                  <label>
-                                     <p>Patancheru</p>
-                                     <input type="checkbox" >
-                                     <span class="btn-checkbox bChe"></span>
-                                  </label>
-                               </li>
-                               <li class="checkbox-item">
-                                  <label>
-                                     <p>Miyapur</p>
-                                     <input type="checkbox" >
-                                     <span class="btn-checkbox bChe"></span>
-                                  </label>
-                               </li>
-                               <li class="checkbox-item">
-                                  <label>
-                                     <p>Kondapur</p>
-                                     <input type="checkbox" >
-                                     <span class="btn-checkbox bChe"></span>
-                                  </label>
-                               </li>
-                               <li class="checkbox-item">
-                                  <label>
-                                     <p>Kokapet</p>
-                                     <input type="checkbox" >
-                                     <span class="btn-checkbox bChe"></span>
-                                  </label>
-                               </li>
-                               <li class="checkbox-item">
-                                  <label>
-                                     <p>Narsingi</p>
-                                     <input type="checkbox" checked="">
-                                     <span class="btn-checkbox bChe"></span>
-                                  </label>
-                               </li>
-                               <li class="checkbox-item">
-                                  <label>
-                                     <p>Patancheru</p>
-                                     <input type="checkbox" >
-                                     <span class="btn-checkbox bChe"></span>
-                                  </label>
-                               </li>
-                               <li class="checkbox-item">
-                                  <label>
-                                     <p>Miyapur</p>
-                                     <input type="checkbox" >
-                                     <span class="btn-checkbox bChe"></span>
-                                  </label>
-                               </li>
-                               <li class="checkbox-item">
-                                  <label>
-                                     <p>Kondapur</p>
-                                     <input type="checkbox" >
-                                     <span class="btn-checkbox bChe"></span>
-                                  </label>
-                               </li>
-                               <li class="checkbox-item">
-                                  <label>
-                                     <p>Kokapet</p>
-                                     <input type="checkbox" >
-                                     <span class="btn-checkbox bChe"></span>
-                                  </label>
-                               </li>
-                            </ul>
+                                <ul class="grid-checkbox nonsss projects-wrapper">
+                                    @foreach($projectsList as $project)
+                                        <li class="checkbox-item">
+                                            <label>
+                                                <p>{{ $project->name}}</p>
+                                                <input type="checkbox" name="project_filter[]"  value="{{ $project->id}}">
+                                                <span class="btn-checkbox bChe"></span>
+                                            </label>
+                                        </li>
+                                    @endforeach
+                                </ul>
                              </div>
                            </div>
+                           @endif
                            <div class="accordion-item nomeSd">
                              <h2 class="accordion-header" id="panelsStayOpen-headingTwo">
                                <button class="accordion-button collapsed mgt65sss" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseFhree" aria-expanded="false" aria-controls="panelsStayOpen-collapseFhree">
@@ -173,102 +114,58 @@
                                </button>
                              </h2>
                              <div id="panelsStayOpen-collapseFhree" class="accordion-collapse collapse" aria-labelledby="panelsStayOpen-headingFhree">
-                                <form class="form-search mrgButon">
-                                 <div class="input-search relative">
-                                     <fieldset class="name">
-                                         <input type="text" placeholder="Search" class="border-radius-corner formRaidu" name="name" tabindex="2" value="" aria-required="true" required="">
-                                     </fieldset>
-                                     <div class="button-submit style-absolute-right-center">
-                                         <button class="style-icon-default" type="submit"><i class="flaticon-magnifiying-glass"></i></button>
-                                     </div>
-                                 </div>
-                              </form>
-                              <ul class="grid-checkbox nonsss">
-                               <li class="checkbox-item">
-                                  <label>
-                                     <p>1 RK/1 BHK</p>
-                                     <input type="checkbox" checked="">
-                                     <span class="btn-checkbox bChe"></span>
-                                  </label>
-                               </li>
-                               <li class="checkbox-item">
-                                  <label>
-                                     <p>2 BHK</p>
-                                     <input type="checkbox" >
-                                     <span class="btn-checkbox bChe"></span>
-                                  </label>
-                               </li>
-                               <li class="checkbox-item">
-                                  <label>
-                                     <p>3 BHK</p>
-                                     <input type="checkbox" >
-                                     <span class="btn-checkbox bChe"></span>
-                                  </label>
-                               </li>
-                               <li class="checkbox-item">
-                                  <label>
-                                     <p>4 BHK</p>
-                                     <input type="checkbox" >
-                                     <span class="btn-checkbox bChe"></span>
-                                  </label>
-                               </li>
-                               <li class="checkbox-item">
-                                  <label>
-                                     <p>5 BHK</p>
-                                     <input type="checkbox" >
-                                     <span class="btn-checkbox bChe"></span>
-                                  </label>
-                               </li>
-                               <li class="checkbox-item">
-                                  <label>
-                                     <p>6 BHK</p>
-                                     <input type="checkbox" >
-                                     <span class="btn-checkbox bChe"></span>
-                                  </label>
-                               </li>
-                               <li class="checkbox-item">
-                                  <label>
-                                     <p>1 RK/1 BHK</p>
-                                     <input type="checkbox" checked="">
-                                     <span class="btn-checkbox bChe"></span>
-                                  </label>
-                               </li>
-                               <li class="checkbox-item">
-                                  <label>
-                                     <p>2 BHK</p>
-                                     <input type="checkbox" >
-                                     <span class="btn-checkbox bChe"></span>
-                                  </label>
-                               </li>
-                               <li class="checkbox-item">
-                                  <label>
-                                     <p>3 BHK</p>
-                                     <input type="checkbox" >
-                                     <span class="btn-checkbox bChe"></span>
-                                  </label>
-                               </li>
-                               <li class="checkbox-item">
-                                  <label>
-                                     <p>4 BHK</p>
-                                     <input type="checkbox" >
-                                     <span class="btn-checkbox bChe"></span>
-                                  </label>
-                               </li>
-                               <li class="checkbox-item">
-                                  <label>
-                                     <p>5 BHK</p>
-                                     <input type="checkbox" >
-                                     <span class="btn-checkbox bChe"></span>
-                                  </label>
-                               </li>
-                               <li class="checkbox-item">
-                                  <label>
-                                     <p>6 BHK</p>
-                                     <input type="checkbox" >
-                                     <span class="btn-checkbox bChe"></span>
-                                  </label>
-                               </li>
-                            </ul>
+
+                                <ul class="grid-checkbox nonsss">
+                                    <li class="checkbox-item">
+                                        <label>
+                                            <p>1 RK/1 BHK</p>
+                                            <input type="checkbox" name="number_of_bedrooms[]" value="1">
+                                            <span class="btn-checkbox bChe"></span>
+                                        </label>
+                                    </li>
+                                    <li class="checkbox-item">
+                                        <label>
+                                            <p>2 BHK</p>
+                                            <input type="checkbox" name="number_of_bedrooms[]" value="2">
+                                            <span class="btn-checkbox bChe"></span>
+                                        </label>
+                                    </li>
+                                    <li class="checkbox-item">
+                                        <label>
+                                            <p>3 BHK</p>
+                                            <input type="checkbox" name="number_of_bedrooms[]" value="3">
+                                            <span class="btn-checkbox bChe"></span>
+                                        </label>
+                                    </li>
+                                    <li class="checkbox-item">
+                                        <label>
+                                            <p>4 BHK</p>
+                                            <input type="checkbox" name="number_of_bedrooms[]" value="4">
+                                            <span class="btn-checkbox bChe"></span>
+                                        </label>
+                                    </li>
+                                    <li class="checkbox-item">
+                                        <label>
+                                            <p>5 BHK</p>
+                                            <input type="checkbox" name="number_of_bedrooms[]" value="5">
+                                            <span class="btn-checkbox bChe"></span>
+                                        </label>
+                                    </li>
+                                    <li class="checkbox-item">
+                                        <label>
+                                            <p>6 BHK</p>
+                                            <input type="checkbox" name="number_of_bedrooms[]" value="6">
+                                            <span class="btn-checkbox bChe"></span>
+                                        </label>
+                                    </li>
+                                    <li class="checkbox-item">
+                                        <label>
+                                            <p>6+ BHK</p>
+                                            <input type="checkbox" name="number_of_bedrooms[]" value="more_than_6">
+                                            <span class="btn-checkbox bChe"></span>
+                                        </label>
+                                    </li>
+                                </ul>
                              </div>
                            </div>
 
@@ -279,102 +176,44 @@
                                </button>
                              </h2>
                              <div id="panelsStayOpen-collapsesshree" class="accordion-collapse collapse" aria-labelledby="panelsStayOpen-collapsesshree">
-                                <form class="form-search mrgButon">
-                                 <div class="input-search relative">
-                                     <fieldset class="name">
-                                         <input type="text" placeholder="Search" class="border-radius-corner formRaidu" name="name" tabindex="2" value="" aria-required="true" required="">
-                                     </fieldset>
-                                     <div class="button-submit style-absolute-right-center">
-                                         <button class="style-icon-default" type="submit"><i class="flaticon-magnifiying-glass"></i></button>
-                                     </div>
-                                 </div>
-                              </form>
-                              <ul class="grid-checkbox nonsss">
-                               <li class="checkbox-item">
-                                  <label>
-                                     <p>0-1 years old</p>
-                                     <input type="checkbox" checked="">
-                                     <span class="btn-checkbox bChe"></span>
-                                  </label>
-                               </li>
-                               <li class="checkbox-item">
-                                  <label>
-                                     <p>0-1 years old</p>
-                                     <input type="checkbox" >
-                                     <span class="btn-checkbox bChe"></span>
-                                  </label>
-                               </li>
-                               <li class="checkbox-item">
-                                  <label>
-                                      <p>0-1 years old</p>
-                                     <input type="checkbox" >
-                                     <span class="btn-checkbox bChe"></span>
-                                  </label>
-                               </li>
-                               <li class="checkbox-item">
-                                  <label>
-                                      <p>0-1 years old</p>
-                                     <input type="checkbox" >
-                                     <span class="btn-checkbox bChe"></span>
-                                  </label>
-                               </li>
-                               <li class="checkbox-item">
-                                  <label>
-                                     <p>0-1 years old</p>
-                                     <input type="checkbox" >
-                                     <span class="btn-checkbox bChe"></span>
-                                  </label>
-                               </li>
-                               <li class="checkbox-item">
-                                  <label>
-                                      <p>0-1 years old</p>
-                                     <input type="checkbox" >
-                                     <span class="btn-checkbox bChe"></span>
-                                  </label>
-                               </li>
-                               <li class="checkbox-item">
-                                  <label>
-                                      <p>0-1 years old</p>
-                                     <input type="checkbox" checked="">
-                                     <span class="btn-checkbox bChe"></span>
-                                  </label>
-                               </li>
-                               <li class="checkbox-item">
-                                  <label>
-                                      <p>0-1 years old</p>
-                                     <input type="checkbox" >
-                                     <span class="btn-checkbox bChe"></span>
-                                  </label>
-                               </li>
-                               <li class="checkbox-item">
-                                  <label>
-                                      <p>0-1 years old</p>
-                                     <input type="checkbox" >
-                                     <span class="btn-checkbox bChe"></span>
-                                  </label>
-                               </li>
-                               <li class="checkbox-item">
-                                  <label>
-                                      <p>0-1 years old</p>
-                                     <input type="checkbox" >
-                                     <span class="btn-checkbox bChe"></span>
-                                  </label>
-                               </li>
-                               <li class="checkbox-item">
-                                  <label>
-                                      <p>0-1 years old</p>
-                                     <input type="checkbox" >
-                                     <span class="btn-checkbox bChe"></span>
-                                  </label>
-                               </li>
-                               <li class="checkbox-item">
-                                  <label>
-                                      <p>0-1 years old</p>
-                                     <input type="checkbox" >
-                                     <span class="btn-checkbox bChe"></span>
-                                  </label>
-                               </li>
-                            </ul>
+
+                               <ul class="grid-checkbox nonsss">
+                                    <li class="checkbox-item">
+                                        <label>
+                                            <p>Less than 5 years</p>
+                                            <input type="checkbox" name="property_age[]" value="less_than_5">
+                                            <span class="btn-checkbox bChe"></span>
+                                        </label>
+                                    </li>
+                                    <li class="checkbox-item">
+                                        <label>
+                                            <p>5-10 years old</p>
+                                            <input type="checkbox" name="property_age[]" value="5_to_10">
+                                            <span class="btn-checkbox bChe"></span>
+                                        </label>
+                                    </li>
+                                    <li class="checkbox-item">
+                                        <label>
+                                            <p>10-15 years old</p>
+                                            <input type="checkbox" name="property_age[]" value="10_to_15">
+                                            <span class="btn-checkbox bChe"></span>
+                                        </label>
+                                    </li>
+                                    <li class="checkbox-item">
+                                        <label>
+                                            <p>15-20 years old</p>
+                                            <input type="checkbox" name="property_age[]" value="15_to_20">
+                                            <span class="btn-checkbox bChe"></span>
+                                        </label>
+                                    </li>
+                                    <li class="checkbox-item">
+                                        <label>
+                                            <p>20+ years old</p>
+                                            <input type="checkbox" name="property_age[]" value="more_than_20">
+                                            <span class="btn-checkbox bChe"></span>
+                                        </label>
+                                    </li>
+                                </ul>
                              </div>
                            </div>
 
@@ -386,19 +225,25 @@
 
                          </div>
 
-                         <div class="sidebar-item sidebar-categories no-bg ">
+                         {{-- <div class="sidebar-item sidebar-categories no-bg form-search mrgButon">
                             <div class="sidebar-title">Search</div>
-                             <form class="form-search mrgButon">
+
                                  <div class="input-search relative">
                                      <fieldset class="name">
                                          <input type="text" placeholder=" Locality / Project / Society / Landmark" class="border-radius-corner formRaidu" name="name" tabindex="2" value="" aria-required="true" required="">
                                      </fieldset>
                                      <div class="button-submit style-absolute-right-center">
-                                         <button class="style-icon-default" type="submit"><i class="flaticon-magnifiying-glass"></i></button>
+                                         <button class="style-icon-default" type="bjtton"><i class="flaticon-magnifiying-glass"></i></button>
                                      </div>
                                  </div>
-                           </form>
 
+                         </div> --}}
+                         <div class="sidebar-item sidebar-categories no-bg" style="padding: 0;">
+                            <div class="group-form form-search-home5 button-submit">
+                                <div class="button-submit">
+                                   <button class="apply_filter_from_sidebar" type="button"> <i class="flaticon-filter"></i>Apply Filter</button>
+                                </div>
+                            </div>
                          </div>
                          @if(!empty($exclusiveProperties))
                          <div class="sidebar-item sidebar-exclusive no-bg relative">

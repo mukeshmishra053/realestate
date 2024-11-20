@@ -189,6 +189,9 @@
                     </ul>
                    @endif
                 </li>
+                <li class="has-children">
+                    <a href="{{ route('about.us') }}">About Us  </a>
+                 </li>
                  <li class="has-children">
                    <a href="javascript:void(0);">Help </a>
                    <ul>
