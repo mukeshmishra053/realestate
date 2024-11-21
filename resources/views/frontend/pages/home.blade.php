@@ -35,7 +35,7 @@
                                                                 <div class="style-absolute-right">
                                                                     <div class="style-icon-default"><i class="flaticon-magnifiying-glass"></i></div>
                                                                 </div>
-                                                                <div class="box-content-search style-1 d-none show-filter-data"></div>
+                                                                <div class="box-content-search style-1 d-none show-filter-data-header"></div>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -61,148 +61,7 @@
                                                         <div class="wg-filter">
                                                             <div class="tf-button-filter btn-filter"><i class="flaticon-filter"></i>Filter</div>
                                                             <div class="open-filter filter-no-content" id="a1">
-                                                                <div>
-                                                                    <div class="grid-3-cols mb-20">
-                                                                        <div class="nice-select" tabindex="0">
-                                                                            <span class="current">City</span>
-                                                                            <ul class="list">
-                                                                                <li data-value class="option selected">City</li>
-                                                                                <li data-value="New York" class="option">New York</li>
-                                                                                <li data-value="Paris" class="option">Paris</li>
-                                                                                <li data-value="Ha Noi" class="option">Ha Noi</li>
-                                                                            </ul>
-                                                                        </div>
-                                                                        <div class="nice-select" tabindex="0">
-                                                                            <span class="current">Bedrooms</span>
-                                                                            <ul class="list">
-                                                                                <li data-value class="option selected">Bedrooms</li>
-                                                                                <li data-value="1 Bed" class="option">1 Bed</li>
-                                                                                <li data-value="2 Bed" class="option">2 Bed</li>
-                                                                            </ul>
-                                                                        </div>
-                                                                        <div class="nice-select" tabindex="0">
-                                                                            <span class="current">Bathrooms</span>
-                                                                            <ul class="list">
-                                                                                <li data-value class="option selected">Bathrooms</li>
-                                                                                <li data-value="1 Bath" class="option">1 Bath</li>
-                                                                                <li data-value="2 Bath" class="option">2 Bath</li>
-                                                                            </ul>
-                                                                        </div>
-                                                                    </div>
-                                                                    <div class="grid-4-cols">
-                                                                        <fieldset class="name">
-                                                                            <input type="text" placeholder="Min. Area" class="" name="name" tabindex="2" value="" aria-required="true" required="">
-                                                                        </fieldset>
-                                                                        <fieldset class="name">
-                                                                            <input type="text" placeholder="Max. Area" class="" name="name" tabindex="2" value="" aria-required="true" required="">
-                                                                        </fieldset>
-                                                                        <div class="nice-select" tabindex="0">
-                                                                            <span class="current">Min. Price</span>
-                                                                            <ul class="list">
-                                                                                <li data-value class="option selected">Min. Price</li>
-                                                                                <li data-value="100 $" class="option">100 $</li>
-                                                                                <li data-value="150 $" class="option">150 $</li>
-                                                                            </ul>
-                                                                        </div>
-                                                                        <div class="nice-select" tabindex="0">
-                                                                            <span class="current">Max. Price</span>
-                                                                            <ul class="list">
-                                                                                <li data-value class="option selected">Max. Price</li>
-                                                                                <li data-value="1000 $" class="option">1000 $</li>
-                                                                                <li data-value="1500 $" class="option">1500 $</li>
-                                                                            </ul>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                                <div>
-                                                                    <div class="title">Amenities</div>
-                                                                    <ul class="grid-checkbox">
-                                                                        <li class="checkbox-item">
-                                                                            <label>
-                                                                                <p>Air Conditioning</p>
-                                                                                <input type="checkbox">
-                                                                                <span class="btn-checkbox"></span>
-                                                                            </label>
-                                                                        </li>
-                                                                        <li class="checkbox-item">
-                                                                            <label>
-                                                                                <p>Barbeque</p>
-                                                                                <input type="checkbox" checked>
-                                                                                <span class="btn-checkbox"></span>
-                                                                            </label>
-                                                                        </li>
-                                                                        <li class="checkbox-item">
-                                                                            <label>
-                                                                                <p>Dryer</p>
-                                                                                <input type="checkbox">
-                                                                                <span class="btn-checkbox"></span>
-                                                                            </label>
-                                                                        </li>
-                                                                        <li class="checkbox-item">
-                                                                            <label>
-                                                                                <p>Gym</p>
-                                                                                <input type="checkbox">
-                                                                                <span class="btn-checkbox"></span>
-                                                                            </label>
-                                                                        </li>
-                                                                        <li class="checkbox-item">
-                                                                            <label>
-                                                                                <p>Lawn</p>
-                                                                                <input type="checkbox">
-                                                                                <span class="btn-checkbox"></span>
-                                                                            </label>
-                                                                        </li>
-                                                                        <li class="checkbox-item">
-                                                                            <label>
-                                                                                <p>Microwave</p>
-                                                                                <input type="checkbox">
-                                                                                <span class="btn-checkbox"></span>
-                                                                            </label>
-                                                                        </li>
-                                                                        <li class="checkbox-item">
-                                                                            <label>
-                                                                                <p>Refrigerator</p>
-                                                                                <input type="checkbox">
-                                                                                <span class="btn-checkbox"></span>
-                                                                            </label>
-                                                                        </li>
-                                                                        <li class="checkbox-item">
-                                                                            <label>
-                                                                                <p>Sauna</p>
-                                                                                <input type="checkbox">
-                                                                                <span class="btn-checkbox"></span>
-                                                                            </label>
-                                                                        </li>
-                                                                        <li class="checkbox-item">
-                                                                            <label>
-                                                                                <p>Swimming Pool</p>
-                                                                                <input type="checkbox">
-                                                                                <span class="btn-checkbox"></span>
-                                                                            </label>
-                                                                        </li>
-                                                                        <li class="checkbox-item">
-                                                                            <label>
-                                                                                <p>TV Cable</p>
-                                                                                <input type="checkbox">
-                                                                                <span class="btn-checkbox"></span>
-                                                                            </label>
-                                                                        </li>
-                                                                        <li class="checkbox-item">
-                                                                            <label>
-                                                                                <p>Washer</p>
-                                                                                <input type="checkbox">
-                                                                                <span class="btn-checkbox"></span>
-                                                                            </label>
-                                                                        </li>
-                                                                        <li class="checkbox-item">
-                                                                            <label>
-                                                                                <p>WiFi</p>
-                                                                                <input type="checkbox">
-                                                                                <span class="btn-checkbox"></span>
-                                                                            </label>
-                                                                        </li>
-                                                                    </ul>
-                                                                </div>
+                                                                @include('frontend.layout.filter_header')
                                                             </div>
                                                         </div>
                                                     </div>
@@ -215,14 +74,13 @@
                                             </form>
                                         </div>
                                         <div class="widget-content-inner">
-                                            <form class="form-search-home6">
                                                 <div class="list">
                                                     <div class="group-form form-search-content">
                                                         <div class="form-style-has-title">
                                                             <div class="title">Keyword</div>
                                                             <div class="relative">
                                                                 <fieldset class="name">
-                                                                    <input type="text" placeholder="Enter Keyword" class="show-search style-default filter_property_by_search_for_rent" name="name" tabindex="2" value="" aria-required="true" required="">
+                                                                    <input type="text" placeholder="Enter Keyword" class="show-search style-default filter_property_by_search_for_rent" name="name" tabindex="2" value="" aria-required="true">
                                                                 </fieldset>
                                                                 <div class="style-absolute-right">
                                                                     <div class="style-icon-default"><i class="flaticon-magnifiying-glass"></i></div>
@@ -249,162 +107,23 @@
                                                     </div>
                                                 </div>
                                                 <div class="flex gap10">
-                                                    <div class="group-form">
-                                                        <div class="wg-filter">
-                                                            <div class="tf-button-filter btn-filter"><i class="flaticon-filter"></i>Filter</div>
-                                                            <div class="open-filter filter-no-content" id="a1">
-                                                                <div>
-                                                                    <div class="grid-3-cols mb-20">
-                                                                        <div class="nice-select" tabindex="0">
-                                                                            <span class="current">City</span>
-                                                                            <ul class="list">
-                                                                                <li data-value class="option selected">City</li>
-                                                                                <li data-value="New York" class="option">New York</li>
-                                                                                <li data-value="Paris" class="option">Paris</li>
-                                                                                <li data-value="Ha Noi" class="option">Ha Noi</li>
-                                                                            </ul>
-                                                                        </div>
-                                                                        <div class="nice-select" tabindex="0">
-                                                                            <span class="current">Bedrooms</span>
-                                                                            <ul class="list">
-                                                                                <li data-value class="option selected">Bedrooms</li>
-                                                                                <li data-value="1 Bed" class="option">1 Bed</li>
-                                                                                <li data-value="2 Bed" class="option">2 Bed</li>
-                                                                            </ul>
-                                                                        </div>
-                                                                        <div class="nice-select" tabindex="0">
-                                                                            <span class="current">Bathrooms</span>
-                                                                            <ul class="list">
-                                                                                <li data-value class="option selected">Bathrooms</li>
-                                                                                <li data-value="1 Bath" class="option">1 Bath</li>
-                                                                                <li data-value="2 Bath" class="option">2 Bath</li>
-                                                                            </ul>
-                                                                        </div>
-                                                                    </div>
-                                                                    <div class="grid-4-cols">
-                                                                        <fieldset class="name">
-                                                                            <input type="text" placeholder="Min. Area" class="" name="name" tabindex="2" value="" aria-required="true" required="">
-                                                                        </fieldset>
-                                                                        <fieldset class="name">
-                                                                            <input type="text" placeholder="Max. Area" class="" name="name" tabindex="2" value="" aria-required="true" required="">
-                                                                        </fieldset>
-                                                                        <div class="nice-select" tabindex="0">
-                                                                            <span class="current">Min. Price</span>
-                                                                            <ul class="list">
-                                                                                <li data-value class="option selected">Min. Price</li>
-                                                                                <li data-value="100 $" class="option">100 $</li>
-                                                                                <li data-value="150 $" class="option">150 $</li>
-                                                                            </ul>
-                                                                        </div>
-                                                                        <div class="nice-select" tabindex="0">
-                                                                            <span class="current">Max. Price</span>
-                                                                            <ul class="list">
-                                                                                <li data-value class="option selected">Max. Price</li>
-                                                                                <li data-value="1000 $" class="option">1000 $</li>
-                                                                                <li data-value="1500 $" class="option">1500 $</li>
-                                                                            </ul>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                                <div>
-                                                                    <div class="title">Amenities</div>
-                                                                    <ul class="grid-checkbox">
-                                                                        <li class="checkbox-item">
-                                                                            <label>
-                                                                                <p>Air Conditioning</p>
-                                                                                <input type="checkbox">
-                                                                                <span class="btn-checkbox"></span>
-                                                                            </label>
-                                                                        </li>
-                                                                        <li class="checkbox-item">
-                                                                            <label>
-                                                                                <p>Barbeque</p>
-                                                                                <input type="checkbox" checked>
-                                                                                <span class="btn-checkbox"></span>
-                                                                            </label>
-                                                                        </li>
-                                                                        <li class="checkbox-item">
-                                                                            <label>
-                                                                                <p>Dryer</p>
-                                                                                <input type="checkbox">
-                                                                                <span class="btn-checkbox"></span>
-                                                                            </label>
-                                                                        </li>
-                                                                        <li class="checkbox-item">
-                                                                            <label>
-                                                                                <p>Gym</p>
-                                                                                <input type="checkbox">
-                                                                                <span class="btn-checkbox"></span>
-                                                                            </label>
-                                                                        </li>
-                                                                        <li class="checkbox-item">
-                                                                            <label>
-                                                                                <p>Lawn</p>
-                                                                                <input type="checkbox">
-                                                                                <span class="btn-checkbox"></span>
-                                                                            </label>
-                                                                        </li>
-                                                                        <li class="checkbox-item">
-                                                                            <label>
-                                                                                <p>Microwave</p>
-                                                                                <input type="checkbox">
-                                                                                <span class="btn-checkbox"></span>
-                                                                            </label>
-                                                                        </li>
-                                                                        <li class="checkbox-item">
-                                                                            <label>
-                                                                                <p>Refrigerator</p>
-                                                                                <input type="checkbox">
-                                                                                <span class="btn-checkbox"></span>
-                                                                            </label>
-                                                                        </li>
-                                                                        <li class="checkbox-item">
-                                                                            <label>
-                                                                                <p>Sauna</p>
-                                                                                <input type="checkbox">
-                                                                                <span class="btn-checkbox"></span>
-                                                                            </label>
-                                                                        </li>
-                                                                        <li class="checkbox-item">
-                                                                            <label>
-                                                                                <p>Swimming Pool</p>
-                                                                                <input type="checkbox">
-                                                                                <span class="btn-checkbox"></span>
-                                                                            </label>
-                                                                        </li>
-                                                                        <li class="checkbox-item">
-                                                                            <label>
-                                                                                <p>TV Cable</p>
-                                                                                <input type="checkbox">
-                                                                                <span class="btn-checkbox"></span>
-                                                                            </label>
-                                                                        </li>
-                                                                        <li class="checkbox-item">
-                                                                            <label>
-                                                                                <p>Washer</p>
-                                                                                <input type="checkbox">
-                                                                                <span class="btn-checkbox"></span>
-                                                                            </label>
-                                                                        </li>
-                                                                        <li class="checkbox-item">
-                                                                            <label>
-                                                                                <p>WiFi</p>
-                                                                                <input type="checkbox">
-                                                                                <span class="btn-checkbox"></span>
-                                                                            </label>
-                                                                        </li>
-                                                                    </ul>
+                                                    <form class="form-search-home6" method="POST" action="{{ route('submit.filter.data.for.property') }}">
+                                                        @csrf
+                                                        <div class="group-form">
+                                                            <div class="wg-filter">
+                                                                <div class="tf-button-filter btn-filter"><i class="flaticon-filter"></i>Filter</div>
+                                                                <div class="open-filter filter-no-content" id="a1">
+                                                                    @include('frontend.layout.filter_header')
                                                                 </div>
                                                             </div>
                                                         </div>
-                                                    </div>
-                                                    <div class="group-form">
-                                                        <div class="button-submit">
-                                                            <button class="" type="submit">Search</button>
+                                                        <div class="group-form">
+                                                            <div class="button-submit">
+                                                                <button class="" type="submit">Search</button>
+                                                            </div>
                                                         </div>
-                                                    </div>
+                                                    </form>
                                                 </div>
-                                            </form>
                                         </div>
                                         <div class="widget-content-inner">
                                             <form class="form-search-home6">

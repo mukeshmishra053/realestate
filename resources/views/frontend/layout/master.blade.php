@@ -74,16 +74,20 @@
                             formData.append('search',search_term);
                             CommonLib.ajaxForm(formData,method,url).then(d=>{
                                 if(d.status === 200){
-                                    $(".show-filter-data").removeClass('d-none');
-                                    $(".show-filter-data").html(d.html);
+                                    $(".show-filter-data-header").removeClass('d-none');
+                                    $(".show-filter-data-header").html(d.html);
                                 }else{
-                                    $(".show-filter-data").addClass('d-none');
+                                    $(".show-filter-data-header").addClass('d-none');
                                 }
                             }).catch(e=>{
                                 CommonLib.notification.error(e.responseJSON.errors);
                             });
                         }
                     }, 300);
+                });
+                $("body").on('click','.master_filter_data li',function(e){
+                    const sub_value = $(this).data('value');
+                    $(this).parent('.master_filter_data').find('input[type="hidden"]').val(sub_value);
                 });
             });
         </script>

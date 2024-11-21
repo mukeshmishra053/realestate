@@ -18,6 +18,7 @@ class CommonService {
         $cities_filter = $request->cities_filter;
         $project_filter = $request->project_filter;
         $number_of_bedrooms = $request->number_of_bedrooms;
+        $number_of_bathrooms = $request->number_of_bathrooms;
         $property_age = $request->property_age;
         $availablePriceRange = config('app.price_range_for_sale');
         $availablePriceRangeRent = config('app.price_range_for_rent');
@@ -64,11 +65,41 @@ class CommonService {
             $properties = $properties->whereIn('project_id',$cities_filter);
         }
         if($number_of_bedrooms){
-            $properties = $properties->whereIn('number_bedroom',$number_of_bedrooms);
+            if(is_array($number_of_bedrooms)){
+                $properties = $properties->whereIn('number_bedroom',$number_of_bedrooms);
+            }else{
+                $properties = $properties->where('number_bedroom',$number_of_bedrooms);
+            }
+        }
+        if($number_of_bathrooms){
+            if(is_array($number_of_bathrooms)){
+                $properties = $properties->whereIn('number_bathroom',$number_of_bathrooms);
+            }else{
+                $properties = $properties->where('number_bathroom',$number_of_bathrooms);
+            }
         }
         $properties = $properties->orderBy('views','DESC');
         if($order){
             $properties = $properties->orderBy('id',$order);
+        }
+        if ($request->filled('city_id')) {
+            $properties = $properties->where('city_id', $request->city_id);
+        }
+
+        if ($request->filled('min_area')) {
+            $properties = $properties->where('square', '>=', $request->min_area);
+        }
+
+        if ($request->filled('max_area')) {
+            $properties = $properties->where('square', '<=', $request->max_area);
+        }
+
+        if ($request->filled('min_price')) {
+            $properties = $properties->where('price', '>=', $request->min_price);
+        }
+
+        if ($request->filled('max_price')) {
+            $properties = $properties->where('price', '<=', $request->max_price);
         }
         $totalFoundProperties = $properties->count();
         $exclusiveProperties = $properties->take(3)->get();

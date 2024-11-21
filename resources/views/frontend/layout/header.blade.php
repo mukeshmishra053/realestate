@@ -2,7 +2,7 @@
     <div class="header-inner">
        <div class="header-inner-wrap">
           <div id="site-logo">
-             <a href="index.php" rel="home">
+             <a href="{{ route('home') }}" rel="home">
              <img class="d-block" id="logo-header" src="{{ asset('/') }}frontend/images/logo/Patliputra_Property_Hubs.png"  alt="" style="max-width: 126px;">
              </a>
           </div>

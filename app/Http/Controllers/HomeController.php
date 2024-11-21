@@ -54,9 +54,10 @@ Class HomeController extends Controller {
         $totalPropertiesRent = Property::where('type','rent')->count();
         $randomState = State::find(35);
         $citiesList = $cityQuery->where('state_id',$randomState->id)->take(10)->get();
+        $amenities = Feature::take(50)->get();
         // echo "<pre>";
         // print_r(json_decode(json_encode($citiesList),true)); die;
-        return view('frontend.pages.home',compact('categoriesData','citiesList','randomState','totalPropertiesSale','totalPropertiesRent','averagePropertyPerMonth','totalPayment','categoryListings','topCategories','blogList','homeInteriorCategories','popularCities','properties','featuredProjects','highlyViewedProperties','featuredProjects'));
+        return view('frontend.pages.home',compact('categoriesData','amenities','citiesList','randomState','totalPropertiesSale','totalPropertiesRent','averagePropertyPerMonth','totalPayment','categoryListings','topCategories','blogList','homeInteriorCategories','popularCities','properties','featuredProjects','highlyViewedProperties','featuredProjects'));
     }
     // Contact Us
     public function contactUs(Request $request){
@@ -196,5 +197,11 @@ Class HomeController extends Controller {
         }catch(\Exception $e){
             return response()->json(['status'=>400,'msg'=>$e->getMessage(),'url'=>'']);
         }
+    }
+    //Search Projects
+    public function applyFilter(Request $request){
+        $filterData = $request->all();
+        $categoriesData = Category::all();
+        return view('frontend.pages.properties',compact('categoriesData','filterData'));
     }
 }

@@ -16,19 +16,20 @@
                       <li>Property List</li>
                    </ul>
                    <div class="form-filter wow fadeInUp">
-                      <form class="form-search-home5">
-                         <div class="list">
+                      <form class="form-search-home5" method="POST" action="{{ route('submit.filter.data.for.property') }}">
+                        @csrf
+                        <div class="list">
                             <div class="group-form form-search-content">
                                <div class="form-style-has-title">
                                   <div class="title">Keyword</div>
                                   <div class="relative">
                                      <fieldset class="name">
-                                        <input type="text" placeholder="Enter Keyword" class="show-search style-default filter_property_by_search" name="name" tabindex="2" value="" aria-required="true" required="">
+                                        <input type="text" placeholder="Enter Keyword" class="show-search style-default filter_property_by_search" tabindex="2" value="" aria-required="true">
                                      </fieldset>
                                      <div class="style-absolute-right">
                                         <div class="style-icon-default"><i class="flaticon-magnifiying-glass"></i></div>
                                      </div>
-                                     <div class="box-content-search style-1 d-none show-filter-data"> </div>
+                                     <div class="box-content-search style-1 d-none show-filter-data-header"> </div>
                                   </div>
                                </div>
                             </div>
@@ -68,84 +69,7 @@
                                <div class="wg-filter">
                                   <div class="tf-button-filter btn-filter"><i class="flaticon-filter"></i>Filter</div>
                                   <div class="open-filter filter-no-content" id="a1" style="z-index: 999999;">
-                                     <div>
-                                        <div class="grid-3-cols mb-20">
-                                            @if(!empty($citiesList))
-                                                <div class="nice-select" tabindex="0">
-                                                <span class="current">City</span>
-                                                <ul class="list">
-                                                    @foreach($citiesList as $cities)
-                                                        <li data-value="{{ $cities->id }}" class="option">{{ $cities->id }}</li>
-                                                    @endforeach
-                                                </ul>
-                                                </div>
-                                            @endif
-                                            <div class="nice-select" tabindex="0">
-                                                <span class="current">Bedrooms</span>
-                                                <ul class="list">
-                                                    <li data-value class="option selected">Bedrooms</li>
-                                                    <li data-value="1" class="option">1 Bed</li>
-                                                    <li data-value="2" class="option">2 Bed</li>
-                                                    <li data-value="3" class="option">3 Bed</li>
-                                                    <li data-value="4" class="option">4 Bed</li>
-                                                    <li data-value="5" class="option">5 Bed</li>
-                                                    <li data-value="6" class="option">7 Bed</li>
-                                                </ul>
-                                            </div>
-                                            <div class="nice-select" tabindex="0">
-                                                <span class="current">Bathrooms</span>
-                                                <ul class="list">
-                                                    <li data-value class="option selected">Bathrooms</li>
-                                                    <li data-value="1" class="option">1 Bath</li>
-                                                    <li data-value="2" class="option">2 Bath</li>
-                                                    <li data-value="3" class="option">3 Bath</li>
-                                                    <li data-value="4" class="option">4 Bath</li>
-                                                    <li data-value="5" class="option">5 Bath</li>
-                                                    <li data-value="6" class="option">6 Bath</li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                        <div class="grid-4-cols">
-                                           <fieldset class="name">
-                                              <input type="text" placeholder="Min. Area" class="" name="name" tabindex="2" value="" aria-required="true" required="">
-                                           </fieldset>
-                                           <fieldset class="name">
-                                              <input type="text" placeholder="Max. Area" class="" name="name" tabindex="2" value="" aria-required="true" required="">
-                                           </fieldset>
-                                           <div class="nice-select" tabindex="0">
-                                              <span class="current">Min. Price</span>
-                                              <ul class="list">
-                                                 <li data-value class="option selected">Min. Price</li>
-                                                 <li data-value="100 ₹" class="option">100 ₹</li>
-                                                 <li data-value="150 ₹" class="option">150 ₹</li>
-                                              </ul>
-                                           </div>
-                                           <div class="nice-select" tabindex="0">
-                                              <span class="current">Max. Price</span>
-                                              <ul class="list">
-                                                 <li data-value class="option selected">Max. Price</li>
-                                                 <li data-value="1000 ₹" class="option">1000 ₹</li>
-                                                 <li data-value="1500 ₹" class="option">1500 ₹</li>
-                                              </ul>
-                                           </div>
-                                        </div>
-                                     </div>
-                                     @if(!empty($amenities))
-                                     <div>
-                                        <div class="title">Amenities</div>
-                                        <ul class="grid-checkbox">
-                                            @foreach($amenities as $amenity)
-                                            <li class="checkbox-item">
-                                                <label>
-                                                    <p>{{ $amenity->name }}</p>
-                                                    <input type="checkbox" value="{{ $amenity->id }}">
-                                                    <span class="btn-checkbox"></span>
-                                                </label>
-                                            </li>
-                                           @endforeach
-                                        </ul>
-                                     </div>
-                                     @endif
+                                    @include('frontend.layout.filter_header')
                                   </div>
                                </div>
                             </div>
@@ -196,6 +120,19 @@
     </div>
     <!-- /property-grid -->
  </div>
+
+ <input type="hidden" name="city_id" class="city_id" value="{{ @$filterData['city_id'] }}">
+ <input type="hidden" name="number_of_bedroomss" class="number_of_bedroomss" value="{{ @$filterData['number_of_bedrooms'] }}">
+ <input type="hidden" name="number_of_bathroomss" class="number_of_bathroomss" value="{{ @$filterData['number_of_bathrooms'] }}">
+ <input type="hidden" name="min_areas" class="min_areas" value="{{ @$filterData['min_area'] }}">
+ <input type="hidden" name="max_areas" class="max_areas" value="{{ @$filterData['max_area'] }}">
+ <input type="hidden" name="min_prices" class="min_prices" value="{{ @$filterData['min_price'] }}">
+ <input type="hidden" name="max_prices" class="max_prices" value="{{ @$filterData['max_price'] }}">
+ @if(!empty($filterData['amenities']))
+    @foreach($filterData['amenities'] as $amnt)
+        <input type="hidden" name="amenitiess[]" class="amenities" value="{{ @$amnt }}">
+    @endforeach
+ @endif
 @section('page_scripts')
 <script>
     var formData = new FormData();
@@ -205,6 +142,14 @@
         const category_id = params.get('category_id');
         const type = params.get('type');
         const price_range = params.get('price_range');
+        const city_id = $("input[name='city_id']").val();
+        const number_of_bedrooms = $("input[name='number_of_bedroomss']").val();
+        const number_of_bathrooms = $("input[name='number_of_bathroomss']").val();
+        const min_area = $("input[name='min_areas']").val();
+        const max_area = $("input[name='max_areas']").val();
+        const min_price = $("input[name='min_prices']").val();
+        const max_price = $("input[name='max_prices']").val();
+        const amenities = $('input[name="amenitiess[]"]').map(function () {return $(this).val();}).get();
         formData.append('order','DESC');
         if(category_id){
             formData.append('category_id',category_id);
@@ -220,6 +165,46 @@
             formData.append('price_range',price_range);
         }else{
             formData.delete('price_range');
+        }
+        if(city_id){
+            formData.append('city_id',city_id);
+        }else{
+            formData.delete('city_id');
+        }
+        if(number_of_bedrooms){
+            formData.append('number_of_bedrooms',number_of_bedrooms);
+        }else{
+            formData.delete('number_of_bedrooms');
+        }
+        if(number_of_bathrooms){
+            formData.append('number_of_bathrooms',number_of_bathrooms);
+        }else{
+            formData.delete('number_of_bathrooms');
+        }
+        if(min_area){
+            formData.append('min_area',min_area);
+        }else{
+            formData.delete('min_area');
+        }
+        if(max_area){
+            formData.append('max_area',max_area);
+        }else{
+            formData.delete('max_area');
+        }
+        if(min_price){
+            formData.append('min_price',min_price);
+        }else{
+            formData.delete('min_price');
+        }
+        if(max_price){
+            formData.append('max_price',max_price);
+        }else{
+            formData.delete('max_price');
+        }
+        if(amenities){
+            formData.append('amenities[]',amenities);
+        }else{
+            formData.delete('amenities[]');
         }
         filterProperties(1,'POST');
     });
