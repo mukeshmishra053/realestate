@@ -10,6 +10,7 @@ use Botble\RealEstate\Models\Project;
 use Botble\RealEstate\Models\Feature;
 use Botble\Blog\Models\Post;
 use Botble\Location\Models\State;
+use Botble\Testimonial\Models\Testimonial;
 use Botble\Page\Models\Page;
 use Carbon\Carbon;
 use Botble\RealEstate\Repositories\Interfaces\PropertyInterface;
@@ -55,9 +56,11 @@ Class HomeController extends Controller {
         $randomState = State::find(35);
         $citiesList = $cityQuery->where('state_id',$randomState->id)->take(10)->get();
         $amenities = Feature::take(50)->get();
+        $categoriesExceptInteriors = Category::where('is_interior',0);
+        $categoriesExceptHomeInteriors = $categoriesExceptInteriors->get();
         // echo "<pre>";
         // print_r(json_decode(json_encode($citiesList),true)); die;
-        return view('frontend.pages.home',compact('categoriesData','amenities','citiesList','randomState','totalPropertiesSale','totalPropertiesRent','averagePropertyPerMonth','totalPayment','categoryListings','topCategories','blogList','homeInteriorCategories','popularCities','properties','featuredProjects','highlyViewedProperties','featuredProjects'));
+        return view('frontend.pages.home',compact('categoriesData','categoriesExceptHomeInteriors','amenities','citiesList','randomState','totalPropertiesSale','totalPropertiesRent','averagePropertyPerMonth','totalPayment','categoryListings','topCategories','blogList','homeInteriorCategories','popularCities','properties','featuredProjects','highlyViewedProperties','featuredProjects'));
     }
     // Contact Us
     public function contactUs(Request $request){
@@ -94,7 +97,10 @@ Class HomeController extends Controller {
     // Terms & Condition Page
     public function testimonials(Request $request){
         $categoriesData = Category::all();
-        return view('frontend.pages.testimonials',compact('categoriesData'));
+        $testimonials = Testimonial::all();
+        //  echo "<pre>";
+        // print_r($testimonials); die;
+        return view('frontend.pages.testimonials',compact('categoriesData','testimonials'));
     }
     // Construction Page
     public function construction(Request $request){
@@ -114,6 +120,9 @@ Class HomeController extends Controller {
     }
     // Properties
     public function properties(Request $request){
+        $filterData = $request->all();
+        // echo "<pre>";
+        // print_r($filterData); die;
         $categoriesData = Category::all();
         $cityQuery = City::with('properties','state')->withCount('properties')->orderBy('properties_count', 'desc')->having('properties_count','>',0);
         $categoriesExceptInteriors = Category::where('is_interior',0);
@@ -127,7 +136,7 @@ Class HomeController extends Controller {
         $filterCategories = $categoriesExceptInteriors->take(50)->get();
         $amenities = Feature::take(50)->get();
         $projectsList = Project::with('properties')->withCount('properties')->orderBy('properties_count', 'desc')->having('properties_count','>',0)->take(50)->get();
-        return view('frontend.pages.properties',compact('amenities','projectsList','filterCategories','randomState','citiesList','categoriesExceptHomeInteriors','categoriesData','exclusiveProperties'));
+        return view('frontend.pages.properties',compact('amenities','filterData','projectsList','filterCategories','randomState','citiesList','categoriesExceptHomeInteriors','categoriesData','exclusiveProperties'));
     }
     //Search Property by Text
     public function filterPropertyBySearch(Request $request){
@@ -201,7 +210,13 @@ Class HomeController extends Controller {
     //Search Projects
     public function applyFilter(Request $request){
         $filterData = $request->all();
+        // echo "<pre>";
+        // print_r($filterData); die;
         $categoriesData = Category::all();
-        return view('frontend.pages.properties',compact('categoriesData','filterData'));
+        $categoriesExceptHomeInteriors = Category::where('is_interior',0)->get();
+        $cityQuery = City::with('properties','state')->withCount('properties')->orderBy('properties_count', 'desc')->having('properties_count','>',0);
+        $citiesList = $cityQuery->where('state_id',35)->take(10)->get();
+        $amenities = Feature::take(50)->get();
+        return view('frontend.pages.properties',compact('categoriesData','citiesList','amenities','filterData','categoriesExceptHomeInteriors'));
     }
 }

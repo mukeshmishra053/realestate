@@ -23,14 +23,69 @@
                                     </ul>
                                     <div class="widget-content-tab">
                                         <div class="widget-content-inner active">
-                                            <form class="form-search-home6">
+                                            <form class="form-search-home6" method="POST" action="{{ route('submit.filter.data.for.property') }}">
+                                                @csrf
                                                 <div class="list">
                                                     <div class="group-form form-search-content">
                                                         <div class="form-style-has-title">
                                                             <div class="title">Keyword</div>
                                                             <div class="relative">
                                                                 <fieldset class="name">
-                                                                    <input type="text" placeholder="Enter Keyword" class="show-search style-default filter_property_by_search" name="name" tabindex="2" value="" aria-required="true" required="">
+                                                                    <input type="text" placeholder="Enter Keyword" class="show-search style-default filter_property_by_search" tabindex="2" value="" aria-required="true">
+                                                                </fieldset>
+                                                                <div class="style-absolute-right">
+                                                                    <div class="style-icon-default"><i class="flaticon-magnifiying-glass"></i></div>
+                                                                </div>
+                                                                <div class="box-content-search style-1 d-none show-filter-data-header"></div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    @if(!empty($categoriesExceptHomeInteriors))
+                                                    <div class="divider-1"></div>
+                                                    <div class="group-form">
+                                                        <div class="form-style-has-title">
+                                                            <div class="title">Type</div>
+                                                            <div class="nice-select" tabindex="0">
+                                                                <span class="current">All Type</span>
+                                                                <ul class="list select_type_filter">
+                                                                    <input type="hidden" name="category_id" value="">
+                                                                    <li data-value class="option selected">All Type</li>
+                                                                    @foreach($categoriesExceptHomeInteriors as $category)
+                                                                        <li data-value="{{ $category->id }}" class="option">{{ $category->name }}</li>
+                                                                    @endforeach
+                                                                </ul>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    @endif
+                                                </div>
+                                                <div class="flex gap10">
+                                                    <div class="group-form">
+                                                        <div class="wg-filter">
+                                                            <div class="tf-button-filter btn-filter"><i class="flaticon-filter"></i>Filter</div>
+                                                            <div class="open-filter filter-no-content" id="a2" style="z-index: 9999999999999 !important;">
+                                                                @include('frontend.layout.filter_header')
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="group-form">
+                                                        <div class="button-submit">
+                                                            <button class="" type="submit">Search</button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </form>
+                                        </div>
+                                        <div class="widget-content-inner">
+                                            <form class="form-search-home6" method="POST" action="{{ route('submit.filter.data.for.property') }}">
+                                                @csrf
+                                                <div class="list">
+                                                    <div class="group-form form-search-content">
+                                                        <div class="form-style-has-title">
+                                                            <div class="title">Keyword</div>
+                                                            <div class="relative">
+                                                                <fieldset class="name">
+                                                                    <input type="text" placeholder="Enter Keyword" class="show-search style-default filter_property_by_search_rent" tabindex="2" value="" aria-required="true">
                                                                 </fieldset>
                                                                 <div class="style-absolute-right">
                                                                     <div class="style-icon-default"><i class="flaticon-magnifiying-glass"></i></div>
@@ -60,299 +115,8 @@
                                                     <div class="group-form">
                                                         <div class="wg-filter">
                                                             <div class="tf-button-filter btn-filter"><i class="flaticon-filter"></i>Filter</div>
-                                                            <div class="open-filter filter-no-content" id="a1">
+                                                            <div class="open-filter filter-no-content" id="a1" style="z-index: 9999999999999 !important;">
                                                                 @include('frontend.layout.filter_header')
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="group-form">
-                                                        <div class="button-submit">
-                                                            <button class="" type="submit">Search</button>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </form>
-                                        </div>
-                                        <div class="widget-content-inner">
-                                                <div class="list">
-                                                    <div class="group-form form-search-content">
-                                                        <div class="form-style-has-title">
-                                                            <div class="title">Keyword</div>
-                                                            <div class="relative">
-                                                                <fieldset class="name">
-                                                                    <input type="text" placeholder="Enter Keyword" class="show-search style-default filter_property_by_search_for_rent" name="name" tabindex="2" value="" aria-required="true">
-                                                                </fieldset>
-                                                                <div class="style-absolute-right">
-                                                                    <div class="style-icon-default"><i class="flaticon-magnifiying-glass"></i></div>
-                                                                </div>
-                                                                <div class="box-content-search style-1 d-none show-filter-data-for-rent"></div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="divider-1"></div>
-                                                    <div class="group-form">
-                                                        <div class="form-style-has-title">
-                                                            <div class="title">Type</div>
-                                                            <div class="nice-select" tabindex="0">
-                                                                <span class="current">All Type</span>
-                                                                <ul class="list">
-                                                                    <li data-value class="option selected">All Type</li>
-                                                                    <li data-value="Office" class="option">Office</li>
-                                                                    <li data-value="Villa" class="option">Villa</li>
-                                                                    <li data-value="Shop" class="option">Shop</li>
-                                                                    <li data-value="Single Family" class="option">Single Family</li>
-                                                                </ul>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="flex gap10">
-                                                    <form class="form-search-home6" method="POST" action="{{ route('submit.filter.data.for.property') }}">
-                                                        @csrf
-                                                        <div class="group-form">
-                                                            <div class="wg-filter">
-                                                                <div class="tf-button-filter btn-filter"><i class="flaticon-filter"></i>Filter</div>
-                                                                <div class="open-filter filter-no-content" id="a1">
-                                                                    @include('frontend.layout.filter_header')
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                        <div class="group-form">
-                                                            <div class="button-submit">
-                                                                <button class="" type="submit">Search</button>
-                                                            </div>
-                                                        </div>
-                                                    </form>
-                                                </div>
-                                        </div>
-                                        <div class="widget-content-inner">
-                                            <form class="form-search-home6">
-                                                <div class="list">
-                                                    <div class="group-form form-search-content">
-                                                        <div class="form-style-has-title">
-                                                            <div class="title">Keyword</div>
-                                                            <div class="relative">
-                                                                <fieldset class="name">
-                                                                    <input type="text" placeholder="Enter Keyyword" class="show-search style-default" name="name" tabindex="2" value="" aria-required="true" required="">
-                                                                </fieldset>
-                                                                <div class="style-absolute-right">
-                                                                    <div class="style-icon-default"><i class="flaticon-magnifiying-glass"></i></div>
-                                                                </div>
-                                                                <div class="box-content-search style-1">
-                                                                    <ul>
-                                                                        <li>
-                                                                            <div class="item1">
-                                                                                <div>
-                                                                                    <div class="image">
-                                                                                        <img src="frontend/images/author/avatar-8.png" alt="">
-                                                                                    </div>
-                                                                                    <p>Archer House</p>
-                                                                                </div>
-                                                                                <div class="text">For Sale</div>
-                                                                            </div>
-                                                                        </li>
-                                                                        <li>
-                                                                            <div class="item1">
-                                                                                <div>
-                                                                                    <div class="image">
-                                                                                        <img src="frontend/images/author/avatar-7.png" alt="">
-                                                                                    </div>
-                                                                                    <p>Home Pitt Street</p>
-                                                                                </div>
-                                                                                <div class="text">For Rent</div>
-                                                                            </div>
-                                                                        </li>
-                                                                        <li>
-                                                                            <div class="item1">
-                                                                                <div>
-                                                                                    <div class="image">
-                                                                                        <img src="frontend/images/author/avatar-9.png" alt="">
-                                                                                    </div>
-                                                                                    <p>Villa One Hyde Park</p>
-                                                                                </div>
-                                                                                <div class="text">For Rent</div>
-                                                                            </div>
-                                                                        </li>
-                                                                        <li>
-                                                                            <div class="item1">
-                                                                                <div>
-                                                                                    <div class="image">
-                                                                                        <img src="frontend/images/author/avatar-10.png" alt="">
-                                                                                    </div>
-                                                                                    <p>House on the beverly hills</p>
-                                                                                </div>
-                                                                                <div class="text">For Sale</div>
-                                                                            </div>
-                                                                        </li>
-                                                                    </ul>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="divider-1"></div>
-                                                    <div class="group-form">
-                                                        <div class="form-style-has-title">
-                                                            <div class="title">Type</div>
-                                                            <div class="nice-select" tabindex="0">
-                                                                <span class="current">All Type</span>
-                                                                <ul class="list">
-                                                                    <li data-value class="option selected">All Type</li>
-                                                                    <li data-value="Office" class="option">Office</li>
-                                                                    <li data-value="Villa" class="option">Villa</li>
-                                                                    <li data-value="Shop" class="option">Shop</li>
-                                                                    <li data-value="Single Family" class="option">Single Family</li>
-                                                                </ul>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="flex gap10">
-                                                    <div class="group-form">
-                                                        <div class="wg-filter">
-                                                            <div class="tf-button-filter btn-filter"><i class="flaticon-filter"></i>Filter</div>
-                                                            <div class="open-filter filter-no-content" id="a1">
-                                                                <div>
-                                                                    <div class="grid-3-cols mb-20">
-                                                                        <div class="nice-select" tabindex="0">
-                                                                            <span class="current">City</span>
-                                                                            <ul class="list">
-                                                                                <li data-value class="option selected">City</li>
-                                                                                <li data-value="New York" class="option">New York</li>
-                                                                                <li data-value="Paris" class="option">Paris</li>
-                                                                                <li data-value="Ha Noi" class="option">Ha Noi</li>
-                                                                            </ul>
-                                                                        </div>
-                                                                        <div class="nice-select" tabindex="0">
-                                                                            <span class="current">Bedrooms</span>
-                                                                            <ul class="list">
-                                                                                <li data-value class="option selected">Bedrooms</li>
-                                                                                <li data-value="1 Bed" class="option">1 Bed</li>
-                                                                                <li data-value="2 Bed" class="option">2 Bed</li>
-                                                                            </ul>
-                                                                        </div>
-                                                                        <div class="nice-select" tabindex="0">
-                                                                            <span class="current">Bathrooms</span>
-                                                                            <ul class="list">
-                                                                                <li data-value class="option selected">Bathrooms</li>
-                                                                                <li data-value="1 Bath" class="option">1 Bath</li>
-                                                                                <li data-value="2 Bath" class="option">2 Bath</li>
-                                                                            </ul>
-                                                                        </div>
-                                                                    </div>
-                                                                    <div class="grid-4-cols">
-                                                                        <fieldset class="name">
-                                                                            <input type="text" placeholder="Min. Area" class="" name="name" tabindex="2" value="" aria-required="true" required="">
-                                                                        </fieldset>
-                                                                        <fieldset class="name">
-                                                                            <input type="text" placeholder="Max. Area" class="" name="name" tabindex="2" value="" aria-required="true" required="">
-                                                                        </fieldset>
-                                                                        <div class="nice-select" tabindex="0">
-                                                                            <span class="current">Min. Price</span>
-                                                                            <ul class="list">
-                                                                                <li data-value class="option selected">Min. Price</li>
-                                                                                <li data-value="100 $" class="option">100 $</li>
-                                                                                <li data-value="150 $" class="option">150 $</li>
-                                                                            </ul>
-                                                                        </div>
-                                                                        <div class="nice-select" tabindex="0">
-                                                                            <span class="current">Max. Price</span>
-                                                                            <ul class="list">
-                                                                                <li data-value class="option selected">Max. Price</li>
-                                                                                <li data-value="1000 $" class="option">1000 $</li>
-                                                                                <li data-value="1500 $" class="option">1500 $</li>
-                                                                            </ul>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                                <div>
-                                                                    <div class="title">Amenities</div>
-                                                                    <ul class="grid-checkbox">
-                                                                        <li class="checkbox-item">
-                                                                            <label>
-                                                                                <p>Air Conditioning</p>
-                                                                                <input type="checkbox">
-                                                                                <span class="btn-checkbox"></span>
-                                                                            </label>
-                                                                        </li>
-                                                                        <li class="checkbox-item">
-                                                                            <label>
-                                                                                <p>Barbeque</p>
-                                                                                <input type="checkbox" checked>
-                                                                                <span class="btn-checkbox"></span>
-                                                                            </label>
-                                                                        </li>
-                                                                        <li class="checkbox-item">
-                                                                            <label>
-                                                                                <p>Dryer</p>
-                                                                                <input type="checkbox">
-                                                                                <span class="btn-checkbox"></span>
-                                                                            </label>
-                                                                        </li>
-                                                                        <li class="checkbox-item">
-                                                                            <label>
-                                                                                <p>Gym</p>
-                                                                                <input type="checkbox">
-                                                                                <span class="btn-checkbox"></span>
-                                                                            </label>
-                                                                        </li>
-                                                                        <li class="checkbox-item">
-                                                                            <label>
-                                                                                <p>Lawn</p>
-                                                                                <input type="checkbox">
-                                                                                <span class="btn-checkbox"></span>
-                                                                            </label>
-                                                                        </li>
-                                                                        <li class="checkbox-item">
-                                                                            <label>
-                                                                                <p>Microwave</p>
-                                                                                <input type="checkbox">
-                                                                                <span class="btn-checkbox"></span>
-                                                                            </label>
-                                                                        </li>
-                                                                        <li class="checkbox-item">
-                                                                            <label>
-                                                                                <p>Refrigerator</p>
-                                                                                <input type="checkbox">
-                                                                                <span class="btn-checkbox"></span>
-                                                                            </label>
-                                                                        </li>
-                                                                        <li class="checkbox-item">
-                                                                            <label>
-                                                                                <p>Sauna</p>
-                                                                                <input type="checkbox">
-                                                                                <span class="btn-checkbox"></span>
-                                                                            </label>
-                                                                        </li>
-                                                                        <li class="checkbox-item">
-                                                                            <label>
-                                                                                <p>Swimming Pool</p>
-                                                                                <input type="checkbox">
-                                                                                <span class="btn-checkbox"></span>
-                                                                            </label>
-                                                                        </li>
-                                                                        <li class="checkbox-item">
-                                                                            <label>
-                                                                                <p>TV Cable</p>
-                                                                                <input type="checkbox">
-                                                                                <span class="btn-checkbox"></span>
-                                                                            </label>
-                                                                        </li>
-                                                                        <li class="checkbox-item">
-                                                                            <label>
-                                                                                <p>Washer</p>
-                                                                                <input type="checkbox">
-                                                                                <span class="btn-checkbox"></span>
-                                                                            </label>
-                                                                        </li>
-                                                                        <li class="checkbox-item">
-                                                                            <label>
-                                                                                <p>WiFi</p>
-                                                                                <input type="checkbox">
-                                                                                <span class="btn-checkbox"></span>
-                                                                            </label>
-                                                                        </li>
-                                                                    </ul>
-                                                                </div>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -373,7 +137,7 @@
                                         @endforeach
                                     @endif
                                 </div>
-                                <div class="flex d-none d-sm-block d-sm-none d-md-block mainFlex gap30 mainutx items-center flex-wrap relative z-5 wow fadeInUp">
+                                <div class="flex d-none d-sm-block d-sm-none d-md-block mainFlex gap30 mainutx items-center flex-wrap relative  wow fadeInUp">
                                     <div class="text-1 poulatTxt">Popular Search</div>
                                     <div class="list-links ">
                                         @if(!empty($topCategories))
@@ -1970,4 +1734,13 @@
          </div>
      </section>
 </div>
+@endsection
+@section('page_scripts')
+<script>
+    $("body").on('click','.select_type_filter li',function(e){
+        const type_value = $(this).data('value');
+        console.log(type_value)
+        $(this).parent('.select_type_filter').find('input[type="hidden"]').val(type_value);
+    });
+</script>
 @endsection

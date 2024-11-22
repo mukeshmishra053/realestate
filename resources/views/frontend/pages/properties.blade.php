@@ -54,6 +54,7 @@
                                   <div class="nice-select" tabindex="0">
                                      <span class="current">All Type</span>
                                      <ul class="list select_type_filter">
+                                        <input type="hidden" name="category_id" value="">
                                         <li data-value class="option selected">All Type</li>
                                         @foreach($categoriesExceptHomeInteriors as $category)
                                             <li data-value="{{ $category->id }}" class="option">{{ $category->name }}</li>
@@ -221,6 +222,7 @@
     $("body").on('click','.select_type_filter li',function(e){
         const type_value = $(this).data('value');
         formData.append('category_id',type_value);
+        $(this).parent('.select_type_filter').find('input[type="hidden"]').val(type_value);
         filterProperties(1,"POST");
     });
     $(document).on('click', '.pagination a', function (e) {
