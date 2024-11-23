@@ -23,6 +23,7 @@ Route::get('/blogs', [HomeController::class,'blogs'])->name('blogs');
 Route::get('/home-interior', [HomeController::class,'homeInterior'])->name('home.interior');
 Route::get('/home-interior-detail', [HomeController::class,'homeInteriorDetails'])->name('home.interior.detail');
 Route::get('/all-properties', [HomeController::class,'properties'])->name('home.properties');
+Route::get('/all-projects', [HomeController::class,'projects'])->name('home.projects');
 Route::post('/filter-properties-by-search', [HomeController::class,'filterPropertyBySearch'])->name('filter.property.by.search');
 Route::any('/filter-properties-by-options', [HomeController::class,'getFilterProperties'])->name('filter.property.by.options');
 Route::get('/search-cities', [HomeController::class,'searchCities'])->name('search.cities');
@@ -31,3 +32,4 @@ Route::get('/search-project', [HomeController::class,'searchProjects'])->name('s
 
 Route::get('/get-detail-property/{id}', [HomeController::class,'propertyDetails'])->name('property.detail');
 Route::post('/apply-property-filter', [HomeController::class,'applyFilter'])->name('submit.filter.data.for.property');
+Route::post('/save-contact-us', [HomeController::class,'saveContactUs'])->name('save.contact.us');

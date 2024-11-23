@@ -26,24 +26,11 @@
                         <li>
                             <ul>
                                 <li class="title">Property Types</li>
-                                <li>
-                                <a href="#!">Flats in New-Delhi</a>
-                                </li>
-                                <li>
-                                <a href="#!">House for sale in New-Delhi</a>
-                                </li>
-                                <li>
-                                <a href="#!">Villa in New-Delhi</a>
-                                </li>
-                                <li>
-                                <a href="#!">Plot in New-Delhi</a>
-                                </li>
-                                <li>
-                                <a href="#!">Office Space in New-Delhi</a>
-                                </li>
-                                <li>
-                                <a href="#!">Commercial Space in New-Delhi</a>
-                                </li>
+                                @foreach ($categoriesData as $cate)
+                                    <li>
+                                        <a href="{{ route('home.properties',['category_id'=>$cate->id,'city_id'=>$singleCity->id,'type'=>'sale']) }}">{{ $cate->name}} in {{ $singleCity->name }}</a>
+                                    </li>
+                                @endforeach
                             </ul>
                         </li>
                         <li>
@@ -67,10 +54,10 @@
                             <ul>
                                 <li class="title">Explore</li>
                                 <li>
-                                <a href="#!">Localities in New-Delhi</a>
+                                <a href="#!">Localities in {{ $singleCity->name}}</a>
                                 </li>
                                 <li>
-                                <a href="#!">Projects in New-Delhi</a>
+                                <a href="{{ route('home.projects',['city_id'=>$singleCity->id]) }}">Projects in {{ $singleCity->name}}</a>
                                 </li>
                                 <li>
                                 <a href="#!">Investment Hotspot</a>
@@ -79,7 +66,7 @@
                                 <a href="#!">Find an Agent</a>
                                 </li>
                                 <li>
-                                <a href="#!">Home Interiors in New-Delhi</a>
+                                <a href="#!">Home Interiors in {{ $singleCity->name}}</a>
                                 </li>
                             </ul>
                         </li>
