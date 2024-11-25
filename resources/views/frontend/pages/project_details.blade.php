@@ -33,7 +33,7 @@
                          <li>/</li>
                          <li>Property List</li>
                          <li>/</li>
-                         <li>{{ $singleProperty->name }}</li>
+                         <li>{{ $singleProject->name }}</li>
                       </ul>
                       <div class="list-icons-page">
                          <div class="item">
@@ -66,26 +66,26 @@
                 <div class="col-12">
                    <div class="wrap-gallery-image">
                       <div class="list-tags type-1">
-                        @if($singleProperty->type == 'sale')
+                        @if($singleProject->type == 'sale')
                             <a href="#" class="tags-item for-sell">SALE</a>
                         @else
                             <a href="#" class="tags-item for-sell">RENT</a>
                         @endif
-                        @if($singleProperty->is_featured == 1)
+                        @if($singleProject->is_featured == 1)
                             <a href="#" class="tags-item featured">Featured</a>
                         @endif
                       </div>
-                        @if(isset($singleProperty->images[0]))
-                            <a href="{{asset('/storage').'/'.$singleProperty->images[0]}}" class="item-1" data-fancybox="gallery">
-                                <img src="{{asset('/storage').'/'.$singleProperty->images[0]}}" alt="">
+                        @if(isset($singleProject->images[0]))
+                            <a href="{{asset('/storage').'/'.$singleProject->images[0]}}" class="item-1" data-fancybox="gallery">
+                                <img src="{{asset('/storage').'/'.$singleProject->images[0]}}" alt="">
                             </a>
                         @else
                             <a href="{{ asset('/').'frontend/images/slider/slider-properties-detail-1.jpg'}}" class="item-1" data-fancybox="gallery">
                                 <img src="{{ asset('/').'frontend/images/slider/slider-properties-detail-1.jpg'}}" alt="">
                             </a>
                         @endif
-                        @if(count($singleProperty->images) > 1)
-                            @foreach($singleProperty->images as $key=>$img)
+                        @if(count($singleProject->images) > 1)
+                            @foreach($singleProject->images as $key=>$img)
                                 @if(!$loop->first)
                                     <a href="{{asset('/storage').'/'.$img}}" class="item-{{ $loop->iteration  }}" data-fancybox="gallery">
                                         <img src="{{asset('/storage').'/'.$img}}" alt="">
@@ -95,7 +95,7 @@
                         @endif
                         <a href="#" class="more-photos" data-fancybox="gallery">
                             <i class="flaticon-gallery"></i>
-                            <p>{{ count($singleProperty->images) }} Photos</p>
+                            <p>{{ count($singleProject->images) }} Photos</p>
                         </a>
                    </div>
                 </div>
@@ -113,23 +113,23 @@
                          </div>
                          <div class="text-content">Built in 1940</div>
                       </div> --}}
-                      <div class="item wow fadeInUp" data-wow-delay="0.1s">
+                      {{-- <div class="item wow fadeInUp" data-wow-delay="0.1s">
                          <div class="icon">
                             <i class="flaticon-minus-front"></i>
                          </div>
-                         <div class="text-content">{{ $singleProperty->square }} Sq Ft</div>
-                      </div>
+                         <div class="text-content">{{ $singleProject->square }} Sq Ft</div>
+                      </div> --}}
                       <div class="item wow fadeInUp" data-wow-delay="0.15s">
                          <div class="icon">
                             <i class="flaticon-hotel"></i>
                          </div>
-                         <div class="text-content">{{ $singleProperty->number_bedroom }} Bedrooms</div>
+                         <div class="text-content">{{ $singleProject->number_floor }} Floors</div>
                       </div>
                       <div class="item wow fadeInUp" data-wow-delay="0.2s">
                          <div class="icon">
                             <i class="flaticon-bath-tub"></i>
                          </div>
-                         <div class="text-content">{{ $singleProperty->number_bathroom }} Bathrooms</div>
+                         <div class="text-content">{{ $singleProject->number_block }} Block</div>
                       </div>
                       {{-- <div class="item wow fadeInUp" data-wow-delay="0.25s">
                          <div class="icon">
@@ -149,7 +149,7 @@
                    <div class="desc">
                       <h4 class="wow fadeInUp">Description</h4>
                       <p class="wow fadeInUp">
-                        {!! $singleProperty->content !!}
+                        {!! $singleProject->content !!}
                       </p>
                    </div>
                    <div class="address">
@@ -160,7 +160,7 @@
                       <div class="list-item">
                          <div class="item wow fadeInUp">
                             <div class="text">Address</div>
-                            <p>{!! $singleProperty->address !!}</p>
+                            <p>{!! $singleProject->location !!}</p>
                          </div>
                          {{-- <div class="item wow fadeInUp" data-wow-delay="0.1s">
                             <div class="text">Zip/Postal Code</div>
@@ -168,7 +168,7 @@
                          </div> --}}
                          <div class="item wow fadeInUp">
                             <div class="text">City</div>
-                            <p>{{ $singleProperty->cityName }}</p>
+                            <p>{{ $singleProject->cityName }}</p>
                          </div>
                          {{-- <div class="item wow fadeInUp" data-wow-delay="0.1s">
                             <div class="text">Area</div>
@@ -211,8 +211,8 @@
                       <h4 class="wow fadeInUp">Details</h4>
                       <div class="list-item">
                          <div class="item wow fadeInUp">
-                            <div class="text">Property ID:</div>
-                            <p>{{ $singleProperty->id }}</p>
+                            <div class="text">Project ID:</div>
+                            <p>{{ $singleProject->id }}</p>
                          </div>
                          {{-- <div class="item wow fadeInUp" data-wow-delay="0.1s">
                             <div class="text">Garage:</div>
@@ -220,35 +220,35 @@
                          </div> --}}
                          <div class="item wow fadeInUp">
                             <div class="text">Price:</div>
-                            <p>₹ {{ number_format($singleProperty->price,2) }}</p>
+                            <p>₹ {{ number_format($singleProject->price_from,2) }} - ₹ {{ number_format($singleProject->price_to,2) }}</p>
                          </div>
                          {{-- <div class="item wow fadeInUp" data-wow-delay="0.1s">
                             <div class="text">Garage Size:</div>
-                            <p>{{ $singleProperty->square }} SqFt</p>
+                            <p>{{ $singleProject->square }} SqFt</p>
                          </div> --}}
                          <div class="item wow fadeInUp">
                             <div class="text">Property Size:</div>
-                            <p>{{ $singleProperty->square }} Sq Ft</p>
+                            <p>{{ $singleProject->number_floor }} Floor</p>
                          </div>
                          {{-- <div class="item wow fadeInUp" data-wow-delay="0.1s">
                             <div class="text">Year Built:</div>
                             <p>2024</p>
                          </div> --}}
-                         <div class="item wow fadeInUp">
+                         {{-- <div class="item wow fadeInUp">
                             <div class="text">Bedrooms:</div>
-                            <p>{{ $singleProperty->number_bedroom }}</p>
-                         </div>
+                            <p>{{ $singleProject->number_bedroom }}</p>
+                         </div> --}}
                          <div class="item wow fadeInUp" data-wow-delay="0.1s">
                             <div class="text">Property Type:</div>
-                            <p>{{ $singleProperty->category }}</p>
+                            <p>{{ $singleProject->category }}</p>
                          </div>
-                         <div class="item wow fadeInUp">
+                         {{-- <div class="item wow fadeInUp">
                             <div class="text">Bathrooms:</div>
-                            <p>{{ $singleProperty->number_bathroom }}</p>
-                         </div>
+                            <p>{{ $singleProject->number_bathroom }}</p>
+                         </div> --}}
                          <div class="item wow fadeInUp" data-wow-delay="0.1s">
                             <div class="text">Property Status:</div>
-                            <p>For {{ $singleProperty->type }}</p>
+                            <p>For {{ $singleProject->status }}</p>
                          </div>
                       </div>
                    </div>
@@ -282,7 +282,7 @@
                       </ul>
                       <img src="{{ asset('/') }}frontend/images/image-box/energy.png" alt="">
                    </div> --}}
-                   @if(!empty($singleProperty->facilities))
+                   @if(!empty($singleProject->facilities))
                    <div class="features">
                       <h4 class="wow fadeInUp">Facts & Features</h4>
                       <p class="wow fadeInUp">Lorem ipsum dolor sit amet, homero debitis temporibus in mei, at sit voluptua antiopam hendrerit. Lorem epicuri eu per. Mediocrem torquatos deseruisse te eum commodo.</p>
@@ -291,7 +291,7 @@
                             <h5 class="wow fadeInUp">Features</h5>
                             <div class="wrap-check-ellipse wow fadeInUp" data-wow-delay="0.1s">
 
-                            @foreach($singleProperty->facilities as $facility)
+                            @foreach($singleProject->facilities as $facility)
 
                                 <div class="check-ellipse-item">
                                     <div class="icon">
@@ -314,12 +314,12 @@
                    </div> --}}
                    <div class="reviews-wrap">
                       <div class="flex justify-between items-center mb-40 wow fadeInUp">
-                         <h4 class="mb-0">{{ $singleProperty->reviews->count()}} Reviews</h4>
+                         <h4 class="mb-0">{{ $singleProject->reviews->count()}} Reviews</h4>
                          <a href="#" class="tf-button-green">Leave a Review</a>
                       </div>
-                      @if(!empty($singleProperty->reviews))
+                      @if(!empty($singleProject->reviews))
                         <ul>
-                            @foreach($singleProperty->reviews as $reviews)
+                            @foreach($singleProject->reviews as $reviews)
                             <li class="wow fadeInUp">
                                 <div class="image">
                                 <img src="{{ asset('/') }}frontend/images/author/author-5.png" alt="">
@@ -347,8 +347,8 @@
 
                       <form class="form-comment all-form" action="{{ route('submit.review') }}" method="POST">
                         @csrf
-                            <input type="hidden" name="review_type" class="account_id" value="property">
-                            <input type="hidden" name="reviewable_id" class="reviewable_id" value="{{ $singleProperty->id }}">
+                            <input type="hidden" name="review_type" class="account_id" value="project">
+                            <input type="hidden" name="reviewable_id" class="reviewable_id" value="{{ $singleProject->id }}">
                             <div>
                                 <p class="wow fadeInUp">Your Rating *</p>
                                 <div class="ratings wow fadeInUp animated" style="visibility: visible; animation-name: fadeInUp;">
@@ -385,7 +385,7 @@
              </div>
              <div class="col-xl-6">
                 <div class="content-wrap">
-                   {{-- <div class="schedule">
+                   <div class="schedule">
                       <h4 class="wow fadeInUp">Schedule a tour</h4>
                       <form class="form-schedule">
                          <div class="cols">
@@ -457,7 +457,7 @@
                             <button class="tf-button-primary w-full" type="submit">Submit a Tour Request<i class="icon-arrow-right-add"></i></button>
                          </div>
                       </form>
-                   </div> --}}
+                   </div>
                    <div class="contact-info">
                       <div class="flex items-center justify-between gap30 flex-wrap wow fadeInUp">
                          <h4 class="mb-0">Contact Information</h4>
@@ -469,10 +469,10 @@
                          </div>
                          <div class="content">
                             <div class="name">
-                               <a href="#">{{ $singleProperty->author->first_name }}.</a>
+                               <a href="#">{{ $singleProject->author->first_name }}.</a>
                             </div>
-                            <p>{{ $singleProperty->author->email }}</p>
-                            <p>{{ $singleProperty->author->phone }}</p>
+                            <p>{{ $singleProject->author->email }}</p>
+                            <p>{{ $singleProject->author->phone }}</p>
                          </div>
                       </div>
                       <div class="title wow fadeInUp">Enquire About This Property</div>
@@ -634,7 +634,7 @@
                             style="border:0;"
                             loading="lazy"
                             referrerpolicy="no-referrer-when-downgrade"
-                            src="https://www.google.com/maps/embed?q={{ urlencode($singleProperty->location) }}">
+                            src="https://www.google.com/maps/embed?q={{ urlencode($singleProject->location) }}">
                         </iframe>
                       </div>
                    </div>
@@ -673,8 +673,8 @@
                       <h4 class="wow fadeInUp">What's Nearby?</h4>
                       <div class="widget-tabs style-2 type-small">
                          <ul class="widget-menu-tab wow fadeInUp">
-                            @if(!empty($singleProperty->facilities))
-                                @foreach($singleProperty->facilities as $facility)
+                            @if(!empty($singleProject->facilities))
+                                @foreach($singleProject->facilities as $facility)
                                     <li class="item-title {{ ($loop->first) ? 'active' : ''}}">
                                     <span class="inner">{{ $facility->name }}</span>
                                     </li>
@@ -682,8 +682,8 @@
                             @endif
                          </ul>
                          <div class="widget-content-tab">
-                            @if(!empty($singleProperty->facilities))
-                                @foreach($singleProperty->facilities as $faci)
+                            @if(!empty($singleProject->facilities))
+                                @foreach($singleProject->facilities as $faci)
                                     <div class="widget-content-inner {{ ($loop->first) ? 'active' : ''}}">
                                         <div class="wrap-nearby">
                                             <div class="nearby-item wow fadeInUp">
@@ -694,7 +694,7 @@
                                                     {{-- <div class="title">Ps 95 Eastwood</div> --}}
                                                     <div class="flex items-center gap15">
                                                     {{-- <p>Grades: <span>K-5</span></p> --}}
-                                                    <p>Distance: <span>{{ $faci->pivot->distance }}</span></p>
+                                                    <p>Distance: <span>{{ $faci->pivot->distance }} km</span></p>
                                                     </div>
                                                 </div>
                                             </div>

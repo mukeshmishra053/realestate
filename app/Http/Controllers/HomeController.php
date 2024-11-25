@@ -9,6 +9,7 @@ use Botble\RealEstate\Models\Property;
 use Botble\RealEstate\Models\Project;
 use Botble\RealEstate\Models\Feature;
 use App\Http\Requests\ContactFormRequest;
+use App\Http\Requests\ReviewRequest;
 use Botble\Blog\Models\Post;
 use Botble\Location\Models\State;
 use Botble\Testimonial\Models\Testimonial;
@@ -18,6 +19,8 @@ use Carbon\Carbon;
 use Botble\RealEstate\Repositories\Interfaces\PropertyInterface;
 use Botble\RealEstate\Repositories\Interfaces\ProjectInterface;
 use Botble\Payment\Models\Payment;
+use Botble\Menu\Models\Menu;
+use Botble\RealEstate\Models\Review;
 use Illuminate\Support\Facades\View;
 use App\Http\Services\CommonService;
 use Config;
@@ -61,6 +64,9 @@ Class HomeController extends Controller {
         $categoriesExceptInteriors = Category::where('is_interior',0);
         $categoriesExceptHomeInteriors = $categoriesExceptInteriors->get();
         $singleCity = City::with('properties','state')->withCount('properties')->orderBy('properties_count')->first();
+        $menuList = Menu::with(['locations','menuNodes'])->take(5)->get();
+        // echo "<pre>";
+        // print_r($menuList); die;
         // echo "<pre>";
         // print_r(json_decode(json_encode($citiesList),true)); die;
         return view('frontend.pages.home',compact('categoriesData','singleCity','categoriesExceptHomeInteriors','amenities','citiesList','randomState','totalPropertiesSale','totalPropertiesRent','averagePropertyPerMonth','totalPayment','categoryListings','topCategories','blogList','homeInteriorCategories','popularCities','properties','featuredProjects','highlyViewedProperties','featuredProjects'));
@@ -131,8 +137,11 @@ Class HomeController extends Controller {
         $categoriesData =  Category::take(5)->get();
         $singleProperty = Property::with(['author','facilities','features','reviews.author'])->find($id);
         $singleCity = City::with('properties','state')->withCount('properties')->orderBy('properties_count')->first();
+        // echo "<pre>";
+        // print_r($singleCity); die;
         return view('frontend.pages.home_interior_details',compact('singleProperty','categoriesData','singleCity'));
     }
+
     // Properties
     public function properties(Request $request){
         $filterData = $request->all();
@@ -250,6 +259,31 @@ Class HomeController extends Controller {
         try{
             $projectList =  Contact::create($request->toArray());
             return response()->json(['status'=>($projectList) ? 200 : 400,'msg'=>($projectList) ? 'Action performed successfully' : 'Something went wrong','url'=>'','data'=>$projectList]);
+        }catch(\Exception $e){
+            return response()->json(['status'=>400,'msg'=>$e->getMessage(),'url'=>'']);
+        }
+    }
+    // Project Details
+    public function projectDetails($id){
+        $categoriesData =  Category::take(5)->get();
+        $singleProject = Project::with(['author','facilities','features','reviews.author','investor'])->find($id);
+        $singleCity = City::with('properties','state')->withCount('properties')->orderBy('properties_count')->first();
+        // echo "<pre>";
+        // print_r($singleProject); die;
+        return view('frontend.pages.project_details',compact('singleProject','categoriesData','singleCity'));
+    }
+     // Submit Contact Us Page
+    public function saveReview(ReviewRequest $request){
+        try{
+            $result =  Review::create([
+                'reviewable_id' => $request->reviewable_id,
+                'reviewable_type' => ($request->review_type == 'property') ? Property::class : Project::class,
+                'account_id' => $request->account_id,
+                'star' => $request->star,
+                'content' => $request->content,
+                'status' => 'approved',
+            ]);
+            return response()->json(['status'=>($result) ? 200 : 400,'msg'=>($result) ? 'Action performed successfully' : 'Something went wrong','url'=>'','data'=>$result]);
         }catch(\Exception $e){
             return response()->json(['status'=>400,'msg'=>$e->getMessage(),'url'=>'']);
         }

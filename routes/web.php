@@ -31,5 +31,7 @@ Route::get('/search-categories', [HomeController::class,'searchCategories'])->na
 Route::get('/search-project', [HomeController::class,'searchProjects'])->name('search.projects');
 
 Route::get('/get-detail-property/{id}', [HomeController::class,'propertyDetails'])->name('property.detail');
+Route::get('/get-detail-project/{id}', [HomeController::class,'projectDetails'])->name('project.detail');
 Route::post('/apply-property-filter', [HomeController::class,'applyFilter'])->name('submit.filter.data.for.property');
 Route::post('/save-contact-us', [HomeController::class,'saveContactUs'])->name('save.contact.us');
+Route::post('/save-review', [HomeController::class,'saveReview'])->name('submit.review');

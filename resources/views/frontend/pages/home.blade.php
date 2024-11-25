@@ -976,7 +976,7 @@
                                         <div class="head">
                                             <div class="price">₹ {{ number_format($property->price,2) }} </div>
                                             <div class="title">
-                                            <a href="#!">{{ $property->name }}</a>
+                                            <a href="{{ url('/get-detail-project').'/'.$property->id }}">{{ $property->name }}</a>
                                             </div>
                                         </div>
                                         <div class="location">

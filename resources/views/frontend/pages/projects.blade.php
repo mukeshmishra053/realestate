@@ -77,7 +77,7 @@
                                         <div class="head">
                                             <div class="price">{{ $project->category->name }}</div>
                                             <div class="title">
-                                                <a href="{{ url('/get-detail-property').'/'.$project->id }}">{{ $project->name }} </a>
+                                                <a href="{{ url('/get-detail-project').'/'.$project->id }}">{{ $project->name }} </a>
                                                 <p class="tupleNew__propType"><i class="flaticon-location"></i> <span class="tupleNew__bOld">{{ $project->name }} </span> in {{ $project->location }}</p>
                                                 <div class="icon-box">
                                                     <div class="item">
