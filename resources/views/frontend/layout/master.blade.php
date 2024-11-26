@@ -91,6 +91,53 @@
                     const sub_value = $(this).data('value');
                     $(this).parent('.master_filter_data').find('input[type="hidden"]').val(sub_value);
                 });
+
+                $("body").on("submit","#loginForm",function(e){
+                    e.preventDefault();
+                    const url = $(this).attr('action');
+                    const method = $(this).attr('method');
+                    const formData = new FormData($(this)[0]);
+                    CommonLib.ajaxForm(formData,method,url,true).then(d=>{
+                        if(d.status === 200){
+                            CommonLib.notification.success(d.message);
+                            setTimeout(function(){
+                                location.href = d.url
+                            },2000);
+                        }else{
+                            CommonLib.notification.error(d.message);
+                        }
+                    }).catch(e=>{
+                        if (e.status === 422) {
+                            let errors = e.responseJSON.errors;
+                            $.each(errors, function (field, messages) {
+                                $(`#${field}`).html(messages[0]);
+                            });
+                        }
+                    });
+                });
+                $("body").on("submit","#registerForm",function(e){
+                    e.preventDefault();
+                    const url = $(this).attr('action');
+                    const method = $(this).attr('method');
+                    const formData = new FormData($(this)[0]);
+                    CommonLib.ajaxForm(formData,method,url,true).then(d=>{
+                        if(d.status === 200){
+                            CommonLib.notification.success(d.message);
+                            setTimeout(function(){
+                                location.href = d.url
+                            },2000);
+                        }else{
+                            CommonLib.notification.error(d.message);
+                        }
+                    }).catch(e=>{
+                        if (e.status === 422) {
+                            let errors = e.responseJSON.errors;
+                            $.each(errors, function (field, messages) {
+                                $(`#${field}s`).html(messages[0]);
+                            });
+                        }
+                    });
+                });
             });
         </script>
         <script>

@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\AuthController;
 use App\Http\Controllers\HomeController;
 /*
 |--------------------------------------------------------------------------
@@ -35,3 +36,6 @@ Route::get('/get-detail-project/{id}', [HomeController::class,'projectDetails'])
 Route::post('/apply-property-filter', [HomeController::class,'applyFilter'])->name('submit.filter.data.for.property');
 Route::post('/save-contact-us', [HomeController::class,'saveContactUs'])->name('save.contact.us');
 Route::post('/save-review', [HomeController::class,'saveReview'])->name('submit.review');
+Route::post('/login', [AuthController::class,'login'])->name('login');
+Route::get('/logout', [AuthController::class,'logout'])->name('logout');
+Route::post('/register', [AuthController::class,'register'])->name('register');

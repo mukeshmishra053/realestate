@@ -142,18 +142,21 @@
       </div>
       <div class="content-right">
          <h4>Sign into your account</h4>
-         <form class="form-login">
+         <form class="form-login" id="loginForm" action="{{ route('login') }}" method="POST">
+            @csrf
             <fieldset class="name">
-               <input type="text" placeholder="Username" class="" name="text" >
+               <input type="text" placeholder="Email" class="" name="email">
+               <p class="text-danger" id="email"></p>
             </fieldset>
             <fieldset class="password">
-               <input type="password" placeholder="Password" class="" name="password" tabindex="2" value="" aria-required="true" required="">
+               <input type="password" placeholder="Password" class="" name="password" tabindex="2" value="">
+               <p class="text-danger" id="password"></p>
             </fieldset>
             <div class="flex items-center justify-between w-full">
                <div class="checkbox-item">
                   <label>
                      <p>Remember me</p>
-                     <input type="checkbox">
+                     <input type="checkbox" name="remember_me">
                      <span class="btn-checkbox"></span>
                   </label>
                </div>
@@ -164,7 +167,7 @@
             </div>
          </form>
          <div class="flex items-center justify-center">
-            <p>Not a member?</p>
+            <p>Not a member ?</p>
             <a href="#" class="btn-show-register" data-bs-dismiss="modal" data-bs-toggle="modal" data-bs-target="#modalregister">Register here</a>
          </div>
          <ul class="wg-social-1">
@@ -186,30 +189,38 @@
       </div>
       <div class="content-right">
          <h4>Create an account</h4>
-         <form class="form-login">
+         <form class="form-login" id="registerForm" action="{{ route('register') }}" method="POST">
             <fieldset class="name">
-               <input type="text" placeholder="Username" class="" name="text" tabindex="2" value="" aria-required="true" required="">
+               <input type="text" placeholder="Firstname" class="" name="first_name">
+               <p class="text-danger" id="first_names"></p>
+            </fieldset>
+            <fieldset class="name">
+               <input type="text" placeholder="Lastname" class="" name="last_name">
             </fieldset>
             <fieldset class="email">
-               <input type="email" placeholder="Email" class="" name="email" tabindex="2" value="" aria-required="true" required="">
+               <input type="email" placeholder="Email" class="" name="email">
+               <p class="text-danger" id="emails"></p>
             </fieldset>
             <fieldset class="password">
-               <input type="password" placeholder="Password" class="" name="password" tabindex="2" value="" aria-required="true" required="">
+               <input type="password" placeholder="Password" class="" name="password">
+               <p class="text-danger" id="passwords"></p>
             </fieldset>
             <fieldset class="password">
-               <input type="password" placeholder="Retype Password" class="" name="password" tabindex="2" value="" aria-required="true" required="">
+               <input type="password" placeholder="Retype Password" class="" name="password_confirmation">
+               <p class="text-danger" id="password_confirmations"></p>
             </fieldset>
             <div class="flex items-center justify-between">
                <div class="checkbox-item">
                   <label>
                      <p>I agree with terms & conditions</p>
-                     <input type="checkbox">
+                     <input type="checkbox" name="terms">
                      <span class="btn-checkbox"></span>
                   </label>
+                  <p class="text-danger" id="termss"></p>
                </div>
             </div>
             <div class="button-submit">
-               <button class="tf-button-primary w-full" type="submit">Register<i class="icon-arrow-right-add"></i></button>
+               <button class="tf-button-primary w-full final-submit-btn" type="submit">Register<i class="icon-arrow-right-add"></i></button>
             </div>
          </form>
          <div class="flex items-center justify-center">

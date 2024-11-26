@@ -36,6 +36,7 @@ Class HomeController extends Controller {
 
 
     public function index(Request $request){
+
         $commonCategoryQuery = Category::with('properties')->withCount('properties')->orderBy('properties_count', 'desc')->having('properties_count','>',0);
         $cityQuery = City::with('properties','state')->withCount('properties')->orderBy('properties_count', 'desc')->having('properties_count','>',0);
         $categoriesData = Category::take(5)->get();

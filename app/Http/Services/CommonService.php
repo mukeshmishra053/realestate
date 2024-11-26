@@ -1,5 +1,8 @@
 <?php
 namespace App\Http\Services;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Auth;
+use App\Models\User;
 use Config;
 class CommonService {
 
@@ -109,6 +112,20 @@ class CommonService {
             'exclusiveProperties' => $exclusiveProperties,
             'properties' => $properties,
         ];
+    }
+
+
+    public function login(Object $request){
+        if (Auth::guard('web')->attempt(['email'=>$request->email,'password'=>$request->password])){
+            return true;
+        }else{
+            return false;
+        }
+    }
+
+
+    public function signup(Object $request){
+        return User::create($request->toArray());
     }
  }
 

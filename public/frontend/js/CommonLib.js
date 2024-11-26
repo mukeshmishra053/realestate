@@ -1,5 +1,5 @@
 const CommonLib = {
-    ajaxForm:function(formData='',method,url) {
+    ajaxForm:function(formData='',method,url,loader=false) {
         $.ajaxSetup({headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')}});
         return $.ajax({
             type: method,
@@ -8,8 +8,17 @@ const CommonLib = {
             dataType: 'json',
             processData: false,
             contentType: false,
-            beforeSend: function() {;},
-            success: function(d){;}
+            beforeSend: function() {
+                if(loader){
+                    $(".final-submit-btn").html(`<div class="spinner-border" role="status"><span class="sr-only">Loading...</span></div>`);
+                }
+            },
+            success: function(d){;},
+            complete: function(d){
+                if(loader){
+                    $(".final-submit-btn").html(`Register<i class="icon-arrow-right-add">`);
+                }
+            }
         });
     },
     notification:{

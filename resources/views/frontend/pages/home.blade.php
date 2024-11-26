@@ -50,8 +50,8 @@
                                                                 <ul class="list select_type_filter">
                                                                     <input type="hidden" name="category_id" value="">
                                                                     <li data-value class="option selected">All Type</li>
-                                                                    @foreach($categoriesExceptHomeInteriors as $category)
-                                                                        <li data-value="{{ $category->id }}" class="option">{{ $category->name }}</li>
+                                                                    @foreach($categoriesExceptHomeInteriors as $categorys)
+                                                                        <li data-value="{{ $categorys->id }}" class="option">{{ $categorys->name }}</li>
                                                                     @endforeach
                                                                 </ul>
                                                             </div>
@@ -94,22 +94,24 @@
                                                             </div>
                                                         </div>
                                                     </div>
+                                                    @if(!empty($categoriesExceptHomeInteriors))
                                                     <div class="divider-1"></div>
                                                     <div class="group-form">
                                                         <div class="form-style-has-title">
                                                             <div class="title">Type</div>
                                                             <div class="nice-select" tabindex="0">
                                                                 <span class="current">All Type</span>
-                                                                <ul class="list">
+                                                                <ul class="list select_type_filter">
+                                                                    <input type="hidden" name="category_id" value="">
                                                                     <li data-value class="option selected">All Type</li>
-                                                                    <li data-value="Office" class="option">Office</li>
-                                                                    <li data-value="Villa" class="option">Villa</li>
-                                                                    <li data-value="Shop" class="option">Shop</li>
-                                                                    <li data-value="Single Family" class="option">Single Family</li>
+                                                                    @foreach($categoriesExceptHomeInteriors as $category)
+                                                                        <li data-value="{{ $category->id }}" class="option">{{ $category->name }}</li>
+                                                                    @endforeach
                                                                 </ul>
                                                             </div>
                                                         </div>
                                                     </div>
+                                                    @endif
                                                 </div>
                                                 <div class="flex gap10">
                                                     <div class="group-form">
