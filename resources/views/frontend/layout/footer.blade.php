@@ -142,7 +142,7 @@
       </div>
       <div class="content-right">
          <h4>Sign into your account</h4>
-         <form class="form-login" id="loginForm" action="{{ route('login') }}" method="POST">
+         <form class="form-login" id="loginForm" action="{{ url('login') }}" method="POST">
             @csrf
             <fieldset class="name">
                <input type="text" placeholder="Email" class="" name="email">
@@ -189,7 +189,7 @@
       </div>
       <div class="content-right">
          <h4>Create an account</h4>
-         <form class="form-login" id="registerForm" action="{{ route('register') }}" method="POST">
+         <form class="form-login" id="registerForm" action="{{ url('register') }}" method="POST">
             <fieldset class="name">
                <input type="text" placeholder="Firstname" class="" name="first_name">
                <p class="text-danger" id="first_names"></p>
@@ -209,16 +209,6 @@
                <input type="password" placeholder="Retype Password" class="" name="password_confirmation">
                <p class="text-danger" id="password_confirmations"></p>
             </fieldset>
-            <div class="flex items-center justify-between">
-               <div class="checkbox-item">
-                  <label>
-                     <p>I agree with terms & conditions</p>
-                     <input type="checkbox" name="terms">
-                     <span class="btn-checkbox"></span>
-                  </label>
-                  <p class="text-danger" id="termss"></p>
-               </div>
-            </div>
             <div class="button-submit">
                <button class="tf-button-primary w-full final-submit-btn" type="submit">Register<i class="icon-arrow-right-add"></i></button>
             </div>

@@ -103,7 +103,7 @@
                     @include('plugins/real-estate::themes.dashboard.layouts.language-switcher')
                 @endif
 
-                <a href="{{ route('public.index') }}" target="_blank" class="text-uppercase">
+                <a href="" target="_blank" class="text-uppercase">
                     {{ __('Go to homepage') }}
                     <x-core::icon name="ti ti-arrow-right" />
                 </a>

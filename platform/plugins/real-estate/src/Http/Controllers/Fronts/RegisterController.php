@@ -103,6 +103,7 @@ class RegisterController extends BaseController
 
     public function register(Request $request)
     {
+
         if (! RealEstateHelper::isRegisterEnabled()) {
             abort(404);
         }
@@ -134,7 +135,8 @@ class RegisterController extends BaseController
         $account->is_public_profile = false;
 
         $account->save();
-
+        echo "<pre>";
+        print_r($account); die;
         $this->guard()->login($account);
 
         return $this
@@ -147,10 +149,8 @@ class RegisterController extends BaseController
         $rules = [
             'first_name' => 'required|max:120',
             'last_name' => 'required|max:120',
-            'username' => 'required|max:60|min:2|unique:re_accounts,username',
             'email' => 'required|email|max:255|unique:re_accounts',
-            'password' => 'required|min:6|confirmed',
-            'phone' => 'required|' . BaseHelper::getPhoneValidationRule(),
+            'password' => 'required|min:6|confirmed'
         ];
 
         if (
@@ -169,9 +169,9 @@ class RegisterController extends BaseController
         return Account::query()->forceCreate([
             'first_name' => $data['first_name'],
             'last_name' => $data['last_name'],
-            'username' => $data['username'],
+            'username' => '',
             'email' => $data['email'],
-            'phone' => $data['phone'],
+            'phone' => '',
             'password' => Hash::make($data['password']),
         ]);
     }

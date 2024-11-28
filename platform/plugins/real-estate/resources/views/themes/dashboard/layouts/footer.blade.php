@@ -1,4 +1,4 @@
-<footer>
+{{-- <footer>
     @if (($currencies = get_all_currencies()) && $currencies->count() > 1)
         <p class="inline-block">{{ __('Currencies') }}:
             @foreach ($currencies as $currency)
@@ -12,6 +12,6 @@
             @endforeach
         </p>
     @endif
-</footer>
+</footer> --}}
 
 <script src="{{ asset('vendor/core/plugins/real-estate/js/app.js') }}"></script>

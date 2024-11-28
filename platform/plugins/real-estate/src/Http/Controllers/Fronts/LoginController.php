@@ -67,7 +67,9 @@ class LoginController extends BaseController
         }
 
         if ($this->attemptLogin($request)) {
-            return $this->sendLoginResponse($request);
+            $result = $this->sendLoginResponse($request);
+            echo "<pre>";
+            print_r($result); die;
         }
 
         // If the login attempt was unsuccessful we will increment the number of attempts
@@ -132,6 +134,6 @@ class LoginController extends BaseController
 
         $this->loggedOut($request);
 
-        return redirect(route('public.index'));
+        return redirect(route('home'));
     }
 }

@@ -52,7 +52,7 @@ trait AuthenticatesUsers
     protected function validateLogin(Request $request): void
     {
         $request->validate([
-            $this->username() => 'required|string',
+            'email' => 'required|string',
             'password' => 'required|string',
         ]);
     }
@@ -77,7 +77,7 @@ trait AuthenticatesUsers
 
     protected function credentials(Request $request): array
     {
-        return $request->only($this->username(), 'password');
+        return $request->only('email', 'password');
     }
 
     protected function sendLoginResponse(Request $request): Response|RedirectResponse
@@ -88,9 +88,7 @@ trait AuthenticatesUsers
 
         $this->authenticated($request, $this->guard()->user());
 
-        return $request->wantsJson()
-            ? new Response('', 204)
-            : redirect()->intended($this->redirectPath());
+        return new Response('success', 200);
     }
 
     protected function authenticated(Request $request, Authenticatable $user)
@@ -101,7 +99,7 @@ trait AuthenticatesUsers
     protected function sendFailedLoginResponse()
     {
         throw ValidationException::withMessages([
-            $this->username() => [trans('auth.failed')],
+            'email' => [trans('auth.failed')],
         ]);
     }
 

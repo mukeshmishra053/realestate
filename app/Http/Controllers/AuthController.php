@@ -24,7 +24,7 @@ Class AuthController extends Controller {
         if($user){
             $login = $auth->login($request);
             if($login){
-                return response()->json(['status'=>200,'msg'=>'Logged in successfully','url'=>route('home')]);
+                return response()->json(['status'=>200,'msg'=>'Logged in successfully','url'=>route('dashboard.index')]);
             }else{
                 return response()->json(['status'=>400,'msg'=>'Credentials not matched','data'=>[],'url'=>'']);
             }

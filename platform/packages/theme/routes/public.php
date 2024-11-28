@@ -12,7 +12,7 @@ Theme::registerRoutes(function () {
     Route::group(['controller' => PublicController::class], function () {
         event(new ThemeRoutingBeforeEvent(app()->make('router')));
 
-        Route::get('/', 'getIndex')->name('public.index');
+        // Route::get('/', 'getIndex')->name('public.index');
 
         Route::get('{key}.{extension}', 'getSiteMapIndex')
             ->where('key', '^' . collect(SiteMapManager::getKeys())->map(fn ($item) => '(?:' . $item . ')')->implode('|') . '$')
