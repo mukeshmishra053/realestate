@@ -171,11 +171,15 @@
                    </ul>
                 </li>
 
-                @if(auth()->user())
+                @if(Auth::guard('account')->check())
                     <li class="has-children">
-                        <a href="javascript:void(0);">{{ auth()->user()->first_name }}</a>
+                        <a href="javascript:void(0);">{{ auth('account')->user()->first_name }}</a>
                         <ul>
-                            <li><a href="{{ route('logout') }}">Logout</a></li>
+                            <li><a href="{{ route('public.account.dashboard') }}">Profile</a></li>
+                            <li><a href="#" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Logout</a></li>
+                            <form id="logout-form" action="{{ route('public.account.logout') }}" method="POST" style="display: none;">
+                                @csrf
+                            </form>
                         </ul>
                     </li>
                 @endif
@@ -360,14 +364,18 @@
                     <li><a href="#!">Sales Enquiry</a></li>
                 </ul>
             </li>
-            @if(auth()->user())
+            @if(Auth::guard('account')->check())
             <li>
-                <span>{{ auth()->user()->first_name }}</span>
+                <span>{{ auth('account')->user()->first_name }}</span>
                 <ul>
-                    <li><a href="{{ route('logout') }}">Logout</a></li>
+                    <li><a href="#" onclick="event.preventDefault(); document.getElementById('logout-forms').submit();">Logout</a></li>
+                    <form id="logout-forms" action="{{ route('public.account.logout') }}"
+                            method="POST" style="display: none;">
+                        @csrf
+                    </form>
                 </ul>
             </li>
-        @endif
+            @endif
        </ul>
     </nav>
  </header>

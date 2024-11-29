@@ -67,9 +67,7 @@ class LoginController extends BaseController
         }
 
         if ($this->attemptLogin($request)) {
-            $result = $this->sendLoginResponse($request);
-            echo "<pre>";
-            print_r($result); die;
+            return $this->sendLoginResponse($request);
         }
 
         // If the login attempt was unsuccessful we will increment the number of attempts

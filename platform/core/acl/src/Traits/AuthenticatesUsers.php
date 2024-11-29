@@ -52,14 +52,14 @@ trait AuthenticatesUsers
     protected function validateLogin(Request $request): void
     {
         $request->validate([
-            'email' => 'required|string',
+            'username' => 'required|string',
             'password' => 'required|string',
         ]);
     }
 
     public function username(): string
     {
-        return 'email';
+        return 'username';
     }
 
     protected function attemptLogin(Request $request): bool
@@ -77,7 +77,7 @@ trait AuthenticatesUsers
 
     protected function credentials(Request $request): array
     {
-        return $request->only('email', 'password');
+        return $request->only('username', 'password');
     }
 
     protected function sendLoginResponse(Request $request): Response|RedirectResponse
@@ -99,7 +99,7 @@ trait AuthenticatesUsers
     protected function sendFailedLoginResponse()
     {
         throw ValidationException::withMessages([
-            'email' => [trans('auth.failed')],
+            'username' => [trans('auth.failed')],
         ]);
     }
 

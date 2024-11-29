@@ -135,8 +135,7 @@ class RegisterController extends BaseController
         $account->is_public_profile = false;
 
         $account->save();
-        echo "<pre>";
-        print_r($account); die;
+
         $this->guard()->login($account);
 
         return $this
