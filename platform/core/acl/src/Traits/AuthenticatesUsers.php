@@ -88,7 +88,9 @@ trait AuthenticatesUsers
 
         $this->authenticated($request, $this->guard()->user());
 
-        return new Response('success', 200);
+        return $request->wantsJson()
+            ? new Response('', 204)
+            : redirect()->intended($this->redirectPath());
     }
 
     protected function authenticated(Request $request, Authenticatable $user)
