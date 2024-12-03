@@ -26,26 +26,26 @@ return [
         'flag' => 'theme.options',
         'parent_flag' => 'core.appearance',
     ],
-    [
-        'name' => 'Custom CSS',
-        'flag' => 'theme.custom-css',
-        'parent_flag' => 'core.appearance',
-    ],
-    [
-        'name' => 'Custom JS',
-        'flag' => 'theme.custom-js',
-        'parent_flag' => 'core.appearance',
-    ],
-    [
-        'name' => 'Custom HTML',
-        'flag' => 'theme.custom-html',
-        'parent_flag' => 'core.appearance',
-    ],
-    [
-        'name' => 'Robots.txt Editor',
-        'flag' => 'theme.robots-txt',
-        'parent_flag' => 'core.appearance',
-    ],
+    // [
+    //     'name' => 'Custom CSS',
+    //     'flag' => 'theme.custom-css',
+    //     'parent_flag' => 'core.appearance',
+    // ],
+    // [
+    //     'name' => 'Custom JS',
+    //     'flag' => 'theme.custom-js',
+    //     'parent_flag' => 'core.appearance',
+    // ],
+    // [
+    //     'name' => 'Custom HTML',
+    //     'flag' => 'theme.custom-html',
+    //     'parent_flag' => 'core.appearance',
+    // ],
+    // [
+    //     'name' => 'Robots.txt Editor',
+    //     'flag' => 'theme.robots-txt',
+    //     'parent_flag' => 'core.appearance',
+    // ],
     [
         'name' => 'Website Tracking',
         'flag' => 'settings.website-tracking',

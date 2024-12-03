@@ -145,8 +145,8 @@
          <form class="form-login" id="loginForm" action="{{ url('login') }}" method="POST">
             @csrf
             <fieldset class="name">
-               <input type="text" placeholder="Email" class="" name="email">
-               <p class="text-danger" id="email"></p>
+               <input type="text" placeholder="Email" class="" name="username">
+               <p class="text-danger" id="username"></p>
             </fieldset>
             <fieldset class="password">
                <input type="password" placeholder="Password" class="" name="password" tabindex="2" value="">
@@ -179,6 +179,20 @@
    </div>
 </div>
 </div>
+<div aria-live="polite" aria-atomic="true" class="bg-dark position-relative bd-example-toasts top-0 end-0">
+    <div class="toast-container position-absolute p-3" id="toastPlacement">
+      <div class="toast">
+        <div class="toast-header">
+          <img src="..." class="rounded me-2" alt="...">
+          <strong class="me-auto">Bootstrap</strong>
+          <small>11 mins ago</small>
+        </div>
+        <div class="toast-body">
+          Hello, world! This is a toast message.
+        </div>
+      </div>
+    </div>
+  </div>
 <div class="modal fade modalCenter" id="modalregister">
 <div class="modal-dialog modal-dialog-centered" role="document">
    <div class="modal-content modal-sm">
@@ -196,6 +210,10 @@
             </fieldset>
             <fieldset class="name">
                <input type="text" placeholder="Lastname" class="" name="last_name">
+            </fieldset>
+            <fieldset class="username">
+               <input type="text" placeholder="Username" class="" name="username">
+               <p class="text-danger" id="usernames"></p>
             </fieldset>
             <fieldset class="email">
                <input type="email" placeholder="Email" class="" name="email">

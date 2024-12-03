@@ -149,6 +149,7 @@ class RegisterController extends BaseController
             'first_name' => 'required|max:120',
             'last_name' => 'required|max:120',
             'email' => 'required|email|max:255|unique:re_accounts',
+            'username' => 'required|max:255|unique:re_accounts',
             'password' => 'required|min:6|confirmed'
         ];
 
@@ -168,7 +169,7 @@ class RegisterController extends BaseController
         return Account::query()->forceCreate([
             'first_name' => $data['first_name'],
             'last_name' => $data['last_name'],
-            'username' => '',
+            'username' => $data['username'],
             'email' => $data['email'],
             'phone' => '',
             'password' => Hash::make($data['password']),

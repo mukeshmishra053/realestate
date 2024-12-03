@@ -20,9 +20,9 @@
     <link rel="stylesheet" type="text/css" href="{{ asset('/') }}frontend/icon/flaticon_just-home.css">
     <link rel="stylesheet" type="text/css" href="{{ asset('/') }}frontend/icon/icomoon/style.css">
     <link rel="shortcut icon" href="{{ asset('/') }}frontend/images/favicon.png">
-    <link rel="shortcut icon" href="{{ asset('/') }}frontend/style.css">
     <link rel="apple-touch-icon-precomposed" href="images/favicon.png">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="{{ asset('/') }}frontend/style.css">
     @yield('page_styles')
 </head>
 <body class="body {{ (Request::segment(1) == '') ? 'counter-scroll' : '' }}">
@@ -97,11 +97,12 @@
                     const url = $(this).attr('action');
                     const method = $(this).attr('method');
                     const formData = new FormData($(this)[0]);
+                    console.log(CommonLib.notification.success("d.message"));
                     CommonLib.ajaxForm(formData,method,url,true).then(d=>{
-                        if(d.status === 200){
+                        if(!d.error){
                             CommonLib.notification.success(d.message);
                             setTimeout(function(){
-                                location.href = d.url
+                                window.location = "{{ route('public.account.dashboard') }}"
                             },2000);
                         }else{
                             CommonLib.notification.error(d.message);
@@ -121,7 +122,7 @@
                     const method = $(this).attr('method');
                     const formData = new FormData($(this)[0]);
                     CommonLib.ajaxForm(formData,method,url,true).then(d=>{
-                        if(d.status === 200){
+                        if(!d.error){
                             CommonLib.notification.success(d.message);
                             setTimeout(function(){
                                 location.href = d.url

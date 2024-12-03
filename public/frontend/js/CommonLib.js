@@ -23,6 +23,7 @@ const CommonLib = {
     },
     notification:{
         success:function(message){
+
             return cuteToast({
                 url:'',
                 type: "success",

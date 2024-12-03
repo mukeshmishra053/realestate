@@ -1,6 +1,8 @@
 @php
     $menuItems = DashboardMenu::getAll();
+
     $otherItems = $menuItems->splice(7);
+
     $otherIcon = BaseHelper::renderIcon('ti ti-dots');
 @endphp
 

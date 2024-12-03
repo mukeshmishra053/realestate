@@ -1,9 +1,7 @@
 <x-core::alert type="warning">
-    @if ($manageLicense = auth()->guard()->user()->hasPermission('core.manage.license'))
-        <div>Your license is invalid. Please activate your license!</div>
-    @else
-        <div>You doesn't have permission to activate the license!</div>
-    @endif
+    @php
+        $manageLicense = auth()->guard()->user()->hasPermission('core.manage.license')
+    @endphp
 </x-core::alert>
 
 <x-core::form.text-input
@@ -72,7 +70,7 @@
 </x-core-setting::form-group>
 
 <div>
-    <p class="text-danger">Note: Your site IP will be added to blacklist after 5 failed attempts.</p>
+    {{-- <p class="text-danger">Note: Your site IP will be added to blacklist after 5 failed attempts.</p>
 
     <p>
         A purchase code (license) is only valid for One Domain. Are you using this theme on a new domain?
@@ -85,5 +83,5 @@
             new license here
         </a>
         to get a new purchase code.
-    </p>
+    </p> --}}
 </div>

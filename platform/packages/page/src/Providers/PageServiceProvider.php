@@ -35,16 +35,16 @@ class PageServiceProvider extends ServiceProvider
             ->loadRoutes()
             ->loadMigrations();
 
-        DashboardMenu::default()->beforeRetrieving(function () {
-            DashboardMenu::make()
-                ->registerItem([
-                    'id' => 'cms-core-page',
-                    'priority' => 2,
-                    'name' => 'packages/page::pages.menu_name',
-                    'icon' => 'ti ti-notebook',
-                    'route' => 'pages.index',
-                ]);
-        });
+        // DashboardMenu::default()->beforeRetrieving(function () {
+        //     DashboardMenu::make()
+        //         ->registerItem([
+        //             'id' => 'cms-core-page',
+        //             'priority' => 2,
+        //             'name' => 'packages/page::pages.menu_name',
+        //             'icon' => 'ti ti-notebook',
+        //             'route' => 'pages.index',
+        //         ]);
+        // });
 
         $this->app['events']->listen(RenderingAdminBar::class, function () {
             AdminBar::registerLink(
