@@ -410,14 +410,6 @@ return [
             'AutoFormat.RemoveEmpty' => false,
             'Attr.EnableID' => true,
         ],
-        'custom_elements' => [
-            ['u', 'Inline', 'Inline', 'Common'],
-            ['button', 'Inline', 'Inline', 'Common'],
-            ['ins', 'Inline', 'Inline', 'Common'],
-            ['meta', 'Inline', 'Empty', 'Common'],
-            ['link', 'Inline', 'Empty', 'Common'],
-            ['audio', 'Block', 'Optional: (source, Flow) | (Flow, source) | Flow', 'Common'],
-        ],
         'custom_attributes' => [
             ['a', 'rel', 'Text'],
             ['a', 'dofollow', 'Bool'],

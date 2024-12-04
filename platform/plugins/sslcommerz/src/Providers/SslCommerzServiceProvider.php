@@ -15,12 +15,12 @@ class SslCommerzServiceProvider extends ServiceProvider
             return;
         }
 
-        $this->setNamespace('plugins/sslcommerz')
-            ->loadHelpers()
-            ->loadAndPublishConfigurations(['sslcommerz'])
-            ->loadRoutes()
-            ->loadAndPublishViews()
-            ->publishAssets();
+        // $this->setNamespace('plugins/sslcommerz')
+        //     ->loadHelpers()
+        //     ->loadAndPublishConfigurations(['sslcommerz'])
+        //     ->loadRoutes()
+        //     ->loadAndPublishViews()
+        //     ->publishAssets();
 
         $this->app->register(HookServiceProvider::class);
     }

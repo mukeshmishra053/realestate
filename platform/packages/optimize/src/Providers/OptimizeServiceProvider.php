@@ -36,17 +36,17 @@ class OptimizeServiceProvider extends ServiceProvider
             AliasLoader::getInstance()->alias('OptimizerHelper', OptimizerHelper::class);
         }
 
-        PanelSectionManager::default()->beforeRendering(function () {
-            PanelSectionManager::registerItem(
-                SettingCommonPanelSection::class,
-                fn () => PanelSectionItem::make('common')
-                    ->setTitle(trans('packages/optimize::optimize.settings.title'))
-                    ->withIcon('ti ti-brand-speedtest')
-                    ->withPriority(140)
-                    ->withDescription(trans('packages/optimize::optimize.settings.description'))
-                    ->withRoute('optimize.settings')
-            );
-        });
+        // PanelSectionManager::default()->beforeRendering(function () {
+        //     PanelSectionManager::registerItem(
+        //         SettingCommonPanelSection::class,
+        //         fn () => PanelSectionItem::make('common')
+        //             ->setTitle(trans('packages/optimize::optimize.settings.title'))
+        //             ->withIcon('ti ti-brand-speedtest')
+        //             ->withPriority(140)
+        //             ->withDescription(trans('packages/optimize::optimize.settings.description'))
+        //             ->withRoute('optimize.settings')
+        //     );
+        // });
 
         $this->app['events']->listen(RouteMatched::class, function () {
             if (OptimizerHelper::isEnabled()) {

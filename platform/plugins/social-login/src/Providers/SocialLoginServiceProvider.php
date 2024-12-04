@@ -27,17 +27,17 @@ class SocialLoginServiceProvider extends ServiceProvider
 
         AliasLoader::getInstance()->alias('SocialService', SocialService::class);
 
-        PanelSectionManager::default()->beforeRendering(function () {
-            PanelSectionManager::registerItem(
-                SettingOthersPanelSection::class,
-                fn () => PanelSectionItem::make('social-login')
-                    ->setTitle(trans('plugins/social-login::social-login.menu'))
-                    ->withDescription(trans('plugins/social-login::social-login.description'))
-                    ->withIcon('ti ti-social')
-                    ->withPriority(100)
-                    ->withRoute('social-login.settings')
-            );
-        });
+        // PanelSectionManager::default()->beforeRendering(function () {
+        //     PanelSectionManager::registerItem(
+        //         SettingOthersPanelSection::class,
+        //         fn () => PanelSectionItem::make('social-login')
+        //             ->setTitle(trans('plugins/social-login::social-login.menu'))
+        //             ->withDescription(trans('plugins/social-login::social-login.description'))
+        //             ->withIcon('ti ti-social')
+        //             ->withPriority(100)
+        //             ->withRoute('social-login.settings')
+        //     );
+        // });
 
         $this->app->register(HookServiceProvider::class);
     }

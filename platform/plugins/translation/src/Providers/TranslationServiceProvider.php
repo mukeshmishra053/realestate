@@ -26,9 +26,9 @@ class TranslationServiceProvider extends ServiceProvider
             ->loadAndPublishTranslations()
             ->publishAssets();
 
-        PanelSectionManager::beforeRendering(function () {
-            PanelSectionManager::register(LocalizationPanelSection::class);
-        });
+        // PanelSectionManager::beforeRendering(function () {
+        //     PanelSectionManager::register(LocalizationPanelSection::class);
+        // });
 
         if ($this->app->runningInConsole()) {
             $this->commands([

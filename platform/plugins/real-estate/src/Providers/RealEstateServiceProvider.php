@@ -278,15 +278,15 @@ class RealEstateServiceProvider extends ServiceProvider
                     'url' => fn () => route('investor.index'),
                     'permissions' => ['investor.index'],
                 ])
-                ->registerItem([
-                    'id' => 'cms-plugins-consult',
-                    'priority' => 6,
-                    'parent_id' => null,
-                    'name' => 'plugins/real-estate::consult.name',
-                    'icon' => 'ti ti-home-question',
-                    'url' => fn () => route('consult.index'),
-                    'permissions' => ['consult.index'],
-                ])
+                // ->registerItem([
+                //     'id' => 'cms-plugins-consult',
+                //     'priority' => 6,
+                //     'parent_id' => null,
+                //     'name' => 'plugins/real-estate::consult.name',
+                //     'icon' => 'ti ti-home-question',
+                //     'url' => fn () => route('consult.index'),
+                //     'permissions' => ['consult.index'],
+                // ])
                 ->registerItem([
                     'id' => 'cms-plugins-real-estate-category',
                     'priority' => 4,
@@ -414,18 +414,18 @@ class RealEstateServiceProvider extends ServiceProvider
 
         DashboardMenu::default();
 
-        PanelSectionManager::beforeRendering(function () {
-            PanelSectionManager::default()->register(SettingRealEstatePanelSetting::class);
-        });
+        // PanelSectionManager::beforeRendering(function () {
+        //     PanelSectionManager::default()->register(SettingRealEstatePanelSetting::class);
+        // });
 
-        if (class_exists('ApiHelper')) {
-            ApiHelper::setConfig([
-                'model' => Account::class,
-                'guard' => 'account',
-                'password_broker' => 'accounts',
-                'verify_email' => setting('verify_account_email', false),
-            ]);
-        }
+        // if (class_exists('ApiHelper')) {
+        //     ApiHelper::setConfig([
+        //         'model' => Account::class,
+        //         'guard' => 'account',
+        //         'password_broker' => 'accounts',
+        //         'verify_email' => setting('verify_account_email', false),
+        //     ]);
+        // }
 
         $this->app->register(CommandServiceProvider::class);
 

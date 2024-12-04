@@ -61,7 +61,7 @@ class SettingServiceProvider extends ServiceProvider
             ->loadAndPublishConfigurations(['permissions', 'email'])
             ->loadMigrations()
             ->publishAssets();
-
+ 
         DashboardMenu::default()->beforeRetrieving(function () {
             DashboardMenu::make()
                 ->registerItem([

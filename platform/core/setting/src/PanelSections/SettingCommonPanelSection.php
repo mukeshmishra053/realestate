@@ -32,13 +32,13 @@ class SettingCommonPanelSection extends PanelSection
                     ->withPriority(-9980)
                     ->withRoute('settings.email.template')
                     ->withPermission('settings.email'),
-                PanelSectionItem::make('email_rules')
-                    ->setTitle(trans('core/setting::setting.email.email_rules'))
-                    ->withIcon('ti ti-mail-check')
-                    ->withDescription(trans('core/setting::setting.email.email_rules_description'))
-                    ->withPriority(-9970)
-                    ->withRoute('settings.email.rules')
-                    ->withPermission('settings.email'),
+                // PanelSectionItem::make('email_rules')
+                //     ->setTitle(trans('core/setting::setting.email.email_rules'))
+                //     ->withIcon('ti ti-mail-check')
+                //     ->withDescription(trans('core/setting::setting.email.email_rules_description'))
+                //     ->withPriority(-9970)
+                //     ->withRoute('settings.email.rules')
+                //     ->withPermission('settings.email'),
                 PanelSectionItem::make('media')
                     ->setTitle(trans('core/setting::setting.panel.media'))
                     ->withIcon('ti ti-folder')
@@ -51,18 +51,18 @@ class SettingCommonPanelSection extends PanelSection
                     ->withDescription(trans('core/setting::setting.admin_appearance.description'))
                     ->withPriority(110)
                     ->withRoute('settings.admin-appearance'),
-                PanelSectionItem::make('cache')
-                    ->setTitle(trans('core/setting::setting.cache.title'))
-                    ->withIcon('ti ti-box')
-                    ->withDescription(trans('core/setting::setting.cache.description'))
-                    ->withPriority(120)
-                    ->withRoute('settings.cache'),
-                PanelSectionItem::make('datatables')
-                    ->setTitle(trans('core/setting::setting.datatable.title'))
-                    ->withIcon('ti ti-table-options')
-                    ->withDescription(trans('core/setting::setting.datatable.description'))
-                    ->withPriority(130)
-                    ->withRoute('settings.datatables'),
+                // PanelSectionItem::make('cache')
+                //     ->setTitle(trans('core/setting::setting.cache.title'))
+                //     ->withIcon('ti ti-box')
+                //     ->withDescription(trans('core/setting::setting.cache.description'))
+                //     ->withPriority(120)
+                //     ->withRoute('settings.cache'),
+                // PanelSectionItem::make('datatables')
+                //     ->setTitle(trans('core/setting::setting.datatable.title'))
+                //     ->withIcon('ti ti-table-options')
+                //     ->withDescription(trans('core/setting::setting.datatable.description'))
+                //     ->withPriority(130)
+                //     ->withRoute('settings.datatables'),
             ]);
     }
 }

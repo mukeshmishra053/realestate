@@ -63,17 +63,17 @@ class CaptchaServiceProvider extends ServiceProvider
 
         $this->bootValidator();
 
-        PanelSectionManager::default()->beforeRendering(function () {
-            PanelSectionManager::registerItem(
-                SettingOthersPanelSection::class,
-                fn () => PanelSectionItem::make('captcha')
-                    ->setTitle(trans('plugins/captcha::captcha.settings.title'))
-                    ->withIcon('ti ti-refresh')
-                    ->withPriority(150)
-                    ->withDescription(trans('plugins/captcha::captcha.settings.panel_description'))
-                    ->withRoute('captcha.settings')
-            );
-        });
+        // PanelSectionManager::default()->beforeRendering(function () {
+        //     PanelSectionManager::registerItem(
+        //         SettingOthersPanelSection::class,
+        //         fn () => PanelSectionItem::make('captcha')
+        //             ->setTitle(trans('plugins/captcha::captcha.settings.title'))
+        //             ->withIcon('ti ti-refresh')
+        //             ->withPriority(150)
+        //             ->withDescription(trans('plugins/captcha::captcha.settings.panel_description'))
+        //             ->withRoute('captcha.settings')
+        //     );
+        // });
 
         CaptchaFacade::registerFormSupport(LoginForm::class, LoginRequest::class, trans('plugins/captcha::captcha.admin_login_form'));
         CaptchaFacade::registerFormSupport(ForgotPasswordForm::class, ForgotPasswordRequest::class, trans('plugins/captcha::captcha.admin_forgot_password_form'));

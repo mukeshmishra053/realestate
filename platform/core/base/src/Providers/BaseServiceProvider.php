@@ -115,7 +115,7 @@ class BaseServiceProvider extends ServiceProvider
 
         $this->registerDashboardMenus();
 
-        $this->registerPanelSections();
+        // $this->registerPanelSections();
 
         Paginator::useBootstrap();
 
