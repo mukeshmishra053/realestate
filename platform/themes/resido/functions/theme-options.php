@@ -9,7 +9,7 @@ app()->booted(function () {
             'label' => __('Copyright'),
             'attributes' => [
                 'name' => 'copyright',
-                'value' => '© 2021 TheSky9. All right reserved.',
+                'value' => '© 2024 All right reserved.',
                 'options' => [
                     'class' => 'form-control',
                     'placeholder' => __('Change copyright'),

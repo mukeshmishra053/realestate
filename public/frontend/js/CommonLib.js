@@ -23,32 +23,13 @@ const CommonLib = {
     },
     notification:{
         success:function(message){
-
-            return cuteToast({
-                url:'',
-                type: "success",
-                title: "Success",
-                message: message,
-                buttonText: "Okay"
-            });
+            return toastr.success(message, 'Success');
         },
         error:function(message){
-            return cuteToast({
-                url:'',
-                type: "error",
-                title: "Failure",
-                message: message,
-                buttonText: "Okay"
-            });
+            return toastr.success(message, 'Failure');
         },
         warning:function(message){
-            return cuteToast({
-                url:'',
-                type: "warning",
-                title: "Warning",
-                message: message,
-                buttonText: "Okay"
-            });
+            return toastr.warning(message, 'Info');
         },
     },
     sweetalert:{

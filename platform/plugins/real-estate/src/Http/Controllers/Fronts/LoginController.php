@@ -67,6 +67,9 @@ class LoginController extends BaseController
         }
 
         if ($this->attemptLogin($request)) {
+            if($request->login_type =='front'){
+                return $this->httpResponse()->setNextUrl($this->redirectPath())->setMessage('Loggedin successfully');
+            }
             return $this->sendLoginResponse($request);
         }
 

@@ -78,7 +78,9 @@ class LoginController extends BaseController
                 if (! session()->has('url.intended')) {
                     session()->flash('url.intended', url()->current());
                 }
-
+                if($request->login_type =='front'){
+                    return $this->httpResponse()->setNextUrl($this->redirectPath())->setMessage('Loggedin successfully');
+                }
                 return $this->sendLoginResponse($request);
             });
     }

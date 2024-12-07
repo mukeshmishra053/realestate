@@ -72,7 +72,7 @@ class ThemeOptionSeeder extends BaseSeeder
                 ],
                 [
                     'key' => 'copyright',
-                    'value' => '©' . now()->format('Y') . ' Resido. All rights reserved by TheSky9.',
+                    'value' => '©' . now()->format('Y') . ' Patliputra. All rights reserved',
                 ],
                 [
                     'key' => 'homepage_id',
@@ -155,7 +155,7 @@ class ThemeOptionSeeder extends BaseSeeder
                 ],
                 [
                     'key' => 'copyright',
-                    'value' => '©' . now()->format('Y') . ' Resido. Tất cả quyền đã được bảo hộ bởi TheSky9.',
+                    'value' => '©' . now()->format('Y') . ' Resido. Tất cả quyền đã được bảo hộ bởi',
                 ],
                 [
                     'key' => 'cookie_consent_message',

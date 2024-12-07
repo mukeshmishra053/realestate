@@ -145,14 +145,15 @@
          <form class="form-login" id="loginForm" action="{{ url('login') }}" method="POST">
             @csrf
             <fieldset class="name">
-               <input type="text" placeholder="Email" class="" name="username">
-               <p class="text-danger" id="username"></p>
+               <input type="text" placeholder="Username" class="" name="email">
+               <p class="text-danger" id="emails"></p>
             </fieldset>
             <fieldset class="password">
                <input type="password" placeholder="Password" class="" name="password" tabindex="2" value="">
+               <input type="hidden" class="" name="login_type" tabindex="2" value="front">
                <p class="text-danger" id="password"></p>
             </fieldset>
-            <div class="flex items-center justify-between w-full">
+            {{-- <div class="flex items-center justify-between w-full">
                <div class="checkbox-item">
                   <label>
                      <p>Remember me</p>
@@ -161,7 +162,7 @@
                   </label>
                </div>
                <a href="#" class="lost-password">Lost your password?</a>
-            </div>
+            </div> --}}
             <div class="button-submit w-full">
                <button class="tf-button-primary w-full" type="submit">Login<i class="icon-arrow-right-add"></i></button>
             </div>
@@ -170,29 +171,16 @@
             <p>Not a member ?</p>
             <a href="#" class="btn-show-register" data-bs-dismiss="modal" data-bs-toggle="modal" data-bs-target="#modalregister">Register here</a>
          </div>
-         <ul class="wg-social-1">
+         {{-- <ul class="wg-social-1">
             <li><a href="#"><i class="flaticon-google"></i></a></li>
             <li><a href="#"><i class="flaticon-twitter"></i></a></li>
             <li><a href="#"><i class="flaticon-facebook"></i></a></li>
-         </ul>
+         </ul> --}}
       </div>
    </div>
 </div>
 </div>
-<div aria-live="polite" aria-atomic="true" class="bg-dark position-relative bd-example-toasts top-0 end-0">
-    <div class="toast-container position-absolute p-3" id="toastPlacement">
-      <div class="toast">
-        <div class="toast-header">
-          <img src="..." class="rounded me-2" alt="...">
-          <strong class="me-auto">Bootstrap</strong>
-          <small>11 mins ago</small>
-        </div>
-        <div class="toast-body">
-          Hello, world! This is a toast message.
-        </div>
-      </div>
-    </div>
-  </div>
+
 <div class="modal fade modalCenter" id="modalregister">
 <div class="modal-dialog modal-dialog-centered" role="document">
    <div class="modal-content modal-sm">

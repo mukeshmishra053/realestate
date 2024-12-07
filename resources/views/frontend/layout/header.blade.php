@@ -142,7 +142,20 @@
                     </ul>
                 </li>
                 <li class="has-children">
-                   <a href="#">Home Interior  </a>
+                   <a href="javascript:void(0);">Home Interior  </a>
+                   @if(!empty($homeCategoriesForHeader))
+                    <ul class="mega-menu">
+                        <li>
+                            <ul>
+                                @foreach ($homeCategoriesForHeader as $header)
+                                    <li>
+                                        <a href="{{ route('home.properties',['category_id'=>$header->id]) }}">{{ $header->name}}</a>
+                                    </li>
+                                @endforeach
+                            </ul>
+                        </li>
+                    </ul>
+                   @endif
                 </li>
                 {{-- <li class="has-children">
                    <a href="{{ route('construction') }}">Construction </a>
@@ -193,7 +206,7 @@
                 </div>
                 <div class="number">800-555-6789</div>
              </div>
-             @if(!auth()->user())
+            @if(!Auth::guard('account')->check())
                 <div data-bs-toggle="modal" data-bs-target="#modallogin" class="header-user">
                     <div class="icon">
                     <i class="flaticon-user"></i>

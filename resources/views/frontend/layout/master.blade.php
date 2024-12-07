@@ -20,6 +20,7 @@
     <link rel="stylesheet" type="text/css" href="{{ asset('/') }}frontend/icon/flaticon_just-home.css">
     <link rel="stylesheet" type="text/css" href="{{ asset('/') }}frontend/icon/icomoon/style.css">
     <link rel="shortcut icon" href="{{ asset('/') }}frontend/images/favicon.png">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
     <link rel="apple-touch-icon-precomposed" href="images/favicon.png">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="{{ asset('/') }}frontend/style.css">
@@ -61,6 +62,7 @@
         <script src="{{ asset('/') }}frontend/js/main.js"></script>
         <script src="{{ asset('/') }}frontend/cute-alert.js"></script>
         <script src="{{ asset('/') }}frontend/js/CommonLib.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
         @yield('page_scripts')
         <script>
             $(function(){
@@ -97,7 +99,7 @@
                     const url = $(this).attr('action');
                     const method = $(this).attr('method');
                     const formData = new FormData($(this)[0]);
-                    console.log(CommonLib.notification.success("d.message"));
+                    $(".text-danger").empty();
                     CommonLib.ajaxForm(formData,method,url,true).then(d=>{
                         if(!d.error){
                             CommonLib.notification.success(d.message);
@@ -121,11 +123,12 @@
                     const url = $(this).attr('action');
                     const method = $(this).attr('method');
                     const formData = new FormData($(this)[0]);
+                    $(".text-danger").empty();
                     CommonLib.ajaxForm(formData,method,url,true).then(d=>{
-                        if(!d.error){
-                            CommonLib.notification.success(d.message);
+                        if(!d.errors){
+                            CommonLib.notification.success("Confirmation email sent to your registered email,Please check");
                             setTimeout(function(){
-                                location.href = d.url
+                                location.href = "{{ route('home') }}";
                             },2000);
                         }else{
                             CommonLib.notification.error(d.message);

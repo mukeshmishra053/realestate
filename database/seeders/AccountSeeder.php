@@ -21,7 +21,7 @@ class AccountSeeder extends BaseSeeder
             'first_name' => $faker->firstName,
             'last_name' => $faker->lastName,
             'email' => 'agent@thesky9.com',
-            'username' => 'thesky9',
+            'username' => 'thedfgdfgsky9',
             'password' => bcrypt('12345678'),
             'dob' => $faker->dateTime,
             'phone' => $faker->e164PhoneNumber,

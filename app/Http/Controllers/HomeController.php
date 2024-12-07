@@ -66,11 +66,12 @@ Class HomeController extends Controller {
         $categoriesExceptHomeInteriors = $categoriesExceptInteriors->get();
         $singleCity = City::with('properties','state')->withCount('properties')->orderBy('properties_count')->first();
         $menuList = Menu::with(['locations','menuNodes'])->take(5)->get();
+        $homeCategoriesForHeader = $homeInteriorCategories->take(8);
         // echo "<pre>";
         // print_r($menuList); die;
         // echo "<pre>";
         // print_r(json_decode(json_encode($citiesList),true)); die;
-        return view('frontend.pages.home',compact('categoriesData','singleCity','categoriesExceptHomeInteriors','amenities','citiesList','randomState','totalPropertiesSale','totalPropertiesRent','averagePropertyPerMonth','totalPayment','categoryListings','topCategories','blogList','homeInteriorCategories','popularCities','properties','featuredProjects','highlyViewedProperties','featuredProjects'));
+        return view('frontend.pages.home',compact('categoriesData','singleCity','homeCategoriesForHeader','categoriesExceptHomeInteriors','amenities','citiesList','randomState','totalPropertiesSale','totalPropertiesRent','averagePropertyPerMonth','totalPayment','categoryListings','topCategories','blogList','homeInteriorCategories','popularCities','properties','featuredProjects','highlyViewedProperties','featuredProjects'));
     }
     // Contact Us
     public function contactUs(Request $request){

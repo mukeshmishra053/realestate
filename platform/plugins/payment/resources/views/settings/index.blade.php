@@ -91,7 +91,7 @@
                     @php
                         $bankTransferStatus = setting('payment_bank_transfer_status');
                     @endphp
-                    <x-core::table.body>
+                    {{-- <x-core::table.body>
                         <x-core::table.body.row>
                             <x-core::table.body.cell colspan="3">
                                 <div class="d-flex justify-content-between align-items-center">
@@ -116,7 +116,7 @@
                         <x-core::table.body.row class="payment-content-item hidden">
                             <x-core::table.body.cell colspan="3">
                                 <x-core::form>
-                                    {!! $bankTransferForm->renderForm() !!}
+                                    {!! @$bankTransferForm->renderForm() !!}
 
                                     <div class="btn-list justify-content-end">
                                         <x-core::button
@@ -144,7 +144,7 @@
                                 </x-core::form>
                             </x-core::table.body.cell>
                         </x-core::table.body.row>
-                    </x-core::table.body>
+                    </x-core::table.body> --}}
                 </x-core::table>
             </x-core::card>
         </div>

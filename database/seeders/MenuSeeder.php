@@ -169,7 +169,7 @@ class MenuSeeder extends BaseSeeder
                                         ],
                                         [
                                             'title' => 'Agents Detail Page',
-                                            'url' => '/agents/thesky9',
+                                            'url' => '/agents/dgdfgdgdg',
                                         ],
                                     ],
                                 ],
@@ -453,7 +453,7 @@ class MenuSeeder extends BaseSeeder
                                         ],
                                         [
                                             'title' => 'Chi tiết địa lý',
-                                            'url' => '/agents/thesky9',
+                                            'url' => '/agents/dfgdfgfdg',
                                         ],
                                     ],
                                 ],

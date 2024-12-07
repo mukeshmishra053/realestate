@@ -63,12 +63,16 @@ class PaymentController extends SettingController
 
         $form = PaymentMethodSettingForm::create();
         $codForm = CODPaymentMethodForm::create();
-        $bankTransferForm = BankTransferPaymentMethodForm::create();
+        // $bankTransferForm = BankTransferPaymentMethodForm::create();
 
         return view(
             'plugins/payment::settings.index',
-            compact('form', 'codForm', 'bankTransferForm')
+            compact('form', 'codForm')
         );
+        // return view(
+        //     'plugins/payment::settings.index',
+        //     compact('form', 'codForm', 'bankTransferForm')
+        // );
     }
 
     public function updateSettings(PaymentMethodSettingRequest $request)
