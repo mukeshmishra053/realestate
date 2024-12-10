@@ -9,7 +9,9 @@ use Botble\RealEstate\Models\Property;
 use Botble\RealEstate\Models\Project;
 use Botble\RealEstate\Models\Feature;
 use App\Http\Requests\ContactFormRequest;
+use App\Http\Requests\SaveEnquiryRequest;
 use App\Http\Requests\ReviewRequest;
+use App\Models\Enquiry;
 use Botble\Blog\Models\Post;
 use Botble\Location\Models\State;
 use Botble\Testimonial\Models\Testimonial;
@@ -80,6 +82,13 @@ Class HomeController extends Controller {
         // echo "<pre>";
         // print_r($singleCity); die;
         return view('frontend.pages.contact_us',compact('categoriesData','singleCity'));
+    }
+    // Help Page
+    public function help(Request $request){
+        $categoriesData =  Category::take(5)->get();
+        $singleCity = City::with('properties','state')->withCount('properties')->orderBy('properties_count')->first();
+        $realEstateCategories =  Category::get();
+        return view('frontend.pages.help',compact('categoriesData','singleCity','realEstateCategories'));
     }
     // About Us
     public function aboutUs(Request $request){
@@ -286,6 +295,16 @@ Class HomeController extends Controller {
                 'status' => 'approved',
             ]);
             return response()->json(['status'=>($result) ? 200 : 400,'msg'=>($result) ? 'Action performed successfully' : 'Something went wrong','url'=>'','data'=>$result]);
+        }catch(\Exception $e){
+            return response()->json(['status'=>400,'msg'=>$e->getMessage(),'url'=>'']);
+        }
+    }
+
+     // Submit Contact Us Page
+     public function saveEnquiry(SaveEnquiryRequest $request){
+        try{
+            $result =  Enquiry::create($request->toArray());
+            return response()->json(['status'=>($result) ? 200 : 400,'msg'=>($result) ? 'Your enquiry submitted successfully' : 'Something went wrong','url'=>'','data'=>$result]);
         }catch(\Exception $e){
             return response()->json(['status'=>400,'msg'=>$e->getMessage(),'url'=>'']);
         }

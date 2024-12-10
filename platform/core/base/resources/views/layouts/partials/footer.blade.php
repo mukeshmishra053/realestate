@@ -3,13 +3,13 @@
         <div class="text-start">
             <div class="d-flex flex-wrap gap-3 justify-content-center justify-content-lg-between">
                 <div class="order-2 order-lg-1">
-                    @include('core/base::partials.copyright')
+                    Copyright  &copy; {{ Carbon\Carbon::now()->year }}  Patliputra
                 </div>
-                <div class="order-1 order-lg-2">
+                {{-- <div class="order-1 order-lg-2">
                     @if (defined('LARAVEL_START'))
                         {{ trans('core/base::layouts.page_loaded_in_time', ['time' => round(microtime(true) - LARAVEL_START, 2)]) }}
                     @endif
-                </div>
+                </div> --}}
             </div>
         </div>
     </div>

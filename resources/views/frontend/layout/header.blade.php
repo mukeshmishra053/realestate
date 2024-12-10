@@ -179,8 +179,7 @@
                  <li class="has-children">
                    <a href="javascript:void(0);">Help </a>
                    <ul>
-                      <li><a href="#!">Help center</a></li>
-                      <li><a href="#!">Sales Enquiry</a></li>
+                        <li><a href="{{ route('help') }}">Help center</a></li>
                    </ul>
                 </li>
 
@@ -373,8 +372,7 @@
             <li>
                 <span>Help</span>
                 <ul>
-                    <li><a href="#!">Help center</a></li>
-                    <li><a href="#!">Sales Enquiry</a></li>
+                    <li><a href="{{ route('help') }}">Help center</a></li>
                 </ul>
             </li>
             @if(Auth::guard('account')->check())

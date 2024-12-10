@@ -114,6 +114,13 @@ class LocationServiceProvider extends ServiceProvider
                     'parent_id' => 'cms-plugins-location',
                     'name' => 'plugins/location::export.name',
                     'route' => 'location.export.index',
+                ])
+                ->registerItem([
+                    'id' => 'cms-plugins-location-exports',
+                    'priority' => 5,
+                    'parent_id' => 'cms-plugins-location',
+                    'name' => 'Enquiries',
+                    'route' => 'location.export.index',
                 ]);
         });
 

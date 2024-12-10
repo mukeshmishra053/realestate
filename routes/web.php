@@ -15,6 +15,7 @@ use App\Http\Controllers\HomeController;
 */
 Route::get('/', [HomeController::class,'index'])->name('home');
 Route::get('/contact-us', [HomeController::class,'contactUs'])->name('contact.us');
+Route::get('/help', [HomeController::class,'help'])->name('help');
 Route::get('/privacy-policy', [HomeController::class,'privacyPolicy'])->name('privacy.policy');
 Route::get('/terms-condition', [HomeController::class,'termsCondition'])->name('terms.condition');
 Route::get('/about-us', [HomeController::class,'aboutUs'])->name('about.us');
@@ -35,6 +36,7 @@ Route::get('/get-detail-property/{id}', [HomeController::class,'propertyDetails'
 Route::get('/get-detail-project/{id}', [HomeController::class,'projectDetails'])->name('project.detail');
 Route::post('/apply-property-filter', [HomeController::class,'applyFilter'])->name('submit.filter.data.for.property');
 Route::post('/save-contact-us', [HomeController::class,'saveContactUs'])->name('save.contact.us');
+Route::post('/save-help', [HomeController::class,'saveEnquiry'])->name('save.help');
 Route::post('/save-review', [HomeController::class,'saveReview'])->name('submit.review');
 Route::post('/login', [AuthController::class,'login'])->name('login');
 Route::get('/logout', [AuthController::class,'logout'])->name('logout');
