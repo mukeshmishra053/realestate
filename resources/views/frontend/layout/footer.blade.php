@@ -133,97 +133,97 @@
 </svg>
 </div>
 <div class="modal fade modalCenter" id="modallogin">
-<div class="modal-dialog modal-dialog-centered" role="document">
-   <div class="modal-content modal-sm">
-      <a href="#" class="btn-hide-modal" data-bs-dismiss="modal"><i class="icon-close"></i></a>
-      <div class="image-left">
-         <img src="{{ asset('/') }}frontend/images/section/login.jpg" alt="">
-         <h3>Welcome to Patliputra Property Hub</h3>
-      </div>
-      <div class="content-right">
-         <h4>Sign into your account</h4>
-         <form class="form-login" id="loginForm" action="{{ url('login') }}" method="POST">
-            @csrf
-            <fieldset class="name">
-               <input type="text" placeholder="Username" class="" name="email">
-               <p class="text-danger" id="emails"></p>
-            </fieldset>
-            <fieldset class="password">
-               <input type="password" placeholder="Password" class="" name="password" tabindex="2" value="">
-               <input type="hidden" class="" name="login_type" tabindex="2" value="front">
-               <p class="text-danger" id="password"></p>
-            </fieldset>
-            {{-- <div class="flex items-center justify-between w-full">
-               <div class="checkbox-item">
-                  <label>
-                     <p>Remember me</p>
-                     <input type="checkbox" name="remember_me">
-                     <span class="btn-checkbox"></span>
-                  </label>
-               </div>
-               <a href="#" class="lost-password">Lost your password?</a>
-            </div> --}}
-            <div class="button-submit w-full">
-               <button class="tf-button-primary w-full" type="submit">Login<i class="icon-arrow-right-add"></i></button>
+    <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content modal-sm">
+        <a href="#" class="btn-hide-modal" data-bs-dismiss="modal"><i class="icon-close"></i></a>
+        <div class="image-left">
+            <img src="{{ asset('/') }}frontend/images/section/login.jpg" alt="">
+            <h3>Welcome to Patliputra Property Hub</h3>
+        </div>
+        <div class="content-right">
+            <h4>Sign into your account</h4>
+            <form class="form-login" id="loginForm" action="{{ url('login') }}" method="POST">
+                @csrf
+                <fieldset class="name">
+                <input type="text" placeholder="Username" class="" name="email">
+                <p class="text-danger" id="emails"></p>
+                </fieldset>
+                <fieldset class="password">
+                <input type="password" placeholder="Password" class="" name="password" tabindex="2" value="">
+                <input type="hidden" class="" name="login_type" tabindex="2" value="front">
+                <p class="text-danger" id="password"></p>
+                </fieldset>
+                {{-- <div class="flex items-center justify-between w-full">
+                <div class="checkbox-item">
+                    <label>
+                        <p>Remember me</p>
+                        <input type="checkbox" name="remember_me">
+                        <span class="btn-checkbox"></span>
+                    </label>
+                </div>
+                <a href="#" class="lost-password">Lost your password?</a>
+                </div> --}}
+                <div class="button-submit w-full">
+                <button class="tf-button-primary w-full" type="submit">Login<i class="icon-arrow-right-add"></i></button>
+                </div>
+            </form>
+            <div class="flex items-center justify-center">
+                <p>Not a member ?</p>
+                <a href="#" class="btn-show-register" data-bs-dismiss="modal" data-bs-toggle="modal" data-bs-target="#modalregister">Register here</a>
             </div>
-         </form>
-         <div class="flex items-center justify-center">
-            <p>Not a member ?</p>
-            <a href="#" class="btn-show-register" data-bs-dismiss="modal" data-bs-toggle="modal" data-bs-target="#modalregister">Register here</a>
-         </div>
-         {{-- <ul class="wg-social-1">
-            <li><a href="#"><i class="flaticon-google"></i></a></li>
-            <li><a href="#"><i class="flaticon-twitter"></i></a></li>
-            <li><a href="#"><i class="flaticon-facebook"></i></a></li>
-         </ul> --}}
-      </div>
-   </div>
-</div>
+            {{-- <ul class="wg-social-1">
+                <li><a href="#"><i class="flaticon-google"></i></a></li>
+                <li><a href="#"><i class="flaticon-twitter"></i></a></li>
+                <li><a href="#"><i class="flaticon-facebook"></i></a></li>
+            </ul> --}}
+        </div>
+    </div>
+    </div>
 </div>
 
 <div class="modal fade modalCenter" id="modalregister">
-<div class="modal-dialog modal-dialog-centered" role="document">
-   <div class="modal-content modal-sm">
-      <a href="#" class="btn-hide-modal" data-bs-dismiss="modal"><i class="icon-close"></i></a>
-      <div class="image-left">
-         <img src="{{ asset('/') }}frontend/images/section/loginss.jpg" alt="">
-         <h3>Welcome to Patliputra Property Hub</h3>
-      </div>
-      <div class="content-right">
-         <h4>Create an account</h4>
-         <form class="form-login" id="registerForm" action="{{ url('register') }}" method="POST">
-            <fieldset class="name">
-               <input type="text" placeholder="Firstname" class="" name="first_name">
-               <p class="text-danger" id="first_names"></p>
-            </fieldset>
-            <fieldset class="name">
-               <input type="text" placeholder="Lastname" class="" name="last_name">
-            </fieldset>
-            <fieldset class="username">
-               <input type="text" placeholder="Username" class="" name="username">
-               <p class="text-danger" id="usernames"></p>
-            </fieldset>
-            <fieldset class="email">
-               <input type="email" placeholder="Email" class="" name="email">
-               <p class="text-danger" id="emails"></p>
-            </fieldset>
-            <fieldset class="password">
-               <input type="password" placeholder="Password" class="" name="password">
-               <p class="text-danger" id="passwords"></p>
-            </fieldset>
-            <fieldset class="password">
-               <input type="password" placeholder="Retype Password" class="" name="password_confirmation">
-               <p class="text-danger" id="password_confirmations"></p>
-            </fieldset>
-            <div class="button-submit">
-               <button class="tf-button-primary w-full final-submit-btn" type="submit">Register<i class="icon-arrow-right-add"></i></button>
+    <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content modal-sm">
+        <a href="#" class="btn-hide-modal" data-bs-dismiss="modal"><i class="icon-close"></i></a>
+        <div class="image-left">
+            <img src="{{ asset('/') }}frontend/images/section/loginss.jpg" alt="">
+            <h3>Welcome to Patliputra Property Hub</h3>
+        </div>
+        <div class="content-right">
+            <h4>Create an account</h4>
+            <form class="form-login" id="registerForm" action="{{ url('register') }}" method="POST">
+                <fieldset class="name">
+                <input type="text" placeholder="Firstname" class="" name="first_name">
+                <p class="text-danger" id="first_names"></p>
+                </fieldset>
+                <fieldset class="name">
+                <input type="text" placeholder="Lastname" class="" name="last_name">
+                </fieldset>
+                <fieldset class="username">
+                <input type="text" placeholder="Username" class="" name="username">
+                <p class="text-danger" id="usernames"></p>
+                </fieldset>
+                <fieldset class="email">
+                <input type="email" placeholder="Email" class="" name="email">
+                <p class="text-danger" id="emails"></p>
+                </fieldset>
+                <fieldset class="password">
+                <input type="password" placeholder="Password" class="" name="password">
+                <p class="text-danger" id="passwords"></p>
+                </fieldset>
+                <fieldset class="password">
+                <input type="password" placeholder="Retype Password" class="" name="password_confirmation">
+                <p class="text-danger" id="password_confirmations"></p>
+                </fieldset>
+                <div class="button-submit">
+                <button class="tf-button-primary w-full final-submit-btn" type="submit">Register<i class="icon-arrow-right-add"></i></button>
+                </div>
+            </form>
+            <div class="flex items-center justify-center">
+                <p>Have an account?</p>
+                <a href="#" class="btn-show-register" data-bs-dismiss="modal" data-bs-toggle="modal" data-bs-target="#modallogin">Log in</a>
             </div>
-         </form>
-         <div class="flex items-center justify-center">
-            <p>Have an account?</p>
-            <a href="#" class="btn-show-register" data-bs-dismiss="modal" data-bs-toggle="modal" data-bs-target="#modallogin">Log in</a>
-         </div>
-      </div>
-   </div>
-</div>
+        </div>
+    </div>
+    </div>
 </div>

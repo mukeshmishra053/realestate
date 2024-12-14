@@ -19,6 +19,13 @@ Route::group(['namespace' => 'Botble\Base\Http\Controllers'], function () {
                 'permission' => 'core.system',
             ]);
         });
+        Route::group(['prefix' => 'enquiries'], function () {
+            Route::get('', [
+                'as' => 'enquiry.index',
+                'uses' => 'EnquiryController@getIndex',
+                'permission' => 'core.system',
+            ]);
+        });
 
         Route::group(['permission' => 'superuser'], function () {
             Route::prefix('system/info')->group(function () {

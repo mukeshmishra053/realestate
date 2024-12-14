@@ -1,6 +1,7 @@
 @php
 $name = Str::contains($name = $menu['name'], '::') ?  BaseHelper::clean(trans($name)) : $name;
 @endphp
+@if($menu['id'] != 'cms-core-appearance' && $menu['id'] != 'cms-core-page' && $menu['id'] != 'cms-plugins-real-estate-coupons'  && $menu['id'] != 'cms-core-plugins' && $menu['id'] != 'cms-plugins-package' && $menu['id'] != 'cms-plugins-real-estate-custom-fields')
 <a
     @class([
         'nav-link' => $isNav = $isNav ?? true,
@@ -30,3 +31,4 @@ $name = Str::contains($name = $menu['name'], '::') ?  BaseHelper::clean(trans($n
         {!! apply_filters(BASE_FILTER_APPEND_MENU_NAME, null, $menu['id']) !!}
     </span>
 </a>
+@endif

@@ -212,7 +212,7 @@
                     </div>
                 </div>
                 <div class="header-btn">
-                    <a href="#!" class="tf-button-default type-1">Post Property</a>
+                    <a data-bs-toggle="modal" data-bs-target="#modalregister" class="tf-button-default type-1">Post Property</a>
                 </div>
             @endif
           </div>

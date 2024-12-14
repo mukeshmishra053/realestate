@@ -11,9 +11,11 @@ use Botble\RealEstate\Models\Feature;
 use App\Http\Requests\ContactFormRequest;
 use App\Http\Requests\SaveEnquiryRequest;
 use App\Http\Requests\ReviewRequest;
+use App\Http\Requests\SaveConsultRequest;
 use App\Models\Enquiry;
 use Botble\Blog\Models\Post;
 use Botble\Location\Models\State;
+use Botble\RealEstate\Models\Consult;
 use Botble\Testimonial\Models\Testimonial;
 use Botble\Contact\Models\Contact;
 use Botble\Page\Models\Page;
@@ -25,6 +27,7 @@ use Botble\Menu\Models\Menu;
 use Botble\RealEstate\Models\Review;
 use Illuminate\Support\Facades\View;
 use App\Http\Services\CommonService;
+use Illuminate\Support\Facades\Auth;
 use Config;
 Class HomeController extends Controller {
 
@@ -149,7 +152,7 @@ Class HomeController extends Controller {
         $singleProperty = Property::with(['author','facilities','features','reviews.author'])->find($id);
         $singleCity = City::with('properties','state')->withCount('properties')->orderBy('properties_count')->first();
         // echo "<pre>";
-        // print_r($singleCity); die;
+        // print_r(json_decode(json_encode($singleProperty),2)); die;
         return view('frontend.pages.home_interior_details',compact('singleProperty','categoriesData','singleCity'));
     }
 
@@ -286,15 +289,35 @@ Class HomeController extends Controller {
      // Submit Contact Us Page
     public function saveReview(ReviewRequest $request){
         try{
-            $result =  Review::create([
-                'reviewable_id' => $request->reviewable_id,
-                'reviewable_type' => ($request->review_type == 'property') ? Property::class : Project::class,
-                'account_id' => $request->account_id,
-                'star' => $request->star,
-                'content' => $request->content,
-                'status' => 'approved',
+            if(Auth::guard('account')->check()){
+                $result =  Review::create([
+                    'reviewable_id' => $request->reviewable_id,
+                    'reviewable_type' => ($request->review_type == 'property') ? Property::class : Project::class,
+                    'account_id' => auth('account')->user()->id,
+                    'star' => $request->star,
+                    'content' => $request->content,
+                    'status' => 'approved',
+                ]);
+                return response()->json(['status'=>($result) ? 200 : 400,'msg'=>($result) ? 'Review performed successfully' : 'Something went wrong','url'=>'','data'=>$result]);
+            }
+            return response()->json(['status'=>400,'msg'=>'Please Login first','url'=>'']);
+        }catch(\Exception $e){
+            return response()->json(['status'=>400,'msg'=>$e->getMessage(),'url'=>'']);
+        }
+    }
+    public function saveConsultant(SaveConsultRequest $request){
+        try{
+            $result =  Consult::create([
+                'name' => $request->name,
+                'phone' => $request->phone,
+                'email' => $request->email,
+                'property_id' => ($request->property_type == 'property') ? $request->property_id : NULL,
+                'content' =>$request->content,
+                'ip_address' => $request->ip(),
+                'project_id' => ($request->property_type == 'project') ? $request->property_id : NULL,
+                'status' => 'unread',
             ]);
-            return response()->json(['status'=>($result) ? 200 : 400,'msg'=>($result) ? 'Action performed successfully' : 'Something went wrong','url'=>'','data'=>$result]);
+            return response()->json(['status'=>($result) ? 200 : 400,'msg'=>($result) ? 'Request submitted successfully we will get back to you shortly' : 'Something went wrong','url'=>'','data'=>$result]);
         }catch(\Exception $e){
             return response()->json(['status'=>400,'msg'=>$e->getMessage(),'url'=>'']);
         }

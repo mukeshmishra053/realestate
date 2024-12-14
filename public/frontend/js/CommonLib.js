@@ -26,7 +26,7 @@ const CommonLib = {
             return toastr.success(message, 'Success');
         },
         error:function(message){
-            return toastr.success(message, 'Failure');
+            return toastr.error(message, 'Failure');
         },
         warning:function(message){
             return toastr.warning(message, 'Info');

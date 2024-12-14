@@ -94,21 +94,21 @@ class LanguageManager
         $languages = $this->getActiveLanguage();
 
         $locales = [];
-        foreach ($languages as $language) {
-            if (
-                is_in_admin() ||
-                ! in_array($language->lang_id, json_decode(setting('language_hide_languages', '[]'), true))
-            ) {
-                $locales[$language->lang_locale] = [
-                    'lang_name' => $language->lang_name,
-                    'lang_locale' => $language->lang_locale,
-                    'lang_code' => $language->lang_code,
-                    'lang_flag' => $language->lang_flag,
-                    'lang_is_rtl' => $language->lang_is_rtl,
-                    'lang_is_default' => $language->lang_is_default,
-                ];
-            }
-        }
+        // foreach ($languages as $language) {
+        //     if (
+        //         is_in_admin() ||
+        //         ! in_array($language->lang_id, json_decode(setting('language_hide_languages', '[]'), true))
+        //     ) {
+        //         $locales[$language->lang_locale] = [
+        //             'lang_name' => $language->lang_name,
+        //             'lang_locale' => $language->lang_locale,
+        //             'lang_code' => $language->lang_code,
+        //             'lang_flag' => $language->lang_flag,
+        //             'lang_is_rtl' => $language->lang_is_rtl,
+        //             'lang_is_default' => $language->lang_is_default,
+        //         ];
+        //     }
+        // }
 
         if (empty($locales)) {
             $locales = [

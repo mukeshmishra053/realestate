@@ -42,12 +42,12 @@
                             </div>
                             <p>Save</p>
                          </div>
-                         <div class="item">
+                         {{-- <div class="item">
                             <div class="icon">
                                <i class="flaticon-before-after"></i>
                             </div>
                             <p>Compare</p>
-                         </div>
+                         </div> --}}
                          <div class="item">
                             <div class="icon">
                                <i class="flaticon-outbox"></i>
@@ -476,41 +476,39 @@
                          </div>
                       </div>
                       <div class="title wow fadeInUp">Enquire About This Property</div>
-                      <form class="form-comment">
-                         <div class="cols">
+                      <form class="form-comment" id="consultForm" method="POST" action="{{ route('save.consultant') }}">
+                        @csrf
+                        <div class="cols">
                             <fieldset class="name wow fadeInUp has-top-title">
-                               <input type="text" placeholder="Name" class="" name="text" tabindex="2" value="Ali Tufan" aria-required="true" required="">
+                               <input type="text" placeholder="Name" class="" name="name" tabindex="2" value="" aria-required="true">
+                               <input type="hidden"  name="property_id" tabindex="2" value="{{ $singleProperty->id }}" aria-required="true">
+                               <input type="hidden"  name="property_type" tabindex="2" value="property" aria-required="true">
                                <label for="">Name</label>
+                               <p id="names" class="text-danger"></p>
                             </fieldset>
                             <fieldset class="phone wow fadeInUp has-top-title" data-wow-delay="0.1s">
-                               <input type="number" placeholder="Phone" class="" name="number" tabindex="2" value="" aria-required="true" required="">
+                               <input type="number" placeholder="Phone" class="" name="phone" tabindex="2" value="" aria-required="true">
                                <label for="">Phone</label>
+                               <p class="text-danger" id="phones"></p>
                             </fieldset>
                          </div>
-                         <div class="cols">
-                            <fieldset class="email wow fadeInUp has-top-title">
-                               <input type="email" placeholder="Email" class="" name="email" tabindex="2" value="" aria-required="true" required="">
-                               <label for="">Email</label>
-                            </fieldset>
-                            <div class="nice-select wow fadeInUp" data-wow-delay="0.1s" tabindex="0">
-                               <span class="current">Please Select Time</span>
-                               <ul class="list">
-                                  <li data-value class="option selected">6 AM</li>
-                                  <li data-value="For Rent" class="option">12 AM</li>
-                                  <li data-value="Sold" class="option">6 PM</li>
-                               </ul>
-                            </div>
-                         </div>
+                         <fieldset class="email wow fadeInUp has-top-title">
+                            <input type="email" placeholder="Email" class="" name="email" tabindex="2" value="" aria-required="true">
+                            <label for="">Email</label>
+                            <p id="emails" class="text-danger"></p>
+                         </fieldset>
                          <fieldset class="message wow fadeInUp has-top-title">
-                            <textarea name="message" rows="4" placeholder="Message" class="" tabindex="2" aria-required="true" required="">Hello, I am interested in [Renovated apartment at last floor]</textarea>
+                            <textarea name="content" rows="4" placeholder="Message" class="" tabindex="2" aria-required="true"></textarea>
                             <label for="">Message</label>
+                            <p id="contents" class="text-danger"></p>
                          </fieldset>
                          <div class="checkbox-item wow fadeInUp">
                             <label>
                                <p>By submitting this form I agree to<span>Terms of Use</span></p>
-                               <input type="checkbox">
+                               <input type="checkbox" name="terms">
                                <span class="btn-checkbox"></span>
                             </label>
+                            <p id="termss" class="text-danger"></p>
                          </div>
                          <div class="button-submit wow fadeInUp">
                             <button class="tf-button-primary" type="submit">Request Information<i class="icon-arrow-right-add"></i></button>
@@ -754,6 +752,36 @@
                         console.log("field",field)
                         console.log("messages",messages)
                         $(`#${field}`).html(messages[0]);
+                    });
+                }
+            });
+        });
+        $("body").on('submit','#consultForm',function(e){
+            e.preventDefault();
+            const url = $(this).attr('action');
+            const method = $(this).attr('method');
+            var formData = new FormData($(this)[0]);
+            $('.text-danger').empty();
+            CommonLib.ajaxForm(formData,method,url).then(d=>{
+                console.log(d)
+                if(d.status === 200){
+                    console.log(d.msg)
+                    CommonLib.notification.success(d.msg);
+                    setTimeout(() => {
+                        location.reload();
+                    }, 2000);
+                }else{
+                    CommonLib.notification.error(d.msg);
+                }
+            }).catch(e=>{
+                console.log("e",e.responseJSON)
+                if (e.status === 422) {
+                    console.log("e",e.status)
+                    let errors = e.responseJSON.errors;
+                    $.each(errors, function (field, messages) {
+                        console.log("field",field)
+                        console.log("messages",messages)
+                        $(`#${field}s`).html(messages[0]);
                     });
                 }
             });

@@ -313,8 +313,9 @@ class BaseHelper
             $dirty = (string) $dirty;
         }
 
-        return clean($dirty, $config);
+        return $dirty;
     }
+
 
     public function html(array|string|null $dirty, array|string|null $config = null): HtmlString
     {

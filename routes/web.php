@@ -38,6 +38,7 @@ Route::post('/apply-property-filter', [HomeController::class,'applyFilter'])->na
 Route::post('/save-contact-us', [HomeController::class,'saveContactUs'])->name('save.contact.us');
 Route::post('/save-help', [HomeController::class,'saveEnquiry'])->name('save.help');
 Route::post('/save-review', [HomeController::class,'saveReview'])->name('submit.review');
+Route::post('/save-consultant', [HomeController::class,'saveConsultant'])->name('save.consultant');
 Route::post('/login', [AuthController::class,'login'])->name('login');
 Route::get('/logout', [AuthController::class,'logout'])->name('logout');
 Route::post('/register', [AuthController::class,'register'])->name('register');

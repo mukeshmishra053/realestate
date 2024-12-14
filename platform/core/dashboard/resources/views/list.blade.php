@@ -5,7 +5,7 @@
         <x-core::button
             color="primary"
             :outlined="true"
-            class="manage-widget"
+            class="manage-widget d-none"
             data-bs-toggle="modal"
             data-bs-target="#widgets-management-modal"
             icon="ti ti-layout-dashboard"
