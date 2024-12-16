@@ -12,15 +12,16 @@ class ProjectRequest extends Request
     {
         return [
             'name' => 'required|string|max:120',
-            'description' => 'nullable|string|max:400',
+            'description' => 'required|nullable|string|max:400',
             'content' => 'required|string',
-            'number_block' => 'numeric|min:0|max:100000|nullable',
-            'number_floor' => 'numeric|min:0|max:100000|nullable',
-            'number_flat' => 'numeric|min:0|max:100000|nullable',
-            'price_from' => 'numeric|min:0|nullable',
-            'price_to' => 'numeric|min:0|nullable',
-            'latitude' => ['max:20', 'nullable', 'regex:/^[-]?(([0-8]?[0-9])\.(\d+))|(90(\.0+)?)$/'],
+            'number_block' => 'required|numeric|min:0|max:100000|nullable',
+            'number_floor' => 'required|numeric|min:0|max:100000|nullable',
+            'number_flat' => 'required|numeric|min:0|max:100000|nullable',
+            'price_from' => 'required|numeric|min:0|nullable',
+            'price_to' => 'required|numeric|min:0|nullable',
+            'latitude' => ['required','max:20', 'nullable', 'regex:/^[-]?(([0-8]?[0-9])\.(\d+))|(90(\.0+)?)$/'],
             'longitude' => [
+                'required',
                 'max:20',
                 'nullable',
                 'regex:/^[-]?((((1[0-7][0-9])|([0-9]?[0-9]))\.(\d+))|180(\.0+)?)$/',

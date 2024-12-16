@@ -12,7 +12,7 @@ class CategoryRequest extends Request
     {
         return [
             'name' => 'required|string|max:220',
-            'description' => 'nullable|string|max:400',
+            'description' => 'required|nullable|string|max:400',
             'is_default' => 'sometimes|boolean',
             'status' => Rule::in(BaseStatusEnum::values()),
         ];
